@@ -1,0 +1,36 @@
+:PROPERTIES:
+:ID:       bbf6afcb-c7b9-4eca-8c85-39fb3ed8ae08
+:END:
+#+title: org-roam plantillas
+#+STARTUP: show2levels
+
+#+date: <2023-08-30>
+
+#+hugo_custom_front_matter: :thumbnail "images/org-roam.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: org-roam
+#+hugo_categories: emacs
+#+hugo_draft: false
+
+Cada vez que se añade una nueva nota en [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] se hace uso de las plantillas que estan definidas en la configuración de [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]. Aquí está la información que he ido recopilando y las plantillas que utilizo.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** Plantillas
+Se definen con la variable (org-roam-capture-templates)
+#+begin_quote
+Existe un bug que no permite añadir una nueva línea editanto la variable anterior, hay que hacerlo en el archivo de configuración mediante "\n".
+#+end_quote
+
+*** Mis plantillas en "init.el"
+Dentro del apartado "custom-set-variables
+#+begin_src elisp
+  '(org-roam-capture-templates
+     (quote
+      (("d" "default" plain "%?" :target
+	(file+head "%<%Y%m%d>-${slug}.org" "#+title: ${title}
+  ,#+STARTUP: show2levels
+  ")
+#+end_src

@@ -1,0 +1,53 @@
+:PROPERTIES:
+:ID:       42e68ab8-cffa-4b48-9974-dfd9a9ebb694
+:END:
+#+title: home assistant
+#+STARTUP: overview
+#+date: 2024-01-17
+#+hugo_custom_front_matter: :thumbnail "images/homeassistant.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: ha
+#+hugo_categories: apps iot
+#+hugo_draft: false
+Home Assistant es una plataforma de domótica de código abierto que transforma hogares en espacios inteligentes. Ofrece integración para una amplia variedad de dispositivos y servicios, permitiendo el control centralizado de luces, termostatos, cámaras y más. Su interfaz intuitiva y automatizaciones personalizables facilitan la gestión del hogar conectado.
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+**** Notificar batería baja de sensores
+ - Importar [[https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2Fsbyx%2F1f6f434f0903b872b84c4302637d0890][este]] blueprint
+ - Seguir las [[https://community.home-assistant.io/t/low-battery-level-detection-notification-for-all-battery-sensors/258664][intrucciones]].
+**** Añadir Control remoto de Amazon Fire Stick
+ - [[https://github.com/PRProd/HA-Firemote/blob/20fb3dd0ac57261a712dd524c58ded2a132b0446/README.md][HA-Firemote]]
+   #+begin_quote
+    Después del arranque o actualización hay que pulsar uno de los botones del mando físico para que empiece a funcionar. Este problema se arregla con un alimentador externo al firestick.
+    #+end_quote
+**** Casa ZgZ - Galería - Sensor puerta
+Cuando el sensor de la puerta de la galería pierde la conexión hay que realizar los siguientes pasos:
+ - Buscar nuevos dispositivos en la integración ZHA
+ - Reiniciar sensor con el clip hasta que parpadea el led tres veces
+ - Volver a reiniciar
+ - Seleccionar el área de "galería" una vez detectado
+**** Casa Zgz - Salón - Emparejar GU10 Ikea Tradfri
+ - Colocar la bombilla cerca del concentrador Zigbee
+ - Encender y apagar 6 veces la bombilla dejándola encendida
+ - Buscar nuevos dispositivos en la integración de ZHA
+   #+begin_quote
+ En caso de que el dispositivo no esté disponible un tiempo después de haber sido agregado, no es necesario eliminar la instancia, simplemente al buscar nuevos aparecerá ya con el nombre que se la  había asignado anteriormente.
+ #+end_quote
+**** Zigbee2Mqtt
+***** Intalar
+- Instalar el addon [[https://isytec.net/como-instalar-mosquitto-broker-mqtt-en-home-assistant/][Mosquito]]
+- Instalar el addon [[https://www.zigbee2mqtt.io/guide/configuration/][Zigbee2Mqtt]]
+- Añadir la integración Mqtt
+- Editar "Configuration.yaml" en zigbee2mqtt
+#+begin_src yaml
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
+frontend:
+  port: 8099
+serial:
+  port: /dev/ttyUSB1
+#+end_src

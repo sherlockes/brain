@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       9ceae31a-8fb3-4f1b-b793-0a6d045f3862
+:END:
+#+title: iot
+#+STARTUP: show2levels
+
+#+date: <2023-10-11>
+
+#+hugo_custom_front_matter: :thumbnail "images/iot.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: zigbee
+#+hugo_categories: iot
+#+hugo_draft: false
+
+En La domótica no es tan difícil como parece, si quieres ahorrar algo de tiempo no está de más dejar escrito lo que te ha costado un rato descubrir.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][Home Assistant]]

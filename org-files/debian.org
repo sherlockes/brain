@@ -1,0 +1,105 @@
+:PROPERTIES:
+:ID:       bd6414c2-4e32-456d-975d-af557dd03380
+:END:
+#+title: debian
+#+filetags: :so:
+#+STARTUP: show2levels
+
+#+date: <2023-09-04 lun 13:39>
+
+#+hugo_section: notas
+#+hugo_custom_front_matter: :thumbnail "images/debian.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: debian
+#+hugo_categories: sos
+#+hugo_draft: false
+
+Debian, un sistema operativo de código abierto basado en Linux, destaca por su estabilidad, seguridad y compromiso con el software libre. Su versatilidad lo hace apto para servidores, estaciones de trabajo y sistemas embebidos. Utiliza APT, un eficiente sistema de gestión de paquetes, para instalar y actualizar software. Debian es una elección sólida en entornos domésticos y empresariales debido a su confiabilidad y valores de software libre.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+** PDF - Instalar la compatibilidad para impresión a PDF
+#+begin_src sh
+    apt-get -y install cups
+    apt-get -y install printer-driver-cups-pdf
+#+end_src
+** GPG - Reparar el error de gpg ([[https://www.youtube.com/watch?v=AFNPYDWXeVI][Video]])
+Las firmas siguientes no se pudieron verificar porque su clave pública no está disponible: NO_PUBKEY 4EB27DB2A3B88B8B
+~sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B~
+
+** APT - Buscar packetes instalados -> apt list --installed nombre
+** Instalación en un servidor
+*** Descargar [[https://www.debian.org/distrib/][Debian]] y copiar la iso a un usb
+Puesto que el servidor va a tener conexión a internet, descargamos una imagen de instalación pequeña.
+*** Configurar la BIOS para arrancar desde el USB
+Se accede mediante F2 y se pone el primer medio de arranque el usb
+*** Instalar Debian
+Al terminar la instalación nos pedirá que quitemos el usb y reiniciemos el pc
+*** Instalar sudo
+#+begin_src bash
+  su -   # Ingresa como root
+  apt update
+  apt install sudo
+  usermod -aG sudo tu_usuario
+#+end_src
+*** Modificar "/etc/network/interfaces" (IP estática)
+La interface de red principal se llama "enp2s0" y el archivo quedará así
+
+#+begin_src bash
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto enp2s0
+iface enp2s0 inet static
+address 192.168.10.211
+netmask 255.255.255.0
+gateway 192.168.10.1
+dns-nameservers 192.168.10.210 8.8.8.8
+#+end_src
+
+Para aplicar la configuración y reiniciar la tarjeta de red usaremos ~sudo systemctl restart networking~.
+
+*** Habilitar Wake On LAN (84:47:09:24:9e:fc)
+A pesar de que en la BIOS he habilitado el "Wake On LAN" y el encendido automático, cuando envío el paquete a la MAC del servidor no se enciende automáticamente por lo que modificaré los parámetros de la tarjeta de red mediante la aplicación "ethtool" tal y como se explica [[https://www.linuxparty.es/29-internet/8299-configurar-wake-on-lan-wol-en-linux-como-se-usa][aquí]].
+
+ - Instalamos la aplicación con ~sudo apt install ethtool~
+ - Vemos la configuración de la tarjeta de red con ~sudo ethtool enp2s0~
+  #+begin_src txt
+    PHYAD: 0
+    Transceiver: external
+    MDI-X: Unknown
+    Supports Wake-on: pumbg
+    Wake-on: d
+    Link detected: yes
+  #+end_src
+ - ~ethtool -s enp2s0 wol g~
+  #+begin_src txt
+    PHYAD: 0
+    Transceiver: external
+    MDI-X: Unknown
+    Supports Wake-on: pumbg
+    Wake-on: g
+    Link detected: yes
+  #+end_src
+
+Resulta que este método funciona pero no es persistente y después de un reinicio se desactiva el WOL por lo que hay que crear un script que lo active en cada reinicio del servidor.
+
+ - Crear archivo "wol" ~sudo nano /etc/network/if-up.d/wol~
+#+begin_src bash
+  #!/bin/bash
+  ethtool -s enp2s0 wol g
+#+end_src
+ - Permiso de ejecución ~sudo chmod +x /etc/network/if-up.d/wol~
+
+*** Instalar Docker
+ - Instalación usando repositorio apt según [[https://docs.docker.com/engine/install/debian/#install-using-the-repository][Instrucciones oficiales]]
+ - Modificar usuarios para poder ejecutar docker sin sudo: [[https://docs.docker.com/engine/install/linux-postinstall/][info]]

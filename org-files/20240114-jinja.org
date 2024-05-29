@@ -1,0 +1,181 @@
+:PROPERTIES:
+:ID:       4185090f-0488-404d-b2d0-1782cde99f7b
+:END:
+#+title: jinja
+#+STARTUP: overview
+#+date: 2024-01-14
+#+hugo_custom_front_matter: :thumbnail "images/jinja.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: jinja
+#+hugo_categories: script
+#+hugo_draft: false
+Jinja2 es un motor de plantillas para el lenguaje de programación Python. Fue creado por Armin Ronacher y se utiliza comúnmente en aplicaciones web basadas en Python para generar contenido dinámico. Jinja2 permite la creación de plantillas que contienen marcadores de posición y lógica de control, que luego pueden ser llenados con datos específicos cuando se renderiza la plantilla.
+#+BEGIN_export html
+<!--more-->
+#+END_export
+Estos son los conocimientos que he ido adquiriendo sobre jinja 2 para Home Assistant.
+
+Mi uso se restringe básicamente a la generación de plantillas para [[id:9ceae31a-8fb3-4f1b-b793-0a6d045f3862][Home Assistant]]. Puedes ver como lo he utilizado en la generación de [[https://github.com/sherlockes/ha_cfg/blob/main/sensors.yaml][sensores]] y [[https://github.com/sherlockes/ha_cfg/blob/main/binary_sensors.yaml][sensores binarios]] virtuales. 
+
+** Entidades
+- Obtener las entidades de una integración ~{{ integration_entities('<integración>') }}~
+- Obtener el atributo de una entidad ~{{ state_attr('<entidad>', '<atributo>') }}~
+- Obtener el estado de una entidad ~states('<entidad>')~
+-----
+** Bucles
+ - If
+   #+begin_src jinja2
+{% if <condicion_1> %}
+Resultado 1
+{% elif <condicion_2> %}
+Resultado 2
+{% else %}
+Resultado 3
+{% endif %}
+   #+end_src
+ - If not
+   #+begin_src jinja2
+{% if not <condicion_1> %}
+Resultado 1
+{% endif %}
+   #+end_src
+ - For
+   #+begin_src jinja2
+{% for <elemento> in <rango> %}
+  ...
+{% endfor %}
+   #+end_src
+-----   
+** Manejo de horas y fechas
+ - Ahora ~{{ now() }}~
+ - Ahora (solo fecha) ~{{ now().date() }}~
+ - Ahora (solo hora) ~{{ now().hour }}~
+ - Convertir a segundos ~{{ as_timestamp(<fecha>) }}~
+ - Incrementar un día ~{{ (now() + timedelta(days=1)) }}~
+ - Día de la semana ~{{ (<fecha>).strftime('%w') }}~
+ - Día de la semana ~{{ as_timestamp(<fecha>) | timestamp_custom('%w') }}~
+ - De lunes a viernes ~{{ (<fecha>).strftime('%w') | int in range(1, 6) }}~
+ - Despreciar segundos ~{{ now().replace(hour=8, minute=0, second=0, microsecond=0) }}~
+ - Texto a fecha ~as_datetime('YYYY-MM-DDTHH:MM:SS')~
+ - Reemplazar ~{{ as_datetime('2023-05-21').replace(hour=8, minute=0, second=0, microsecond=0) }}~
+-----
+** Operaciones
+- length -> Elementos de un rango o lista
+- int -> Convierte a entero
+- float -> Convierte a decimal
+-----
+** Rangos
+ - Desde hasta ~{{ <number> | int in range(1, 6) }}~
+ - Valores ~{{ <number> | int in ["1", "2", "6") }}~
+-----
+** Ejemplos
+*** Incremento de tiempo
+Añade al ayudante "input_datetime.tv_off_kids" 60 segundos
+
+#+begin_src jinja2
+{{(((state_attr('input_datetime.tv_off_kids' , 'timestamp')) + 60) |
+    timestamp_custom('%H:%M', false))}}
+#+end_src
+
+#+begin_quote
+Si en la función "timestamp_custom" ponemos "true" como segundo parámetro tenemos que restar 3600 sg (1 hora) a los 60 segundos para obtener el resultado adecuado. Para conseguir la hora local hay que poner este argumento a "false".
+#+end_quote
+
+Si queremos restar un número de minutos definido por el ayudante "counter.malos_habitos" modificaremos la función anterior quedando lo siguiente.
+
+#+begin_src jinja2
+  {{(((state_attr('input_datetime.tv_off_kids' , 'timestamp')) - (60 * ((states('counter.malos_habitos') | float)))) |
+    timestamp_custom('%H:%M', false))}}
+#+end_src
+-----
+*** Encendido de la calefacción entre dos horas
+Tenemos dos ayudantes, (hora de encender y hora de apagar) entre las cuales el resultado de la función deberá ser "on", "off" en el resto de horario"
+
+#+begin_src jinja2
+  {% set hora_actual = now().strftime('%H:%M') %}
+  {% set hora_encendido = states('input_datetime.calefaccion_hora_de_encender') %}
+  {% set hora_apagado = states('input_datetime.calefaccion_hora_de_apagar') %}
+  {% set temperatura_exterior = states('sensor.temperatura_exterior') | float %}
+  {{ 'on' if hora_encendido <= hora_actual < hora_apagado and temperatura_exterior < 15 else 'off' }}
+#+end_src
+-----
+*** Determinar si mañana hay cole
+- Hay un calendario (calendar.festivos_escolares) con los días festivos
+- Hay un ayudante (input_boolean.hay_cole_manana) que almacena el valor
+- Hay un script (Cole mañana) que recoge los eventos del calendario de las próximas 24 horas y lo guarda en la variable (agenda_calendario)
+  
+En un primer momento parece obvio que si mañana es sábado o domingo no habrá cole
+
+Con esto necesitamos una plantilla para que, a partir de "calendar.festivos_escolares" devuelva "true" si mañana hay cole o "false" si no lo hay. Habrá cole si:
+- No hay ningún evento en el calendario
+- El evento que hay termina antes de mañana (Hoy no es lectivo pero mañana si)
+
+#+begin_src jinja2
+{# Define tomorrow como la fecha de mañana a estas horas #}
+{% set tomorrow = as_timestamp((now() + timedelta(days=1)).date()) %}
+
+{# Si mañana no es de lunes a viernes, false, no hay cole #}
+{% if not (now() + timedelta(days=1)).strftime('%w') | int in range(1, 6) %}
+  false
+{# Si mañana no hay ningún evento en "festivos_escolares", true, hay cole #}
+{% elif not agenda_calendario["calendar.festivos_escolares"]["events"] %}
+  true
+{% else %}
+  {% for event in agenda_calendario["calendar.festivos_escolares"]["events"] %}
+    {% set event_end = as_timestamp(strptime(event.end, "%Y-%m-%d")) %}
+    {# Si para mañana se ha terminado el evento, true, hay cole #}
+    {% if tomorrow > event_end %}
+      true
+      {% break %}
+    {% else %}
+      false
+    {% endif %}
+  {% endfor %}
+{% endif %}
+#+end_src
+-----
+*** Las persianas de casa
+**** Bajar las persianas cuando levanta el sol y hace calor
+Hay que determinar cuando está levantando el sol y hace el suficiente calor dentro o fuera de casa
+- Elevación del sol entre 21º y 50º
+- La hora menor de las 14:00 para despreciar cuando se esconde el sol
+- Temperatura interior o exterior por encima de 23 ºC
+  
+#+begin_src jinja2
+{% set elev = 21 < state_attr('sun.sun', 'elevation') < 50 %}
+{% set hora = now().hour < 14 %}
+{% set exterior_temperature = states('sensor.temperatura_exterior') | float %}
+{% set salon_temperature = states('sensor.temperatura_salon') | float %}
+{% set temp = exterior_temperature > 23 or salon_temperature > 23 %}
+{{ elev and hora and temp }}
+#+end_src
+**** Bajar las persianas cuando hace frío y se esconde el sol
+#+begin_src jinja2
+{% set ta_minima = states('sensor.aemet_daily_forecast_temperature_low') | float %}
+{% set sun_elevation = state_attr('sun.sun', 'elevation') %}
+{% set exterior_temperature = states('sensor.temperatura_exterior') | float %}
+{{ sun_elevation < -5 and now().hour < 22 and (ta_minima < 10 or exterior_temperature < 14) }}
+#+end_src
+-----
+*** Dispositivos Zigbee no disponibles
+Es importante saber cuando algún dispositivo Zigbee no está disponible, para ello utilizo el siguiente script
+
+#+begin_src jinja2
+{% set zha_entities = integration_entities('zha') %}
+{% set mqtt_entities = integration_entities('mqtt') %}
+{% set zigbee_entities = zha_entities + mqtt_entities %}
+{% set zigbee = namespace(unavailable=[]) %}
+            
+{% for entity in zigbee_entities %}
+  {% if states(entity) == 'unavailable' %}
+    {% set nombre = device_attr(device_id(entity), 'name_by_user') %}
+    {% if nombre not in zigbee.unavailable %}
+      {% set zigbee.unavailable = zigbee.unavailable + [nombre] %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{{ zigbee.unavailable | length }}
+#+end_src
+
+Tengo activas dos integraciones con las que controlo dispositivos zigbee, "zha" y "mqtt" por lo que habrá que buscar entidades no disponibles en ambas.
+-----

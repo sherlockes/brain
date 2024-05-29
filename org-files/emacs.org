@@ -1,0 +1,209 @@
+:PROPERTIES:
+:ID:       c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07
+:END:
+#+title: emacs
+#+filetags: :emacs:
+#+STARTUP: overview
+
+#+date: <2023-09-04 lun 12:33>
+
+#+hugo_custom_front_matter: :thumbnail "images/emacs.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: emacs
+#+hugo_categories: apps
+#+hugo_draft: false
+
+Emacs es un editor de texto reconocido por su amplio conjunto de funciones, lo cual lo ha convertido en una herramienta valorada por programadores y usuarios con orientación técnica. GNU Emacs forma parte del proyecto GNU y destaca como la versión más popular de este editor. El manual de GNU Emacs lo describe como «un editor de texto avanzado, extensible, personalizable y autodocumentado».
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+** Grandes temas
+*** [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]] 
+*** [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]]
+*** [[id:03c84b6d-dee5-473e-822b-5702f535419e][ox-hugo]]
+*** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
+
+** Pequeños temas
+*** Archivos recientes
+Para mostrar en el arranque los últimos archivos editados uso esta combinación.
+#+begin_src elisp
+  (recentf-mode 1)                   ; Activa el modo recentf
+  (setq recentf-max-saved-items 50)  ; Ajusta la cantidad de archivos recientes a mostrar.
+
+  (add-hook 'after-init-hook (lambda () (recentf-open-files)))
+#+end_src
+*** Arranque
+ - Arrancar emacs es modo texto desde la terminal: ~emacs -nw~
+*** Ayuda
+  - Prefijo, muestra comandos que empiezan por -> "prefijo" C-h f
+  - Atajo, muestra descripción y ayuda (describe-key) -> C-h k
+  - Modo, describe el modo activo (describe-mode) -> C-h m
+  - Funcion, descripción y ayuda (describe-function) -> C-h f
+  - variable, descripción y ayuda (describe-variable) -> C-h v
+*** Bookmarks (Favoritos)
+  - Añadir --> C-x r m
+  - Listar --> C-x r l
+    - ‘a’ – show annotation for the current bookmark
+    - ‘A’ – show all annotations for your bookmarks
+    - ‘d’ – mark various entries for deletion (‘x’ – to delete them)
+    - ‘e’ – edit the annotation for the current bookmark
+    - ‘m’ – mark various entries for display and other operations, (‘v’ – to visit)
+    - ‘o’ – visit the current bookmark in another window, keeping the bookmark list open
+    - ‘C-o’ – switch to the current bookmark in another window
+    - ‘r’ – rename the current bookmark
+  - Abrir --> C-x r b
+  - Archivo de favoritos - bookmarks-default-file
+*** Buffers
+  - Borrar el buffer completo -> erase-buffer (Sin tecla por defecto)
+  - Actualizar/recargar -> revert-buffer-quick
+  - Actualizar/recargar archivo (revert-buffer) -> C-x C-v Ret
+  - Actualizar/recargar automáticamente un buffer abierto -> auto-revert-mode
+  - Recargar archivo (añade al final) (auto-revert-tail-mode)
+  - Siguiente|anterior buffer (previous-buffer|next-buffer) -> C-x <left> | C-x <right>
+  - Cuardar como (buffer) -> C-x C-w [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Commands.html][Link]]
+  - Guardar como (todo el texto) -> C-x h M-x write-region
+  - Instalar paquete desde buffer -> install-package-from-buffer
+  - Mostrar los números de línea -> linum-mode
+  - Seleccionar el buffer completo -> C-x h
+*** Busqueda
+  - Buscar (Isearch) -> C-S
+  - Repetir búsqueda -> C-s C-s
+  - Añadir siguiente palabra -> C-w
+  - Volver al inicio -> C-u C-<spc>
+*** Corrección Ortográfica y Diccionario
+  - Cambiar diccionario -> M-x ispell-change dictionary "castellano"
+  - Instalar diccionario -> [[https://ondahostil.wordpress.com/2017/01/17/lo-que-he-aprendido-configurando-aspell-para-emacs/][Onda Hostil]]
+    - Descargarlo de [[ftp://ftp.gnu.org/gnu/aspell/dict/][GNU-Aspell]]
+    - Descomprimirlo
+    - Ejecutar lo siguiente desde la carpeta descomprimida
+      #+BEGIN_SRC bash
+	./configure
+	make
+	sudo make install
+	make clean
+      #+END_SRC
+  - Corregir el buffer -> M-x ispell-minor-mode
+  - Subrayado -> M-x flyspell-mode
+*** Edición
+  - Cadena, reemplazar (replace-string) -> M-%
+  - Caracter, corta hasta (zap-to-char) -> M-z
+  - Carácteres, transponer (transpose-chars) -> C-t
+  - Deshacer (Undo) -> C-/ | C-x u | C-_   
+  - Expresiones, transponer (transpose-sexps) -> C-M-t
+  - Expresión regular, reemplazar (replace-regexp) -> C-M-%
+  - Imagen, editar archivos en modo texto > C-c C-c (auto-image-file-mode 1)
+  - Línea, borrar -> C-S-Backspace
+  - Línea, comentar (comment-dwim) -> M-;
+  - Línea, comentar (comment-line) -> C-x C-;
+  - Línea, copiar (Instalar/habilitar paquete whole-line-or-region) -> M-w
+  - Línea, corta completa (Instalar/habilitar paquete whole-line-or-region) -> C-w
+  - Línea, corta hasta el final (kill-line) -> C-k
+  - Línea, corta línea completa (kill-whole-line) -> C-S-<backspace>
+  - Línea, insertaren blanco a continuación, insertar (open-line) -> C-o
+  - Líneas, borrar en blanco (delete-blank-lines) -> C-x C-o
+  - Líneas, ordenar selección (sort-lines) - Artículo en [[https://susam.net/blog/sorting-in-emacs.html][Susam.net]]
+  - Líneas, sangrar varias líneas 8 -> C-u 8 C-x Tab
+  - Líneas, transponer líneas (transpose-lines) -> C-x C-t
+  - Oraciones, transponer (transpose-sentences)
+  - Palabra anterior, corta (backward-kill-word) -> M-<back>
+  - Palabra siguiente a mayúsculas (upcase-word) -> M-u
+  - Palabra siguiente a minúsculas (downcase-word) -> M-l
+  - Palabra siguiente, corta (kill-word) -> M-d 
+  - Palabra, capitalizar (capitalize-word) -> M-c
+  - Párrafos, transponer (transpose-paragraphs)
+  - Reemplazar ^M por un salto de línea > M-x replace-string C-q C-m RET RET
+  - Seleccionar todo -> C-x h
+  - Selección , corta (kill-region) -> C-w
+  - Selección a mayúsculas (upcase-region) -> C-x C-u
+  - Selección a minúsculas selección (downcase-region) -> C-x C-u
+  - Selección, capitalizar (upcase-initials-region)
+  - Selección, copiar al anillo (kill-ring-save) -> M-w
+  - Selección, copiar selección, añadir (append-next-kill) -> C-M-w
+*** Evaluando código (org-babel)
+ - Comando python no encontrado: Añadir a init.el ~(setq org-babel-python-command "python3")~
+ - Obtener resultados para "Print"-> Declarar ~#+BEGIN_SRC python :results output~
+ - Reemplazar Jupiter Notebook por Emacs Org Mode -> [[https://michaelneuper.com/posts/replace-jupyter-notebook-with-emacs-org-mode/][Michael Neuper]]
+ - Seleccionar los lenguajes a evaluar -> Editar la variable ~org-babel-load-languages~
+  
+*** Macros
+  - Iniciar grabación de macro (start-kbd-macro) -> <f3>  ò  C-x (
+  - Parar grabación de macro (stop-kbd-macro) -> <f4>  ò C-x )
+*** MarkDown Mode
+  - Insertar encabezado -> C-c C-s
+*** Movimiento del cursor
+  - Buffer, inicio/Fin de buffer --> M-</M->
+  - Buffer, retornar a posición anterior --> C-u C-<spc>
+  - Encabezado anterior mismo nivel (backward-same-level) -> C-c C-b
+  - Encabezado anterior (outline-previous-visible-heading) -> C-c C-p
+  - Encabezado inmediatamente superior (outline-up-heading) -> C-c C-u
+  - Encabezado siguiente mismo nivel (outline-forward-same-level) -> C-c C-f
+  - Encabezado siguiente (outline-up-heading) -> C-c C-n
+  - Línea, ir a línea determinada: M-g g (goto-line)
+  - Línea, mover a la anterior: C-p
+  - Línea, mover a la siguiente: C-n
+  - Palabra, mueve a la anterior: M-b
+  - Palabra, mueve a la siguiente: M-f
+  - Mueve al primer espacio no blanco -> M-n
+  - Scroll Abajo/Arriba --> C-v / M-v
+  - Scroll Abajo/Arriba (Otra ventana) --> C-M-v / C-M-S-v (C-M-- C-M-v)
+  - Scroll Horizontal --> C-x < / C-x >
+  - Volver a la posición anterior --> C-u C-spc
+*** Navegación
+  - Abrir un directorio remoto ssh C-x d /ssh:user@host:folder
+  - Abrir una url en buffer -> browse-url-emacs
+**** Ocur Mode (Buscar por líneas) M-x occur / M-s o
+  - Sig/anterior coincidencia en bufer occur --> M-n M-p 
+  - Refrescar buffer --> g
+  - Salir --> q
+  - Editar en buffer ocur --> e
+  - Guardar la edición --> C-c C-c
+  - En varios buffers --> M-x multi-occur
+  - En varios archivos (*.py) --> M-x multi-occur \
+*** Paquetes
+  - Instalar paquete desde archivo -> package-install-file
+  - Yasnippet
+    - Nuevo Snippet -> yas-new-snippet
+    - Editar Snippet -> yas-visit-snippet-file
+    - Ver snippets de un tipo de archivo -> Alt+x yas-describe-tables
+    - Configurar directorio de Snippets -> (setq yas-snippet-dirs (list(concat user-dir "/dotfiles/emacs/.emacs.d/snippets")))
+      Sin el "list" no evalúa correctamente y no funciona.
+  - [[id:acee2e7c-bdf2-4405-a41e-9ce7c9031d13][Dired]]
+*** Repetir último comando ([[http://xahlee.info/emacs/emacs/emacs_repeat_command.html][Info]]] -> C-x z
+*** Recuperar archivos -> m-x recover-file
+*** Selección
+  - Activar la marca de posición -> C-spc
+  - Marcar el siguiente párrafo -> M-h
+  - Marcar todo el buffer -> C-x h
+  - Marcar una función -> C-M-h
+  - Marcar la siguiente palabra -> M-@
+  - Marcar las dos siguiente palabras - M-2 M-@
+  - Marcar la siguiente expresión -> C-M-@
+  - Marcar desde el último punto de salto --> C-x C-x
+  - Desactivar la marca -> C-u C-<spc>
+*** Shell
+  - Abrir la consola de comandos -> M-x shell
+  - Ejecutar un archivo (executable-interpret) -> C-c C-x
+  - Abrir la terminal -> M-x shell
+  - Terminar la ejecución -> C-c C-c
+  - Ejecutar comando anterior -> M-p
+  - Permitir la ejecución de alias ([[https://emacs.stackexchange.com/questions/56358/emacs-shell-not-picking-aliases-from-bashrc][Info]])
+    #+begin_src elisp
+      (setq shell-command-switch "-ic")
+    #+end_src
+*** Temas
+  - Cambiar el tema -> M-x customize-themes
+*** Ventanas
+  - Eliminar la ventana actual -> C-x 0
+  - Eliminar el resto de ventanas -> C-x 1
+  - División horizontal -> C-x 2
+  - División vertical -> C-x 3
+  - Cambio de ventanas con Ace-window
+    - Instalar "ace-window" desde el repositorio de Melpa.
+    - Añadir la línea "(global-set-key (kbd "M-o") 'ace-window)" al archivo de configuración.
+    - Cambiar de ventana mediante M-o y el número que se deseb
+*** Visualización
+  - Ajuste de línea(cambiar) -> toggle-truncate-lines
+
+    

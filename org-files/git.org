@@ -1,0 +1,42 @@
+:PROPERTIES:
+:ID:       2d610030-6757-4213-beeb-2fc10e47eb9b
+:END:
+#+title: git
+#+STARTUP: overview
+
+#+date: <2023-08-30>
+
+#+hugo_custom_front_matter: :thumbnail "images/git.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: git
+#+hugo_categories: apps
+#+hugo_draft: false
+
+Git es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Su propósito es llevar registro de los cambios en archivos de computadora incluyendo coordinar el trabajo que varias personas realizan sobre archivos compartidos en un repositorio de código.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** Borrar último commit (Si el repositorio local y el remoto están sincronizados)
+git reset HEAD^ --hard
+git push origin -f
+*** Actualizar el repositorio local -> git fetch
+** Gitlab
+*** Servir directorio como html estático
+Este es el contenido del archivo ".gitlab-ci.yml" situado en la raiz del repositorio, se publicará la carpeta "public"
+#+begin_src yaml
+  image: busybox
+
+pages:
+  stage: deploy
+  environment: production
+  script:
+    - echo "The site will be deployed to $CI_PAGES_URL"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#+end_src
+

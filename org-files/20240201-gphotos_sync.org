@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       7ce0a039-3b8b-4e0b-bbc6-e3fd56c4b635
+:END:
+#+title: gphotos-sync
+#+STARTUP: overview
+#+date: 2024-02-01
+#+hugo_custom_front_matter: :thumbnail "images/gphotos.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: gphotos-sync
+#+hugo_categories: apps
+#+hugo_draft: false
+Google Photos Sync descarga todas las fotos y videos subidos a Google Photos, organizándolos localmente según información del álbum. Respaldando también 'Creaciones' como animaciones, panoramas y collages, el software es de solo lectura y no altera la biblioteca en la nube, eliminando así el riesgo de dañar los datos.
+#+BEGIN_export html
+<!--more-->
+#+END_export
+Ya hace mucho tiempo que uso gphotos-sync para la descarga de mis fotos de la galería de Google Photos tal y como explico este [[https://sherblog.pro/backup-de-google-photos/][artículo del blog]] y en [[https://sherblog.pro/sincronizar-google-photos-desde-la-raspberry/][este otro]]. Hasta ahora el trabajo recaía en la Raspberry que corría el servicio y guardaba las fotos en una carpeta del NAS. Ahora vamos a correr directamente el servicio en el NAS para quitar el trabajo a la Pi.
+
+*** Instalación en contenedor
+Básicamente, el contenedor necesita dos volúmenes, uno para la ubicación del archivo de configuración "client_secret.json" y otro almacenar las fotografías descargadas. La [[https://gilesknap.github.io/gphotos-sync/main/tutorials/installation.html#execute-in-a-container][guía de instalación]] oficial es concreta y concisa aunque no presenta el archivo yaml con el que crear un proyecto en container Manager.
+
+*** Configuración YAML para Container Manager
+#+begin_src yaml
+  services:
+  gphotos-sync:
+    image: ghcr.io/gilesknap/gphotos-sync
+    container_name: gphotos-sync
+    volumes:
+      - /volume1/homes/sherlockes/.config/gphotos-sync:/config
+      - /volume1/homes/sherlockes/gphotos:/storage
+    ports:
+      - "8080:8080"
+    command: /storage
+#    restart: unless-stopped
+#+end_src
+
+#+begin_quote
+Es importante que la línea "restart: unless-stopped" esté comentada para que no se aplique ya que de lo contrario el contenedor se estaría ejecutando continuamente a la búsqueda de nuevas imágenes.
+#+end_quote
+
+*** Creación de una tarea programada
+Vamos a hacer que se ejecute el contenedor un par de veces a la semana mediante la creación de una tarea programada con las siguientes características
+
+ - Nombre: gphotos-sync
+ - Usuario: Root
+ - Repetir: Semanalmente el Domingo y Miércoles
+ - Script: ~synowebapi --exec api=SYNO.Docker.Container version=1 method=start name="gphotos-sync"~
+     
+*** Enlaces de interés
+- https://gilesknap.github.io/gphotos-sync/main/index.html
+- https://mariushosting.com/synology-schedule-start-stop-for-docker-containers/
