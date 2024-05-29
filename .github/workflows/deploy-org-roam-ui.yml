@@ -1,20 +1,21 @@
 name: Generate static org-roam-ui page
-
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   main:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
       - name: Generate org-roam-ui page
         uses: ikoamu/org-roam-ui-hosting@main
         with:
           org-roam-db-filename: org-files/org-roam.db
-
+          org-roam-directory: org-files
+          site-title: Sherlockes Brain
