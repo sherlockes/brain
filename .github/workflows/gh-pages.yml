@@ -23,5 +23,14 @@ jobs:
           org-roam-db-filename: org-roam.db
           org-roam-directory: org-files
           site-title: Sherlockes
-          deploy-to-pages: true
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git push -f origin HEAD:gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
