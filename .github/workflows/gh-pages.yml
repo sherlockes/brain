@@ -1,4 +1,5 @@
 name: Generate static org-roam-ui page
+
 on:
   push:
     branches:
@@ -13,6 +14,9 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Generate org-roam-ui page
         uses: ikoamu/publish-org-roam-ui@main
         with:
@@ -20,3 +24,4 @@ jobs:
           org-roam-directory: org-files
           site-title: Sherlockes
           deploy-to-pages: true
+
