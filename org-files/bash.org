@@ -3,6 +3,7 @@
 :END:
 #+title: bash
 #+STARTUP: show2levels
+#+CATEGORY: Lenguajes
 
 #+date: <2023-08-30>
 
