@@ -14,10 +14,10 @@ Esta es mi base de conocimiento generada gracias a [[id:80ce4bf8-3936-45bf-adc9-
 
 * Indice
 ** Emacs y alrededores
-   - [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]
-   - [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]]
-   - [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]]
-   - [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
+*** [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]
+*** [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]]
+*** [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]]
+*** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
 
 ** Lenguajes
    - [[id:b2eb44fa-1010-4219-9dea-ea4458e92d64][bash]]
