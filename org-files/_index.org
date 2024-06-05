@@ -33,9 +33,6 @@ Esta es mi base de conocimiento generada gracias a [[id:80ce4bf8-3936-45bf-adc9-
   - [[id:4185090f-0488-404d-b2d0-1782cde99f7b][jinja2]]
     
 *** Sistemas Operativos
-:PROPERTIES:
-:ID:       938ce49c-660d-4bf1-88d0-41400deaf183
-:END:
   - [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][linux]]
   - [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
   - [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
