@@ -60,4 +60,3 @@ Esta es mi base de conocimiento generada gracias a [[id:80ce4bf8-3936-45bf-adc9-
 
 *** Raspberry
   - [[id:d3201961-966d-4371-ae48-5dbcab004573][Todo sobre Raspberry]]
-  - [[id:c3097e7a-7070-4d4f-ab60-f5a44e180f9d][Instalación desde cero]]
