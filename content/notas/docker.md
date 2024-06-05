@@ -2,7 +2,7 @@
 title = "docker"
 author = ["Sherlockes"]
 date = 2023-08-30T00:00:00+02:00
-lastmod = 2024-06-05T18:24:09+02:00
+lastmod = 2024-06-05T18:29:04+02:00
 tags = ["docker"]
 categories = ["apps"]
 draft = false
@@ -11,7 +11,7 @@ thumbnail = "images/docker.png"
 toc = true
 +++
 
-Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
+Hola Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
 
 <!--more-->
 
