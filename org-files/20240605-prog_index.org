@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       192ac837-de8f-4dbb-a294-2d0ff360184f
+:END:
+#+title: _prog_index
+#+STARTUP: overview
+#+date: 2024-06-05
+
+Resumen de los lenguajes de programación
