@@ -1,0 +1,45 @@
+:PROPERTIES:
+:ID:       ccb379dd-3d92-4290-9fbd-5e56606da7bc
+:END:
+#+title: linux
+#+STARTUP: overview
+
+#+date: <2023-09-13 mié 18:31>
+
+#+hugo_custom_front_matter: :thumbnail "images/linux.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: linux
+#+hugo_categories: sos
+#+hugo_draft: false
+
+GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por software libre y de código abierto.​ GNU/Linux surge de las contribuciones de varios proyectos de software, entre los cuales destacan GNU (iniciado por Richard Stallman en 1983) y el núcleo Linux (iniciado por Linus Torvalds en 1991).
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** Permisos de usuario
+ - Cambiar propietario de una carpeta: ~sudo chown nuevo_usuario: carpeta~
+ - Cambiar propietario de carpeta recursiva: ~sudo chown -R nuevo_usuario: carpeta~
+ - Comprobar permisos de carpeta ~ls -ld carpeta~
+*** Enlace simbólico -> ln -s target_file link_name
+*** Capturas de pantalla (Atajos de teclado)
+- Ctrl (Portapapeles) Alt (Ventana) Mays (area)
+- Escritorio al portapapeles - Ctrl+ImprPant
+- Area al portapapeles - Ctrl+Mays+ImprPant
+- Ventana al portapapeles - Ctrl+Alt+ImprPant
+- Guardar escritorio en directorio - ImprPant
+- Guardar Area en directorio - Mays+ImprPant
+- Guardar ventana en directorio - Alt+ImprPant.
+*** nmap
+**** MAC a partir de IP -> sudo nmap -sP -n 192.168.1.200
+*** Ubicación de un comando -> type -a "comando"
+*** Wireguard ([[https://alexpro.sytes.net/cliente-wireguard-linux/][Instrucciones]])
+ - Instalar wireguard "sudo apt install wireguard"
+ - Instalar resolvconf "sudo apt install resolvconf"
+ - Copiar archivo confiuración "sudo mv mivpn.conf /etc/wireguard/"
+ - Levantar conexión "sudo wg-quick up mivpn"
+ - Desconectar "sudo wg-quick down mivpn"
+ - Comprobar conexión "sudo wg"
+
+

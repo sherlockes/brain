@@ -1,0 +1,62 @@
+:PROPERTIES:
+:ID:       80ce4bf8-3936-45bf-adc9-041795828500
+:END:
+#+title: org-roam
+#+filetags: :emacs:
+#+STARTUP: overview
+
+#+date: <2023-08-30>
+
+#+hugo_custom_front_matter: :thumbnail "images/org-roam.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: org-roam
+#+hugo_categories: emacs
+#+hugo_draft: false
+
+Org-Roam en una extensión de [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]] diseñada para facilitar la toma de notas y la organización de información en forma de documentos interconectados. Está especialmente diseñada para usuarios que emplean [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][Org-Mode]] en [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]], que es un sistema de organización y gestión de tareas altamente personalizable.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** [[id:a74766d7-fa12-4913-b44a-4c9861fca9bf][Primeros pasos]]
+*** [[id:fb8a4100-e397-4371-8d48-5b012d7f4205][Comandos esenciales]]
+*** [[id:bbf6afcb-c7b9-4eca-8c85-39fb3ed8ae08][Plantillas]]
+*** Sincronizar con repositorio en Github
+Si la carpeta "org-roam" ya está creada se cambia el directorio de trabajo a la misma y se actualiza el repositorio. Si la carpeta no está creada descarga el repositorio
+#+begin_src elisp
+  (if (file-exists-p "~/org-roam/")
+    (let ((default-directory "~/org-roam"))(shell-command "git pull"))
+  (let ((default-directory "~/"))(shell-command "git clone git@github.com:sherlockes/org-roam.git"))
+)
+#+end_src
+Esto, al estar introducido en el archivo "init.el" se ejecutará al arrancar Emacs.
+
+Para conseguir que se sincronice tras modificar algún archivo usaremos un "hook" y una función auxiliar que simplemente comprueba si el archivo que se ha modificado está dentro de la carpeta "org-roam". En caso de que se de la condición, se ejecutará otra función que actualiza el repositorio.
+
+#+begin_src elisp
+  (defun org-roam-update()
+    (interactive)
+
+	(let ((default-directory "~/org-roam")) 
+	    (shell-command "git add --all")
+	    (shell-command "git commit -m 'Update'")
+	    (shell-command "git push")
+	)
+    )
+  (defun funcion-al-guardar ()
+    (let ((directorio-org-roam (expand-file-name "org-roam" (getenv "HOME"))))
+      (when (string-prefix-p directorio-org-roam buffer-file-name)
+	(org-roam-update))))
+
+  (add-hook 'after-save-hook 'funcion-al-guardar)
+#+end_src
+
+*** Exportar org-roam-ui a una web estática
+Todavía no he sido capaz de conseguirlo, pero dejo aquí todos los enlaces y avances.
+
+ - Notas con la exportación de [[https://github.com/wylited/notes][wylited]] a partir del repo de [[https://github.com/jgru/org-roam-ui/tree/add-export-capability][jgru]]. No da ningún error pero en el html generado sólo se ve el color de fondo.
+
+ - Este [[https://github.com/uncomfyhalomacro/org-roam-ui/tree/feature/add-export-functionality][repo]] de uncomfyhalomacro todavía no lo he probado
+
+

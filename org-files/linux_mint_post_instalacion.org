@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       b4403a25-934c-4646-9fd2-94823456075f
+:END:
+#+title: linux mint post instalacion
+#+STARTUP: overview
+
+#+date: 2023-08-30
+
+#+hugo_section: notas
+#+hugo_custom_front_matter: :thumbnail "images/mint.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: linux mint
+#+hugo_categories: sos
+#+hugo_draft: false
+
+Con la instalación de [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]] no termina la configuración del sistema, todavía realizo todos estos pasos para dejar a mi gusto el resto de aplicaciones.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+El primer paso es la instalación de [[https://www.insynchq.com/][Insync]] y crear la carpeta "~/GDrive" donde hacer una sincronización selectiva de "dotfiles" y "sherloscripts" para poder seguir adelante con la configuración.
+
+Tras esto hay que:
+  - Actualizar el sistema
+  - Instalar emacs
+  - Instalar hugo
+  - Instalar diccionario de Aspell en español
+  - Eliminar el compilador de C "gcc" e instalar "clang"
+  - Instalar git, generar la llave ssh y copiarla a GitHub
+  - Instalación y configuración de Zerotier ([[https://sherblog.pro/primeros-pasos-con-zerotier/][Artículo]])
+  - Instalar [[https://rclone.org/][Rclone]] y ejecutar la configuración para crear el directorio
+  - Ajuste de Dotfiles. [[https://sherblog.pro/mi-gesti%C3%B3n-de-los-archivos-de-configuraci%C3%B3n/][Artículo]] en Sherblog.pro
+
+Y este es el script completo:
+
+  #+begin_src bash
+
+    # Actualizar el sistema
+    sudo apt update
+
+    # Crear el enlace a los Dotfiles
+    ln -si ~/GDrive/dotfiles ~/dotfiles
+
+    # Eliminar el compilador cd c gcc e instalar clang (problemas Sqlite)
+    sudo apt remove gcc
+    sudo apt install clang
+
+    # Instalación de Emacs y corrección ortográfica
+    sudo apt install emacs
+    sudo apt install ispell
+    sudo apt install aspell-es
+
+    # Instalación de Hugo
+    sudo apt install hugo
+
+    # Instalación del cliente para Wireguard
+    sudo apt install wireguard
+    sudo apt install resolvc
+
+    # Instalación y configuración de git
+    sudo apt install git
+    git config --global user.email sherlockes@yahoo.es
+    git config --global user.name sherlockes
+
+    # Instalación de Zerotier y adhesión a red personal
+    curl -s https://install.zerotier.com/ | sudo bash
+    sudo zerotier-cli join 83048a0632dad18a
+
+    # Instala Rclone y crea el directorio de configuración
+    sudo -v ; curl https://rclone.org/install.sh | sudo bash
+    mkdir -p ~/.config/rclone
+
+    # Configuración mediante Dotfiles
+    ln -si ~/dotfiles/bash/.bash_aliases ~/.bash_aliases
+    ln -si ~/dotfiles/emacs/.emacs ~/.emacs
+    ln -si ~/dotfiles/emacs/.emacs.d/bookmarks ~/.emacs.d/bookmarks
+    ln -si ~/dotfiles/ssh/config ~/.ssh/config
+    ln -si ~/dotfiles/rclone/rclone.conf ~/.config/rclone/rclone.conf
+
+    # Eliminar paquetes sobrantes
+    sudo apt autoremove
+
+    # Genera la llave ssh
+    ssh-keygen
+  #+end_src
+
+
+  - Tras esto hay que acceder a [[https://my.zerotier.com/][Zerotier]] para permitir el acceso del ordenador a la red y asignarle un nombre e IP.
+
+  - Tras la instalación del cliente para Wireguard hay que copiar el archivo de configuración tal y como indica este [[https://sherblog.pro/configurar-wireguard-de-home-assistant-en-cliente-linux/][artículo]].

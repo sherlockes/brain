@@ -1,0 +1,41 @@
+:PROPERTIES:
+:ID:       9d4a6d4f-e0be-47b4-8780-19a414c8230e
+:END:
+#+title: linux mint
+#+STARTUP: overview
+
+#+date: 2023-08-30
+
+#+hugo_custom_front_matter: :thumbnail "images/mint.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: linux mint
+#+hugo_categories: sos
+#+hugo_draft: false
+
+Linux Mint es una distribución de GNU/Linux comunitaria de origen franco-irlandesa basada en Ubuntu, y a su vez en Debian, que tiene por objetivo proveer "un sistema operativo moderno, elegante y cómodo que sea tanto poderoso como fácil de usar". Linux Mint soporta varios formatos y códecs multimedia al incluir software propietario y empaquetado con una variedad de aplicaciones gratuitas y de código abierto.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** [[id:b4403a25-934c-4646-9fd2-94823456075f][Primeros pasos tras instalacion]]
+
+*** Areas de trabajo
+  - Cambio entre áreas de trabajo -> Ctrl+Alt+⬆️
+  - Siguiente area de trabajo -> Ctrl+Alt+➡️
+  - Anterior area de trabajo -> Ctrl+Alt+⬅
+  - Mueve la aplicación al siguiente area de trabajo -> Ctrl+Alt+Mayusc+➡️
+  - Mueve la aplicación al antgerior area de trabajo -> Ctrl+Alt+Mayusc+⬅️
+
+*** Comandos básicos  
+  - Alt+espacio -> Abre el menú ventana
+
+*** Instalar Emacs 26.3
+[[https://ubunlog.com/llega-la-tercera-version-de-la-rama-26-de-emacs-gnu-emacs-26-3/#Como_instalar_Gnu_Emacs_263_en_Ubuntu_y_derivados][Enlace]]
+#+begin_src bash
+  sudo add-apt-repository ppa:kelleyk/emacs -y
+  sudo apt-get update
+  sudo apt-get install emacs26
+#+end_src
+
+

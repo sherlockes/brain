@@ -1,0 +1,52 @@
+:PROPERTIES:
+:ID:       c3097e7a-7070-4d4f-ab60-f5a44e180f9d
+:END:
+#+title: Raspberry - Instalación
+#+STARTUP: overview
+
+#+date: 2023-12-15
+
+#+hugo_custom_front_matter: :thumbnail "images/raspberry.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: raspberry
+#+hugo_categories: sos
+#+hugo_draft: false
+Partimos con la [[id:d3201961-966d-4371-ae48-5dbcab004573][raspberry]] vacía y estos son los pasos que hay que dar. He probado a hacer un script que con el paso del tiempo siempre falla en un punto u otro, así quedan las instrucciones claras.
+#+BEGIN_export html
+<!--more-->
+#+END_export
+*** Instalando PI OS Lite
+**** Grabar la imagen mediante [[https://www.raspberrypi.com/software/][Imager]] y actualizar el sistema.
+  #+begin_src bash
+    sudo apt update
+    sudo apt upgrade
+  #+end_src
+**** Generar la llave ssh
+  #+begin_src bash
+    ssh-keygen
+  #+end_src
+**** Copiar la llave ssh a [[https://github.com/settings/keys][Github]] y [[https://gitlab.com/-/profile/keys][GitLab]].
+  Abrir el archivo ".ssh/id_rsa.pub" con un editor de texto y copiar el contenido.
+**** Instalar y configurar git
+  #+begin_src bash
+    sudo apt install git
+    git config --global user.email "sherlockes@yahoo.es"
+    git config --global user.name "Sherlockes"
+  #+end_src
+**** Clonar SherloScripts
+  #+begin_src bash
+    git clone git@github.com:sherlockes/SherloScripts.git
+  #+end_src
+**** Open Network Manager UI with para asignar ip estática
+  #+begin_src bash
+    sudo nmtui
+  #+end_src
+**** Instalar Pi-Hole
+  #+begin_src bash
+    curl -sSL https://install.pi-hole.net | bash
+  #+end_src
+**** Instalar Rclone ([[https://rclone.org][Web]]).
+  #+begin_src bash
+    sudo -v ; curl https://rclone.org/install.sh | sudo bash
+  #+end_src
+

@@ -1,0 +1,81 @@
+:PROPERTIES:
+:ID:       6064b7ef-acf5-401f-a11c-1d923bbc85c4
+:END:
+#+title: hugo
+#+STARTUP: overview
+
+#+date: <2023-09-04 lun 13:40>
+
+#+hugo_custom_front_matter: :thumbnail "images/hugo.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: hugo
+#+hugo_categories: apps
+#+hugo_draft: false
+
+Hugo es un moderno framework para creación de sitios web de propósito general. Se ubica en la categoría de los nuevos generadores de sitios estáticos,​ basados en la arquitectura dinámica JAMstack y es escrito completamente en Go.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** MarkDown
+  - [[https://www.markdownguide.org/tools/hugo/][Lista]] de comandos permitidos.
+  - [[https://makewithhugo.com/markdown-basics/][Cheatsheet]]
+
+*** Crear un enlace interno 
+  - En el mismo directorio: ~[Titulo]({{</* relref"archivo.md" */>}})~
+  - En un directorio absoluto: ~[Titulo]({{</* ref"/dir/archivo.md" */>}})~
+  - A un apartado del post: ~[Foo]({{</* ref "#foo" */>}})~
+  - A un apartado en un directorio absoluto: ~[Titulo]({{</* ref"/dir/archivo.md#foo-" */>}})~
+    #+begin_quote
+    Muy importante para este último caso el guión al final del apartado, de no estar, no funciona
+    #+end_quote
+*** Clonar el repositorio
+git clone --recurse-submodules git@gitlab.com:sherlockes/sherlockes.gitlab.io.git
+
+*** Insertar
+  - Comentario en plantilla: ~{{/* This is my comment */}}~
+  - Tag "more": ~<!--more-->~
+  - Trozo de código en línea: ~~Aquí el código~~
+*** Server
+  - Server en red local: ~hugo server --bind=192.168.10.202 --baseURL=http://192.168.10.202:1313~
+    #+begin_quote
+    Con el parámetro "baseURL" conseguimos que el servidor no muestre el nombre de la carpeta.
+    #+end_quote
+  - Ver contenido modificado: ~hugo server -D --navigateToChanged~
+*** Shortcodes
+  - Escapar shortcode para no evaluarlo: ~{{</*/* youtube w7iekruei7 */*/>}}~
+  - Video de Youtube: ~{{</* youtube w7iekruei7 */>}}~
+**** Crear un trozo en borrador
+  #+begin_src jinja2
+    {{</* borrador */>}}
+    Aquí iremos añadiendo el contenido con el que queremos actualizar la entrada...
+    {{</* / borrador */>}}
+  #+end_src
+*** TOC - Seleccionar encabezados a mostrar
+  #+begin_src toml
+    [markup]	
+      [markup.tableOfContents]
+        endLevel = 3
+	ordered = false
+	startLevel = 2
+  #+end_src
+*** Ordenar post por fecha de modificación
+En el archivo config.toml añadir lo siguiente para que se genere la variable "lastmod"
+  #+begin_src toml
+    enableGitInfo = true			
+
+    [frontmatter]
+      lastmod = ["lastmod", ":git", "date", "publishDate"]
+  #+end_src
+
+Con esto editaremos el archivo "index.html" del tema para que la línea que genera el Paginator pase de esto
+#+begin_src html
+  {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+#+end_src
+
+a esto
+
+#+begin_src html
+  {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections).ByLastmod.Reverse }}
+#+end_src

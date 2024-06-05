@@ -1,0 +1,47 @@
+:PROPERTIES:
+:ID:       a74766d7-fa12-4913-b44a-4c9861fca9bf
+:END:
+#+title: org-roam primeros pasos
+#+STARTUP: overview
+
+#+date: <2023-08-30>
+
+#+hugo_custom_front_matter: :thumbnail "images/org-roam.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: org-roam
+#+hugo_categories: emacs
+#+hugo_draft: false
+
+La curva de aprendizaje de [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] es complicada sin una guía adecuada que serguir, estos son los primeros pasos por donde hay que empezar si quieres crear tu base de conocimiento.
+
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** Como empezar
++ En caso de configuración compartida, no sincronizar la carpeta "elpa"
++ Instalar y activar "ivy-mode"
++ Instalar "org-roam"
++ Instalar "org-roam-ui"
+
+#+begin_quote
+La instalación de "emacsql" como dependencia de "Org-roam" me ha dado muchos problemas de compilación. Finalmente he conseguido que funcione eliminando del sistema el compilador "gcc" e instalando "clang" tal y como se comenta en el [[https://www.orgroam.com/manual.html#C-Compiler][manual]] online.
+#+end_quote
+
+*** Configuración en init.el
+#+begin_src elisp
+(make-directory "~/conocimiento" t)
+(setq org-roam-directory (file-truename "~/conocimiento"))
+(org-roam-db-autosync-mode)
+(setq org-roam-completion-system 'ivy)
+(setq org-roam-completion-everywhere t)
+(ivy-mode 1)
+
+(global-set-key (kbd "C-c n f") 'org-roam-node-find)
+(global-set-key (kbd "C-c n l") 'org-roam-buffer-toggle) el Buffer Org-Roam
+(global-set-key (kbd "C-c n i") 'org-roam-node-insert)
+(global-set-key (kbd "C-c n t") 'org-roam-tag-add)
+(global-set-key (kbd "C-c n a") 'org-roam-alias-add)
+(global-set-key (kbd "C-c n o") 'org-id-get-create)
+#+end_src
+

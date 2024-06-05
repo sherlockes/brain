@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       9788c8e3-93f5-40ca-93ec-c9e74a4edf03
+:END:
+#+title: zha
+#+STARTUP: overview
+#+date: 2024-02-08
+#+hugo_custom_front_matter: :thumbnail "images/homeassistant.png"
+#+setupfile: ./setup.conf
+#+hugo_tags: ha
+#+hugo_categories: iot
+#+hugo_draft: false
+La integración ZHA permite conectar dispositivos Zigbee a [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][Home Assistant]] de forma inalámbrica usando coordinadores Zigbee. Emplea la biblioteca zigpy de [[id:06032c9e-2664-4b4d-9bd3-ed72e16768a1][Python]] para implementar una pila Zigbee independiente del hardware. Todos los coordinadores compatibles con zigpy son utilizables con ZHA.
+#+BEGIN_export html
+<!--more-->
+#+END_export
+
+*** Calibración del TS130F para las persianas
+**** Calibración por movimiento
+Este tipo de calibración consiste en activar el modo de calibración y realizar un movimiento de la persiana entre sus extremos siguiendo estos pasos:
+- En la pestaña "Clústeres" selecciona los clústeres "TuyaCoveringCluster"
+- En el atributo "Calibration" poner "0" como valor
+- Escribir atributo para entrar en el modo de calibración
+- En la pestaña comandos seleccionar "down_close" y emitir el comando
+- La persiana empieza a bajar
+- Seleccionar el comando "stop" y esperar mientras baja la persiana.
+- Emitir el comando justo cuando llegue a la posición de cerrada.
+- Seleccionar el comando "up_open" y emitirlo.
+- Mientras la persiana sube seleccionar el comando "stop"
+- Justo cuando la persiana llega arriba emitir el comando "stop"
+- En el atributo "Calibration" poner "1" como valor
+- Escribir el atributo para salir del modo de calibración.
+**** Calibración por tiempo
+Es muy probable que a que la persiana va haciendo varios ciclos de subidas y bajadas esta no llegue a alcanzar una de las posiciones extremas. En este caso realizaremos una recalibración del tiempo de subida/bajada. Para definir los pasos supondremos el caso de que la persiana no llegue a subir del todo.
+- En la pestaña "Clústeres" selecciona los clústeres "TuyaCoveringCluster"
+- En la pestaña "Atributos" seleccionamos y leemos "current position lift percentage"
+- Introducimos y escribimos el porcentaje real de subida para poder seguir subiendo.
+- Subir la persiana (Si no alcanza la pos superior, repetir el paso anterior)
+- Leer el atributo "Calibration time" (Décimas de segundo)
+- Incrementar y escribir el valor con el tiempo que le faltaba para llegar arriba
+   
