@@ -19,14 +19,7 @@ Esta es mi base de conocimiento generada gracias a [[id:80ce4bf8-3936-45bf-adc9-
 *** [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]]
 *** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
 
-** Lenguajes
-*** [[id:b2eb44fa-1010-4219-9dea-ea4458e92d64][bash]]
-*** [[id:06032c9e-2664-4b4d-9bd3-ed72e16768a1][python]]
-*** [[id:5f94cb35-4aa6-4b6b-8b9f-5e0dde6cd4eb][markdown]]
-*** [[id:461af998-e8ee-4b7e-a56d-56d6058d57f0][regexp]]
-*** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
-*** [[id:4185090f-0488-404d-b2d0-1782cde99f7b][jinja2]]
-    
+** [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
 ** Sistemas Operativos
    - [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][linux]]
    - [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
