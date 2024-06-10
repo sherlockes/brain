@@ -12,3 +12,4 @@
 * [[id:6064b7ef-acf5-401f-a11c-1d923bbc85c4][hugo]]
 * [[id:be099c76-aead-4ac1-8251-4ff3562dca85][inkscape]]
 * [[id:a8a70ed4-0408-48f0-94d2-aa0c74301c53][nemo]]
+* [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][home assistant]]
