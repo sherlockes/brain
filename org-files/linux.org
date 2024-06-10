@@ -20,7 +20,6 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
 *** Sistemas Operativos
 **** [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
 **** [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
-
 *** Permisos de usuario
  - Cambiar propietario de una carpeta: ~sudo chown nuevo_usuario: carpeta~
  - Cambiar propietario de carpeta recursiva: ~sudo chown -R nuevo_usuario: carpeta~
