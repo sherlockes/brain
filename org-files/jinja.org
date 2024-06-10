@@ -70,6 +70,9 @@ Resultado 1
 - float -> Convierte a decimal
 - max -> devuelve el valor máximo de una lista
 - min -> devuelve el valor mínimo de una lista
+
+- == -> iguales
+- != -> diferentes
 -----
 ** Rangos
  - Desde hasta ~{{ <number> | int in range(1, 6) }}~
@@ -154,7 +157,8 @@ Hay que determinar cuando está levantando el sol y hace el suficiente calor den
 {% set exterior_temperature = states('sensor.temperatura_exterior') | float %}
 {% set salon_temperature = states('sensor.temperatura_salon') | float %}
 {% set temp = exterior_temperature > 23 or salon_temperature > 23 %}
-{{ elev and hora and temp }}
+{% set desp = states('weather.aemet') != "cloudy" %}
+{{ desp and elev and hora and temp }}
 #+end_src
 **** Bajar las persianas cuando hace frío y se esconde el sol
 #+begin_src jinja2
