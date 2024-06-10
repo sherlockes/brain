@@ -70,6 +70,11 @@ Emplearemos las instrucciones de [[https://github.com/ikoamu/publish-org-roam-ui
 ├── package.json
 └── package-lock.json
    #+end_src
+ - Añadimos a la configuración de emacs las siguientes líneas.
+   #+begin_src lisp
+     (setq org-roam-directory "/path/to/org-roam-dir")
+     (setq org-roam-db-location "/path/to/org-roam-dir/org-files/org-roam.db")
+   #+end_src
  - Dentro de la carpeta ".github/workflows" creamos el archivo "gh-pages.yml"
    #+begin_src yaml
 name: Generate static org-roam-ui page
