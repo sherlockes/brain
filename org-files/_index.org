@@ -14,14 +14,7 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 
 * Indice
 ** [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
-** Sistemas Operativos
-   - [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][linux]]
-   - [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
-   - [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
-  
+** [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][Linux]]
 ** [[id:9c1e38a5-2c38-4370-b483-f637457686d4][Aplicaciones]]
-** IOT
-   - [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][home assistant]]
-
 ** Raspberry
    - [[id:d3201961-966d-4371-ae48-5dbcab004573][Todo sobre Raspberry]]
