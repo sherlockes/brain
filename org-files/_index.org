@@ -10,7 +10,7 @@
 #+setupfile: ./setup.conf
 #+hugo_draft: false
 
-Esta es mi base de conocimiento generada gracias a [[id:80ce4bf8-3936-45bf-adc9-041795828500][Org-Roam]]. Todo en una carpeta con archivos de texto en [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]].
+Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
 
 * Indice
 ** [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
