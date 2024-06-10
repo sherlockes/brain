@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       9c1e38a5-2c38-4370-b483-f637457686d4
+:END:
+#+title: aplicaciones
+#+STARTUP: overview
+#+date: 2024-06-10
+
+* [[id:de7aa47f-2138-470f-a412-977c1cf3d42c][docker]]
+* [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]
+* [[id:2d610030-6757-4213-beeb-2fc10e47eb9b][git]]
+* [[id:7ce0a039-3b8b-4e0b-bbc6-e3fd56c4b635][gphotos-sync]]
+* [[id:6064b7ef-acf5-401f-a11c-1d923bbc85c4][hugo]]
+* [[id:be099c76-aead-4ac1-8251-4ff3562dca85][inkscape]]
+* [[id:a8a70ed4-0408-48f0-94d2-aa0c74301c53][nemo]]
