@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       3b1fd3c3-4af5-4aa6-bf76-4a7f3aacc999
+:END:
+#+title: org-roam publish
+#+STARTUP: overview
+#+date: 2024-06-11
+
+Nuestra base de conocimiento en [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] se puede consultar en local gracias a [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]. Ahora vamos a dar un paso más y emplearemos las instrucciones de [[https://github.com/ikoamu/publish-org-roam-ui/tree/main][Ikoamu]] para generar una web estática gracias a [[https://docs.github.com/es/actions][Github Actions]]. Estos son los pasos a seguir.
+
+ - Crear un repositorio en [[https://www.github.com][Github]]
+ - Clonarlo a nuestro equipo donde usamos [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]] y [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]]
+ - Copiamos la estructura del repo de [[https://github.com/ikoamu/publish-org-roam-ui/tree/main][Ikoamu]] de forma que quede la estructura como la siguiente
+   #+begin_src txt
+├── action.yml
+├── create_notes.sh
+├── generate_json.js
+├── generate_searchdata.mjs
+├── LICENSE
+├── org-files
+│   ├── archivo1.org
+│   ├── archivo2.org
+│   ├── archivo3.org
+├── package.json
+└── package-lock.json
+   #+end_src
+ - Añadimos a la configuración de emacs las siguientes líneas.
+   #+begin_src lisp
+     (setq org-roam-directory "/path/to/org-roam-dir")
+     (setq org-roam-db-location "/path/to/org-roam-dir/org-files/org-roam.db")
+   #+end_src
+ - Dentro de la carpeta ".github/workflows" creamos el archivo "gh-pages.yml"
+   #+begin_src yaml
+name: Generate static org-roam-ui page
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate org-roam-ui page
+        uses: ikoamu/org-roam-ui-hosting@main
+        with:
+          org-roam-db-filename: org-roam.db
+          deploy-to-pages: true
+          org-roam-directory: org-files
+   #+end_src
+ - Actualizamos los cambios del repositorio
+ - Accedemos a la página de nuestro repositorio en Github
+ - Accedemos al menú "Settings-Pages"
+ - En "Build and deployment" seleccionamos "Github Actions"
