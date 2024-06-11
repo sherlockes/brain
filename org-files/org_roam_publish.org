@@ -50,7 +50,13 @@ jobs:
           org-roam-db-filename: org-roam.db
           deploy-to-pages: true
           org-roam-directory: org-files
+          site-title: My Brain
    #+end_src
+
+   #+begin_quote
+   Según hemos definido el archivo de configuración, tanto los archivos "*.org" como la base de datos "org-roam.db" estarán ubicados en el subdirectorio "org-files" y el título de la web será "My Brain"
+   #+end_quote
+   
  - Actualizamos los cambios del repositorio
  - Accedemos a la página de nuestro repositorio en Github
  - Accedemos al menú "Settings-Pages"
