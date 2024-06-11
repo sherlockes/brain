@@ -9,6 +9,9 @@
 #+CAPTION: Logo de Org-Roam
 #+ATTR_HTML: :width 200
 [[file:img/org-roam.png]]
+
+#+CAPTION: Logo de Org-Roam
+#+ATTR_HTML: :width 200
 [[./img/org-roam.png]]
 
 Org-Roam en una extensión de [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]] diseñada para facilitar la toma de notas y la organización de información en forma de documentos interconectados. Está especialmente diseñada para usuarios que emplean [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][Org-Mode]] en [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]], que es un sistema de organización y gestión de tareas altamente personalizable.
