@@ -46,12 +46,15 @@ su - <usuario>
 **** Contenedores
  - Listar (Todos que están corriendo) -> ~docker container ls~
  - Listar (Todos) -> ~docker container ls --all~
+ - Listar Contenedores y puertos -> ~docker container ls --format 'table {{.ID}}\t{{.Image}}\t{{.Ports}}'~
  - Borrar -> ~docker container rm id~
  - Borrar (Todos) -> ~docker rm -f $(docker ps -aq)~
  - Borrar (Todos forzando) -> ~docker container rm -f $(docker container ls -aq)~
  - Arranque en modo interactivo -> ~docker container run -it <imagen>~
  - Arranque desacoplado -> ~docker container run --detach <imagen>~ (o tambien ~-d~)
- - Parar un contenedor -> ~docker container stop~
+ - Parar un contenedor -> ~docker container stop <contenedor>~
+ - Parar todos contenedores -> ~docker container stop $(docker container ls -aq)~
+ - Puertos -> ~docker container run --publish <máquina>:<contenedor> <imagen>~
  - Consultar log y esperar -> ~docker container logs --follow <contenedor>~
  - Consultar log -> ~docker container logs <contenedor>~
  - Consultar log (parámetros) -> ~-since~ (Desde), ~-tail~ (Ultimos), ~-until~ (Hasta)
