@@ -5,7 +5,7 @@
 #+STARTUP: overview
 #+date: <2023-08-30>
 
-[[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
+[[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
 
 *** Instalación
 #+BEGIN_SRC bash
