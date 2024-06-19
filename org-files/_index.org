@@ -12,8 +12,8 @@
 
 Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
 
-* Indice
-** [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
-** [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][Linux]]
-** [[id:9c1e38a5-2c38-4370-b483-f637457686d4][Aplicaciones]]
-** [[id:d3201961-966d-4371-ae48-5dbcab004573][Raspberry]]
+
+- [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
+- [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][Linux]]
+- [[id:9c1e38a5-2c38-4370-b483-f637457686d4][Aplicaciones]]
+- [[id:d3201961-966d-4371-ae48-5dbcab004573][Raspberry]]
