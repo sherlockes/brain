@@ -26,6 +26,10 @@ Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario
 - Añadir el nuevo alias -> alias ll="ls -la"
 - Habilitar los cambios -> source ~/.bashrc
 * Comandos
+** diff (comparar dos directorios)
+~diff -qr /ruta/a/carpeta1 /ruta/a/carpeta2~
+ - -q muestra solo si los archivos son diferentes.
+ - -r compara los directorios de manera recursiva.
 ** ls (listar directorio)
 - ls -a (Listar directorio con ocultos)
 ** mv (mover / renombrar)
