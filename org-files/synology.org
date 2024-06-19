@@ -6,18 +6,23 @@
 #+date: 2024-06-19
 
 * Acceso a carpeta compartida de otro NAS
-
-Paso a paso con NFS:
-En NAS_1:
-Ve a Panel de Control > Servicios de archivos > NFS y habilita NFS.
-Ve a Panel de Control > Carpeta compartida, selecciona "carpeta_1" y haz clic en Editar.
-Ve a la pestaña Permisos de NFS y agrega un nuevo permiso.
-Configura el permiso para permitir acceso desde la IP del NAS_2 (dirección ZeroTier) y ajusta las opciones según tus necesidades.
-En NAS_2:
-Abre el terminal SSH en el NAS_2.
-Monta la carpeta usando el siguiente comando:
-bash
-Copiar código
-mkdir -p /volume1/carpeta_2
-mount -t nfs [IP_del_NAS_1]:/volume1/carpeta_1 /volume1/carpeta_2
-Asegúrate de reemplazar [IP_del_NAS_1] con la dirección IP de ZeroTier del NAS_1.
+Paso a paso con NFS y teniendo ambos NAS en la misma red de zerotier:
+** En NAS-1 (El que tiene el contenido):
+ - Panel de Control > Servicios de archivos > NFS y habilita NFS.
+    (Lo dejo en NFSv4 y sin tocar la configuración avanzada)
+ - Panel de Control > Carpeta compartida, selecciona la carpeta y Editar.
+ - Pestaña Permisos de NFS y agrega un nuevo permiso.
+ - Configura el permiso para permitir acceso desde la IP del NAS-2 (dirección ZeroTier) y ajusta las opciones según tus necesidades.
+   - Solo lectura
+   - Squash sin asignación
+   - Seguridad sys
+   - Habilitar asíncrono
+   - Permitir conexiones desde puertos superiores
+   - Permitir acceso a subcarpetas   
+** En NAS-2 (Desde que que se accede al contenido):
+ - Abrir Filestation
+ - Crear una carpeta nueva
+ - Herramientas - Montar carpeta remota - Carpeta compartida de NFS
+ - Seleccionamos la carpeta del NAS-1 (Con la dirección de Zerotier)
+ - Seleccionamos la carpeta en la que montar
+ - Habilitamos si se quiere montar al arrancar
