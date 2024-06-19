@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       64586d28-521c-4b6b-b3f0-fb5ef2bd422f
+:END:
+#+title: synology
+#+STARTUP: overview
+#+date: 2024-06-19
+
+* Acceso a carpeta compartida de otro NAS
+
+Paso a paso con NFS:
+En NAS_1:
+Ve a Panel de Control > Servicios de archivos > NFS y habilita NFS.
+Ve a Panel de Control > Carpeta compartida, selecciona "carpeta_1" y haz clic en Editar.
+Ve a la pestaña Permisos de NFS y agrega un nuevo permiso.
+Configura el permiso para permitir acceso desde la IP del NAS_2 (dirección ZeroTier) y ajusta las opciones según tus necesidades.
+En NAS_2:
+Abre el terminal SSH en el NAS_2.
+Monta la carpeta usando el siguiente comando:
+bash
+Copiar código
+mkdir -p /volume1/carpeta_2
+mount -t nfs [IP_del_NAS_1]:/volume1/carpeta_1 /volume1/carpeta_2
+Asegúrate de reemplazar [IP_del_NAS_1] con la dirección IP de ZeroTier del NAS_1.
