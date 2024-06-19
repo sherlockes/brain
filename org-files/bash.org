@@ -3,22 +3,9 @@
 :END:
 #+title: bash
 #+STARTUP: show2levels
-#+CATEGORY: Lenguajes
-
 #+date: <2023-08-30>
 
-#+hugo_custom_front_matter: :thumbnail "images/bash.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: bash
-#+hugo_categories: script
-#+hugo_draft: false
-
-
 Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario de línea de comandos popular, específicamente un shell de Unix; así como un lenguaje de scripting. Bash fue originalmente escrito por Brian Fox para el sistema operativo GNU.​ Se ha utilizado ampliamente como el intérprete predeterminado para la mayoría de las distribuciones de GNU/Linux.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 * Alias
 - Comprobar si existe el archivo ~~/.bash_aliases~
