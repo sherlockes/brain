@@ -3,20 +3,10 @@
 :END:
 #+title: hugo
 #+STARTUP: overview
-
 #+date: <2023-09-04 lun 13:40>
-
-#+hugo_custom_front_matter: :thumbnail "images/hugo.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: hugo
-#+hugo_categories: apps
-#+hugo_draft: false
+#+filetags: apps
 
 Hugo es un moderno framework para creación de sitios web de propósito general. Se ubica en la categoría de los nuevos generadores de sitios estáticos,​ basados en la arquitectura dinámica JAMstack y es escrito completamente en Go.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** MarkDown
   - [[https://www.markdownguide.org/tools/hugo/][Lista]] de comandos permitidos.
