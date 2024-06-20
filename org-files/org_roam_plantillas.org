@@ -6,7 +6,7 @@
 #+date: <2023-08-30>
 #+filetags: apps:emacs
 
-Cada vez que se añade una nueva nota en [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] se hace uso de las plantillas que estan definidas en la configuración de [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]. Aquí está la información que he ido recopilando y las plantillas que utilizo.
+Cada vez que se añade una nueva nota en [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] se hace uso de las plantillas que estan definidas en la configuración de emacs. Aquí está la información que he ido recopilando y las plantillas que utilizo.
 
 *** Plantillas
 Se definen con la variable (org-roam-capture-templates)
