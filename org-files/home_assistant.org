@@ -4,15 +4,9 @@
 #+title: home assistant
 #+STARTUP: overview
 #+date: 2024-01-17
-#+hugo_custom_front_matter: :thumbnail "images/homeassistant.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: ha
-#+hugo_categories: apps iot
-#+hugo_draft: false
+#+filetags: apps
+
 Home Assistant es una plataforma de domótica de código abierto que transforma hogares en espacios inteligentes. Ofrece integración para una amplia variedad de dispositivos y servicios, permitiendo el control centralizado de luces, termostatos, cámaras y más. Su interfaz intuitiva y automatizaciones personalizables facilitan la gestión del hogar conectado.
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 **** Notificar batería baja de sensores
  - Importar [[https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2Fsbyx%2F1f6f434f0903b872b84c4302637d0890][este]] blueprint
