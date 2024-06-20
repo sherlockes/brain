@@ -3,20 +3,10 @@
 :END:
 #+title: inkscape
 #+STARTUP: overview
-
 #+date: <2023-08-30>
-
-#+hugo_custom_front_matter: :thumbnail "images/inkscape.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: inkscape
-#+hugo_categories: apps
-#+hugo_draft: false
+#+filetags: apps
 
 Inkscape es un editor de gráficos vectoriales libre y de código abierto. Inkscape puede crear y editar diagramas, líneas, gráficos, logotipos, e ilustraciones complejas. El formato principal que utiliza el programa es Scalable Vector Graphics (SVG) versión 1.1.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** Resetear las preferencias
 Borrar el archivo "~/.config/inkscape/preferences.xml"
