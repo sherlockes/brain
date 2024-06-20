@@ -5,10 +5,7 @@
 #+STARTUP: show2levels
 
 #+date: 2023-08-30
-
-#+hugo_custom_front_matter: :thumbnail "images/image.jpg"
-#+setupfile: ./setup.conf
-#+hugo_draft: false
+#+filetags: hardware:apps
 
 Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
 
