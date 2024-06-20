@@ -27,7 +27,7 @@ Paso a paso con NFS y teniendo ambos NAS en la misma red de zerotier:
  - Seleccionamos la carpeta en la que montar
  - Habilitamos si se quiere montar al arrancar
 * Download Station
-** Configuración para tracker privado
+** Configuración de red BT (Para tracker privado)
  - Puerto -> 16881
  - Velocidad de carga Max -> 0
  - Velocidad de descarga max -> 0
