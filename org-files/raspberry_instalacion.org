@@ -3,18 +3,11 @@
 :END:
 #+title: Raspberry - Instalación
 #+STARTUP: overview
-
 #+date: 2023-12-15
+#+filetags: hardware
 
-#+hugo_custom_front_matter: :thumbnail "images/raspberry.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: raspberry
-#+hugo_categories: sos
-#+hugo_draft: false
 Partimos con la [[id:d3201961-966d-4371-ae48-5dbcab004573][raspberry]] vacía y estos son los pasos que hay que dar. He probado a hacer un script que con el paso del tiempo siempre falla en un punto u otro, así quedan las instrucciones claras.
-#+BEGIN_export html
-<!--more-->
-#+END_export
+
 *** Instalando PI OS Lite
 **** Grabar la imagen mediante [[https://www.raspberrypi.com/software/][Imager]] y actualizar el sistema.
   #+begin_src bash
