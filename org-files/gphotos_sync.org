@@ -4,15 +4,10 @@
 #+title: gphotos-sync
 #+STARTUP: overview
 #+date: 2024-02-01
-#+hugo_custom_front_matter: :thumbnail "images/gphotos.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: gphotos-sync
-#+hugo_categories: apps
-#+hugo_draft: false
+#+filetags: apps
+
 Google Photos Sync descarga todas las fotos y videos subidos a Google Photos, organizándolos localmente según información del álbum. Respaldando también 'Creaciones' como animaciones, panoramas y collages, el software es de solo lectura y no altera la biblioteca en la nube, eliminando así el riesgo de dañar los datos.
-#+BEGIN_export html
-<!--more-->
-#+END_export
+
 Ya hace mucho tiempo que uso gphotos-sync para la descarga de mis fotos de la galería de Google Photos tal y como explico este [[https://sherblog.pro/backup-de-google-photos/][artículo del blog]] y en [[https://sherblog.pro/sincronizar-google-photos-desde-la-raspberry/][este otro]]. Hasta ahora el trabajo recaía en la Raspberry que corría el servicio y guardaba las fotos en una carpeta del NAS. Ahora vamos a correr directamente el servicio en el NAS para quitar el trabajo a la Pi.
 
 *** Instalación en contenedor
