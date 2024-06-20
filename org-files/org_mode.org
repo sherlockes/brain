@@ -4,20 +4,10 @@
 #+title: org-mode
 #+filetags: :emacs:
 #+STARTUP: show2levels
-
 #+date: <2023-08-30>
-
-#+hugo_custom_front_matter: :thumbnail "images/org.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: org-mode
-#+hugo_categories: emacs
-#+hugo_draft: false
+#+filetags: apps:emacs
 
 Un modo principal de GNU [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]] para mantener notas, documentos de autoría, cuadernos computacionales, programación alfabetizada, mantenimiento de listas de tareas, planificación de proyectos y más, en un sistema de texto sin formato rápido y efectivo.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** Comandos importantes
 - Insertar un enlace -> C-c C-l
