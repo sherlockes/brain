@@ -4,6 +4,7 @@
 #+title: org-roam publish
 #+STARTUP: overview
 #+date: 2024-06-11
+#+filetags: apps:emacs
 
 Nuestra base de conocimiento en [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] se puede consultar en local gracias a [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]. Ahora vamos a dar un paso más y emplearemos las instrucciones de [[https://github.com/ikoamu/publish-org-roam-ui/tree/main][Ikoamu]] para generar una web estática gracias a [[https://docs.github.com/es/actions][Github Actions]]. Estos son los pasos a seguir.
 
