@@ -4,7 +4,7 @@
 #+title: emacs - dired
 #+STARTUP: overview
 #+date: 2023-08-31
-#+filetags: apps
+#+filetags: apps:emacs
 
 Dired crea un buffer en Emacs que contiene una lista de un directorio y, opcionalmente, también algunos de sus subdirectorios. Puede usar los comandos Emacs normales para moverse en este buffer y comandos especiales además para operar en los archivos enumerados. Dired es capz de trabajar con directorios locales y remotos.
 
