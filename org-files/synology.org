@@ -4,6 +4,7 @@
 #+title: synology
 #+STARTUP: overview
 #+date: 2024-06-19
+#+filetags: hardware
 
 * Acceso a carpeta compartida de otro NAS
 Paso a paso con NFS y teniendo ambos NAS en la misma red de zerotier:
