@@ -4,6 +4,7 @@
 #+title: hardware
 #+STARTUP: overview
 #+date: 2024-06-19
+#+filetags: hardware
 
 - [[id:d3201961-966d-4371-ae48-5dbcab004573][Raspberry]]
 - [[id:64586d28-521c-4b6b-b3f0-fb5ef2bd422f][Synology]]
