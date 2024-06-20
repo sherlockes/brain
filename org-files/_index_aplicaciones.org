@@ -4,6 +4,7 @@
 #+title: aplicaciones
 #+STARTUP: overview
 #+date: 2024-06-10
+#+filetags: apps
 
 * [[id:de7aa47f-2138-470f-a412-977c1cf3d42c][docker]]
 * [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]
