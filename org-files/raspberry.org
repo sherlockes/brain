@@ -4,7 +4,7 @@
 #+title: Raspberry
 #+STARTUP: overview
 #+date: 2023-12-15
-#+categories: hardware
+#+filetags: hardware
 
 Todo sobre Raspberry
 
