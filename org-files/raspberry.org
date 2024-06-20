@@ -3,20 +3,12 @@
 :END:
 #+title: Raspberry
 #+STARTUP: overview
-
 #+date: 2023-12-15
-
-#+hugo_custom_front_matter: :thumbnail "images/raspberry.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: raspberry
-#+hugo_categories: sos
-#+hugo_draft: false
+#+filetags: hardware
 
 Todo sobre Raspberry
 
-#+BEGIN_export html
-<!--more-->
-#+END_export
+
 
 *** [[id:c3097e7a-7070-4d4f-ab60-f5a44e180f9d][Proceso de instalación]]
 *** Argon One Pi4 V2 (Caja Raspberry Pi)
