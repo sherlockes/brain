@@ -3,20 +3,10 @@
 :END:
 #+title: org-roam primeros pasos
 #+STARTUP: overview
-
 #+date: <2023-08-30>
-
-#+hugo_custom_front_matter: :thumbnail "images/org-roam.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: org-roam
-#+hugo_categories: emacs
-#+hugo_draft: false
+#+filetags: apps:emacs
 
 La curva de aprendizaje de [[id:80ce4bf8-3936-45bf-adc9-041795828500][org-roam]] es complicada sin una guía adecuada que serguir, estos son los primeros pasos por donde hay que empezar si quieres crear tu base de conocimiento.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** Como empezar
 + En caso de configuración compartida, no sincronizar la carpeta "elpa"
