@@ -26,3 +26,20 @@ Paso a paso con NFS y teniendo ambos NAS en la misma red de zerotier:
  - Seleccionamos la carpeta del NAS-1 (Con la dirección de Zerotier)
  - Seleccionamos la carpeta en la que montar
  - Habilitamos si se quiere montar al arrancar
+* Download Station
+** Configuración para tracker privado
+ - Puerto -> 16881
+ - Velocidad de carga Max -> 0
+ - Velocidad de descarga max -> 0
+ - Cifrado -> Automático
+ - Pares máx permitidos -> 100
+ - Habilitar red DHT -> NO
+ - Activar uPnP -> Si
+ - Detener propagación
+   - Relación de compartición alcanzada -> 200
+   - Tiempo de propagación alcanzado -> Para siempre
+** Mover archivos sin perder propagación
+ - Pausar la propagación
+ - Mover el archivo (Con la carpeta incluida)
+ - Editar la propagación con la nueva ruta
+ - Reiniciar la propagación
