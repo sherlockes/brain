@@ -3,12 +3,9 @@
 :END:
 #+title: index
 #+STARTUP: show2levels
-
 #+date: 2023-08-30
-#+filetags: hardware:apps
 
 Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
-
 
 - [[id:192ac837-de8f-4dbb-a294-2d0ff360184f][Lenguajes de programación]]
 - [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][Linux]]
