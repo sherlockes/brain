@@ -4,20 +4,10 @@
 #+title: emacs
 #+filetags: :emacs:
 #+STARTUP: overview
-
 #+date: <2023-09-04 lun 12:33>
-
-#+hugo_custom_front_matter: :thumbnail "images/emacs.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: emacs
-#+hugo_categories: apps
-#+hugo_draft: false
+#+filetags: apps
 
 Emacs es un editor de texto reconocido por su amplio conjunto de funciones, lo cual lo ha convertido en una herramienta valorada por programadores y usuarios con orientación técnica. GNU Emacs forma parte del proyecto GNU y destaca como la versión más popular de este editor. El manual de GNU Emacs lo describe como «un editor de texto avanzado, extensible, personalizable y autodocumentado».
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 ** Grandes temas
 *** [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]] 
