@@ -33,6 +33,7 @@ Para mostrar en el arranque los últimos archivos editados uso esta combinación
   - Funcion, descripción y ayuda (describe-function) -> C-h f
   - variable, descripción y ayuda (describe-variable) -> C-h v
 *** Bookmarks (Favoritos)
+  - Ubicación -> (setq bookmark-default-file "~/.emacs.d/bookmarks")
   - Añadir --> C-x r m
   - Listar --> C-x r l
     - ‘a’ – show annotation for the current bookmark
