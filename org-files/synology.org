@@ -44,3 +44,12 @@ Paso a paso con NFS y teniendo ambos NAS en la misma red de zerotier:
  - Mover el archivo (Con la carpeta incluida)
  - Editar la propagación con la nueva ruta
  - Reiniciar la propagación
+* Insertar un nuevo disco
+ - Colocar físicamente el disco con el nas apagado
+ - Encender el NAS
+ - Aplicaciones - Administración de almacenamiento
+ - Administrar unidades disponibles
+ - Agregar unidad para ampliación del almacenamiento
+ - Seleccionar el grupo de almacenamiento
+ - Seleccionar el disco insertado
+ - Esperar...
