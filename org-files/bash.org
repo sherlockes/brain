@@ -7,7 +7,7 @@
 
 Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario de línea de comandos popular, específicamente un shell de Unix; así como un lenguaje de scripting. Bash fue originalmente escrito por Brian Fox para el sistema operativo GNU.​ Se ha utilizado ampliamente como el intérprete predeterminado para la mayoría de las distribuciones de GNU/Linux.
 
-#+ATTR_HTML: :width 300px :align right
+#+ATTR_HTML: :width 300px :align center
 [[./img/bash.png]]
 
 * Alias
