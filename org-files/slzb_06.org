@@ -48,7 +48,7 @@ Con el complemento de [[https://community.home-assistant.io/t/home-assistant-com
 - Deshabilitar el modo de protección
 - Ejecutar el siguiente comando
 
-  #+begin_src bash
+  #+begin_src
     host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
   #+end_src
 
