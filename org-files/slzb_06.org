@@ -11,6 +11,8 @@
 https://smlight.tech/product/slzb-06/
 
 *** Configurar cliente Wireguard en HA
+Con el complemento de [[https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662][Wireguard]] instalado y funcionando en el servidor de [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][home assistant]] hay que añadir un nuevo cliente en el archivo de configuración
+
 #+begin_src yaml
 - name: slzb-06
   addresses:
@@ -21,30 +23,34 @@ https://smlight.tech/product/slzb-06/
     - 172.27.66.2/24
 #+end_src
 
-*** Configuración
+*** Configuración general del SLZB-06
 - Acceder a http://slzb-06.local/
 - Cambiar el idioma
 - Configurar Modo del módulo de radio como "Zigbee coordinador"
 - Configurar Modo de conexión como "Ethernet conexión"
 
-- En Home assistant Ajustes-Complementos-File editor desactivar la opción "Enforce Basepath" para acceder a cualquiera carpeta
-
-- En File-editor acceder a "/ssl/wireguard/slzb-06/client.conf"
-
+*** Configuración de vpn del SLZB-06
 - Habilitar vpn en slzb-06.local
-Dirección IP local -> 172.27.66.3
-Llave privada -> PrivateKey
-Dirección IP del terminal -> homezgz.ddns.net
-Llave pública -> PublicKey
-Puerto de terminal -> 51820
+- Los parámetros con los que rellenar los siguientes campos se encuentran en el archivo "/ssl/wireguard/slzb-06/client.conf" de nuestro servidor de Home Assistant donde está corriendo el complemento de Wireguard
 
+  #+begin_quote
+  Para poder acceder al directorio raiz, en Home assistant Ajustes-Complementos-File editor desactivar la opción "Enforce Basepath"
+  #+end_quote
 
-- En HA acceder a "Advanced SSH & Web Terminal"
+- Rellenar los siguiente campos
+| Dirección IP local        | 172.27.66.3      |
+| Llave privada             | PrivateKey       |
+| Dirección IP del terminal | homezgz.ddns.net |
+| Llava pública             | PublicKey        |
+| Puerto de terminal        | 51820            |
+
+- En HA acceder a "[[https://github.com/hassio-addons/addon-ssh][Advanced SSH & Web Terminal]]"
 - Deshabilitar el modo de protección
 - Ejecutar el siguiente comando
 
-host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
-
+  #+begin_src bash
+    host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+  #+end_src
 
 - En configuration.yaml de HA añadir
 #+begin_src yaml
@@ -55,3 +61,78 @@ command_line:
 #+end_src
 
 - Reiniciar HA
+
+Siguiendo el artículo de [[https://programarfacil.com/domotica/multiples-casas-con-home-assistant/][ProgramarFacil]] he llegado hasta aquí. Ahora me encuentro con que en mi servidor ya tengo instaladas una instancia de ZHA y Z2M por lo que no puedo seguir sus pasos
+
+*** Añadir una nueva instancia de Zigbee2mqtt
+Para añadir una nueva instancia de Z2M hay que hacer un truco añadiendo en la tienda de complementos un repositorio duplicado de zigbee2mqtt
+
+https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/
+https://github.com/zigbee2mqtt/hassio-zigbee2mqtt//
+
+- Añadimos la nueva instancia
+- En las opciones del complemento incluimos lo siguiente
+  data_path: /config/zigbee2mqtt_co
+
+  socat:
+  #+begin_src yaml
+enabled: false
+master: pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777
+slave: tcp-listen:8486,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5
+options: "-d -d"
+log: false
+  #+end_src
+
+  puerto:8486
+
+  El directorio de configuración deberá ser diferente al de la instancia de Z2M que ya teníamos instalada y el puerto uno mayor.
+
+- Editamos el archivo "/homeassistant/zigbee2mqtt_co/configuration.yaml" para dejarlo con el siguiente contenido.
+
+#+begin_src yaml
+homeassistant: true
+data_path: /config/zigbee2mqtt_co
+advanced:
+  network_key:
+    - 171
+    - 22
+    - 21
+    - 221
+    - 215
+    - 33
+    - 213
+    - 8
+    - 233
+    - 18
+    - 232
+    - 17
+    - 56
+    - 114
+    - 212
+    - 157
+  pan_id: 6754
+  ext_pan_id:
+    - 115
+    - 127
+    - 62
+    - 198
+    - 250
+    - 93
+    - 10
+    - 43
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+  chanel: 11
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
+  base_topic: zigbee2mqtt_co
+frontend:
+  port: 8099
+serial:
+  port: tcp://172.27.66.3:6638
+device_options:
+  legacy: false
+#+end_src
