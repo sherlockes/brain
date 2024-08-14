@@ -8,3 +8,4 @@
 
 - [[id:d3201961-966d-4371-ae48-5dbcab004573][Raspberry]]
 - [[id:64586d28-521c-4b6b-b3f0-fb5ef2bd422f][Synology]]
+- [[id:c6386915-e497-48d4-a467-445d84ede824][SLZB-06]]
