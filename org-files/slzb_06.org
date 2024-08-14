@@ -4,4 +4,29 @@
 #+title: SLZB-06
 #+STARTUP: overview
 #+date: 2024-08-14
+#+filetags: hardware
 
+
+
+https://smlight.tech/product/slzb-06/
+
+*** Configurar cliente Wireguard en HA
+#+begin_src yaml
+  - name: slzb-06
+  addresses:
+    - 172.27.66.3
+  allowed_ips: []
+  client_allowed_ips: []
+  - 192.168.10.0/24
+  - 172.27.66.2/24
+#+end_src
+
+*** Configuración
+- Acceder a http://slzb-06.local/
+- Cambiar el idioma
+- Configurar Modo del módulo de radio como "Zigbee coordinador"
+- Configurar Modo de conexión como "Ethernet conexión"
+
+- En Home assistant Ajustes-Complementos-File editor desactivar la opción "Enforce Basepath" para acceder a cualquiera carpeta
+
+- En File-editor acceder a "/ssl/wireguard"
