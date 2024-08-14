@@ -12,13 +12,13 @@ https://smlight.tech/product/slzb-06/
 
 *** Configurar cliente Wireguard en HA
 #+begin_src yaml
-  - name: slzb-06
+- name: slzb-06
   addresses:
     - 172.27.66.3
   allowed_ips: []
-  client_allowed_ips: []
-  - 192.168.10.0/24
-  - 172.27.66.2/24
+  client_allowed_ips:
+    - 192.168.10.0/24
+    - 172.27.66.2/24
 #+end_src
 
 *** Configuración
@@ -29,4 +29,29 @@ https://smlight.tech/product/slzb-06/
 
 - En Home assistant Ajustes-Complementos-File editor desactivar la opción "Enforce Basepath" para acceder a cualquiera carpeta
 
-- En File-editor acceder a "/ssl/wireguard"
+- En File-editor acceder a "/ssl/wireguard/slzb-06/client.conf"
+
+- Habilitar vpn en slzb-06.local
+Dirección IP local -> 172.27.66.3
+Llave privada -> PrivateKey
+Dirección IP del terminal -> homezgz.ddns.net
+Llave pública -> PublicKey
+Puerto de terminal -> 51820
+
+
+- En HA acceder a "Advanced SSH & Web Terminal"
+- Deshabilitar el modo de protección
+- Ejecutar el siguiente comando
+
+host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+
+
+- En configuration.yaml de HA añadir
+#+begin_src yaml
+command_line:
+  - sensor:
+      name: wireguard_route
+      command: host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+#+end_src
+
+- Reiniciar HA
