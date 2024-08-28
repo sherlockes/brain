@@ -3,20 +3,10 @@
 :END:
 #+title: regexp
 #+STARTUP: overview
-
+#+filetags: code
 #+date: <2023-08-30>
 
-#+hugo_custom_front_matter: :thumbnail "images/regex.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: regexp
-#+hugo_categories: script
-#+hugo_draft: false
-
 En cómputo teórico y teoría de lenguajes formales, una expresión regular, o expresión racional,1​2​ también son conocidas como regex o regexp, por su contracción de las palabras inglesas regular expression, es una secuencia de caracteres que conforma un patrón de búsqueda. Se utilizan principalmente para la búsqueda de patrones de cadenas de caracteres u operaciones de sustituciones.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 - [[https://devhints.io/regexp][CheatSheet (DevHints)]]
 
