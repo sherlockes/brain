@@ -3,20 +3,10 @@
 :END:
 #+title: markdown
 #+STARTUP: overview
-
+#+filetags: code
 #+date: <2023-08-30>
 
-#+hugo_custom_front_matter: :thumbnail "images/markdown.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: markdown
-#+hugo_categories: script
-#+hugo_draft: false
-
 Markdown es un lenguaje de marcado ligero creado por John Gruber y Aaron Swartz que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** [[https://sourceforge.net/p/hugo-generator/wiki/markdown_syntax/#md_ex_lists][Hugo CheatSheet]]
 *** [[https://cheatography.com/xaon/cheat-sheets/emacs-markdown-mode/][Emacs CheatSheet]]
