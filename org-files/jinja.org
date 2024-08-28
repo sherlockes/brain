@@ -4,15 +4,10 @@
 #+title: jinja
 #+STARTUP: overview
 #+date: 2024-01-14
-#+hugo_custom_front_matter: :thumbnail "images/jinja.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: jinja
-#+hugo_categories: script
-#+hugo_draft: false
+#+filetags: code
+
 Jinja2 es un motor de plantillas para el lenguaje de programación Python. Fue creado por Armin Ronacher y se utiliza comúnmente en aplicaciones web basadas en Python para generar contenido dinámico. Jinja2 permite la creación de plantillas que contienen marcadores de posición y lógica de control, que luego pueden ser llenados con datos específicos cuando se renderiza la plantilla.
-#+BEGIN_export html
-<!--more-->
-#+END_export
+
 Estos son los conocimientos que he ido adquiriendo sobre jinja 2 para Home Assistant.
 
 Mi uso se restringe básicamente a la generación de plantillas para [[id:9ceae31a-8fb3-4f1b-b793-0a6d045f3862][Home Assistant]]. Puedes ver como lo he utilizado en la generación de [[https://github.com/sherlockes/ha_cfg/blob/main/sensors.yaml][sensores]] y [[https://github.com/sherlockes/ha_cfg/blob/main/binary_sensors.yaml][sensores binarios]] virtuales. 
