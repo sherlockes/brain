@@ -11,3 +11,9 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 - [[id:ccb379dd-3d92-4290-9fbd-5e56606da7bc][Linux]]
 - [[id:9c1e38a5-2c38-4370-b483-f637457686d4][Aplicaciones]]
 - [[id:95515039-0726-44b0-a140-2d60edcff021][Hardware]]
+
+- Indice
+  - lenguajes ( #+filetags: code )
+  - linux
+  - aplicaciones ( #+filetags: apps )
+  
