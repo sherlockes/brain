@@ -5,7 +5,7 @@
 #+filetags: :emacs:
 #+STARTUP: show2levels
 #+date: <2023-08-30>
-#+filetags: apps:emacs
+#+filetags: apps:emacs:code
 
 Un modo principal de GNU [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][Emacs]] para mantener notas, documentos de autoría, cuadernos computacionales, programación alfabetizada, mantenimiento de listas de tareas, planificación de proyectos y más, en un sistema de texto sin formato rápido y efectivo.
 
