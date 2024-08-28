@@ -3,20 +3,10 @@
 :END:
 #+title: python
 #+STARTUP: overview
-
+#+filetags: code
 #+date: <2023-08-30>
 
-#+hugo_custom_front_matter: :thumbnail "images/python.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: python
-#+hugo_categories: script
-#+hugo_draft: false
-
 Python es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código, se utiliza para desarrollar aplicaciones de todo tipo, por ejemplo: Instagram, Netflix, Spotify, Panda3D, entre otros.​ Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** Enlaces pendientes de revisar
 Tutorial automate the boring stuff
