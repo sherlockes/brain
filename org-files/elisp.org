@@ -3,22 +3,12 @@
 :END:
 #+title: elisp
 #+STARTUP: show2levels
-
+#+filetags: code
 #+date: <2023-09-04 lun 12:33>
-
-#+hugo_custom_front_matter: :thumbnail "images/elisp.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: elisp, emacs
-#+hugo_categories: script
-#+hugo_draft: false
 
 Emacs Lisp es un dialecto del lenguaje de programación Lisp que se usa en los editores GNU Emacs y XEmacs. Emacs Lisp es a veces llamado Elisp, lo cual tiene el riesgo de llevar a confundirlo con otro dialecto de Lisp que tiene el mismo nombre.
 
 La mayoría de las funciones de edición de Emacs vienen de código escrito en Lisp; el resto está escrito en C. Los usuarios que deseen personalizar o extender las funcionalidades de Emacs pueden escribir código en Emacs Lisp.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 *** Variables
   - Declarar Variable global -> (setq variable valor)
