@@ -4,6 +4,7 @@
 #+title: lenguajes
 #+STARTUP: overview
 #+date: 2024-06-05
+#+filetags: code
 
 * [[id:b2eb44fa-1010-4219-9dea-ea4458e92d64][bash]]
 * [[id:06032c9e-2664-4b4d-9bd3-ed72e16768a1][python]]
