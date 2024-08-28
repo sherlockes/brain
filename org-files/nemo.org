@@ -3,7 +3,6 @@
 :END:
 #+title: nemo
 #+STARTUP: overview
-
 #+date: 2023-08-29
 #+filetags: apps
 
