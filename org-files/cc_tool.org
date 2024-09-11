@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       0b8d3fe0-0bc7-4845-8028-7a2042137b4b
+:END:
+#+title: cc-tool
+#+STARTUP: overview
+#+date: 2024-09-11
+
+Instalación en Linux Mint
+
+git clone https://github.com/dashesy/cc-tool.git
+cd cc-tool
+
+sudo apt-get update
+sudo apt-get install git build-essential libusb-1.0-0-dev
+
+
+sudo apt-get update
+sudo apt-get install automake autoconf libtool
+
+
+./configure
+
+- Sale un error y hay que instalar
+  Durante el configure obtengo el error: "configure: error: cannot find Boost headers version >= 1.74.0"
+
+Instala la versión requerida de Boost: (1.74)
+ Mediante apt se instala la versión 1.71
+
+ wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
+ tar -xzf boost_1_74_0.tar.gz
+ cd boost_1_74_0
+ ./bootstrap.sh
+ sudo ./b2 install
+
+./configure
