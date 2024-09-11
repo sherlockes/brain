@@ -12,9 +12,6 @@ cd cc-tool
 
 sudo apt-get update
 sudo apt-get install git build-essential libusb-1.0-0-dev
-
-
-sudo apt-get update
 sudo apt-get install automake autoconf libtool
 
 
@@ -33,3 +30,81 @@ Instala la versión requerida de Boost: (1.74)
  sudo ./b2 install
 
 ./configure
+
+
+Ahora, al hacer el "Configure" obtengo el error: "configure: error: the libext variable is empty, did you invoke Libtool?
+
+Pasos para Solucionar el Error
+Instala o reinstala libtool:
+
+Asegúrate de que Libtool esté instalado en tu sistema:
+
+sudo apt-get update
+sudo apt-get install libtool
+
+Si ya estaba instalado, puedes intentar reinstalarlo:
+
+sudo apt-get install --reinstall libtool
+Regenera el archivo configure:
+
+Después de asegurarte de que libtool esté correctamente instalado, necesitas regenerar el script configure y los archivos de construcción.
+
+Ejecuta los siguientes comandos en el directorio del proyecto cc-tool:
+
+autoreconf --install
+Este comando debería volver a generar todos los archivos necesarios (configure, Makefile.in, etc.) utilizando las herramientas de Autotools, incluyendo libtool.
+
+Ejecuta libtoolize:
+
+Para asegurarte de que libtool se ha inicializado correctamente, puedes ejecutar:
+
+libtoolize --force --copy
+Esto inicializará Libtool en tu proyecto y creará o actualiza los archivos necesarios (ltmain.sh, config.guess, config.sub, etc.).
+
+Ejecuta el script configure:
+
+Una vez que hayas inicializado libtool, vuelve a ejecutar el script configure:
+
+./configure
+
+Al fin lo pasa sin error
+
+Ahora al hacer el "make" obtengo este error
+ al ejecutar "make" obtengo este error: "configure.ac:8: error: required file './compile' not found"
+
+Regenera los archivos de Autotools:
+
+Después de asegurarte de que automake esté correctamente instalado, regenera los archivos necesarios para la compilación. Ejecuta los siguientes comandos en el directorio del proyecto cc-tool:
+
+autoreconf --install
+
+make
+
+sudo make install
+
+cc-tool --version
+
+Al comprobar la versión instalada de cc-tool obtengo este error: "cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
+"
+
+
+Actualiza las rutas de bibliotecas compartidas:
+
+--
+El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost_filesystem.so.1.74.0 y se ejecute correctamente.
+--
+
+Si ya instalaste manualmente Boost 1.74.0 (siguiendo las instrucciones anteriores), el problema podría estar en que el sistema no sabe dónde encontrar las bibliotecas de Boost.
+
+Para solucionar esto, agrega el directorio de las bibliotecas de Boost a las rutas de bibliotecas compartidas de tu sistema.
+
+Ejecuta el siguiente comando para agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda:
+
+sh
+Copiar código
+echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
+Luego, actualiza la caché de las bibliotecas dinámicas:
+
+sh
+Copiar código
+sudo ldconfig
