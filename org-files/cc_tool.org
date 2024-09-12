@@ -100,11 +100,18 @@ Para solucionar esto, agrega el directorio de las bibliotecas de Boost a las rut
 
 Ejecuta el siguiente comando para agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda:
 
-sh
-Copiar código
+
 echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
 Luego, actualiza la caché de las bibliotecas dinámicas:
 
-sh
-Copiar código
 sudo ldconfig
+
+https://github.com/dashesy/cc-tool
+
+YA FUNCIOA CC-TOOL
+
+https://ptvo.info/zigbee-switch-configurable-firmware-router-199/
+
+https://domoticaencasa.es/tutorial-ampliamos-cobertura-zigbee2mqtt-cc2530-cc2531/
+
+
