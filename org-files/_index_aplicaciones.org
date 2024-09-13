@@ -6,6 +6,7 @@
 #+date: 2024-06-10
 #+filetags: apps
 
+* [[id:0b8d3fe0-0bc7-4845-8028-7a2042137b4b][cc-tool]]
 * [[id:de7aa47f-2138-470f-a412-977c1cf3d42c][docker]]
 * [[id:c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07][emacs]]
 * [[id:2d610030-6757-4213-beeb-2fc10e47eb9b][git]]
