@@ -114,4 +114,13 @@ https://ptvo.info/zigbee-switch-configurable-firmware-router-199/
 
 https://domoticaencasa.es/tutorial-ampliamos-cobertura-zigbee2mqtt-cc2530-cc2531/
 
+https://ptvo.info/zigbee-configurable-firmware-features/external-sensors/ds18b20/
+
+Problema, El software de configuración de ptvo sólo corre en windows por lo que para ejecutarlo en Linux Mint he necesitado Wine
+
+#+begin_src bash
+sudo wine FirmwareConfig.exe
+#+end_src
+
+
 
