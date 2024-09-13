@@ -4,123 +4,88 @@
 #+title: cc-tool
 #+STARTUP: overview
 #+date: 2024-09-11
+#+filetags: apps
 
-Instalación en Linux Mint
-
-git clone https://github.com/dashesy/cc-tool.git
-cd cc-tool
-
-sudo apt-get update
-sudo apt-get install git build-essential libusb-1.0-0-dev
-sudo apt-get install automake autoconf libtool
-
-
-./configure
-
-- Sale un error y hay que instalar
-  Durante el configure obtengo el error: "configure: error: cannot find Boost headers version >= 1.74.0"
-
-Instala la versión requerida de Boost: (1.74)
- Mediante apt se instala la versión 1.71
-
- wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
- tar -xzf boost_1_74_0.tar.gz
- cd boost_1_74_0
- ./bootstrap.sh
- sudo ./b2 install
-
-./configure
-
-
-Ahora, al hacer el "Configure" obtengo el error: "configure: error: the libext variable is empty, did you invoke Libtool?
-
-Pasos para Solucionar el Error
-Instala o reinstala libtool:
-
-Asegúrate de que Libtool esté instalado en tu sistema:
-
-sudo apt-get update
-sudo apt-get install libtool
-
-Si ya estaba instalado, puedes intentar reinstalarlo:
-
-sudo apt-get install --reinstall libtool
-Regenera el archivo configure:
-
-Después de asegurarte de que libtool esté correctamente instalado, necesitas regenerar el script configure y los archivos de construcción.
-
-Ejecuta los siguientes comandos en el directorio del proyecto cc-tool:
-
-autoreconf --install
-Este comando debería volver a generar todos los archivos necesarios (configure, Makefile.in, etc.) utilizando las herramientas de Autotools, incluyendo libtool.
-
-Ejecuta libtoolize:
-
-Para asegurarte de que libtool se ha inicializado correctamente, puedes ejecutar:
-
-libtoolize --force --copy
-Esto inicializará Libtool en tu proyecto y creará o actualiza los archivos necesarios (ltmain.sh, config.guess, config.sub, etc.).
-
-Ejecuta el script configure:
-
-Una vez que hayas inicializado libtool, vuelve a ejecutar el script configure:
-
-./configure
-
-Al fin lo pasa sin error
-
-Ahora al hacer el "make" obtengo este error
- al ejecutar "make" obtengo este error: "configure.ac:8: error: required file './compile' not found"
-
-Regenera los archivos de Autotools:
-
-Después de asegurarte de que automake esté correctamente instalado, regenera los archivos necesarios para la compilación. Ejecuta los siguientes comandos en el directorio del proyecto cc-tool:
-
-autoreconf --install
-
-make
-
-sudo make install
-
-cc-tool --version
-
-Al comprobar la versión instalada de cc-tool obtengo este error: "cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
-"
-
-
-Actualiza las rutas de bibliotecas compartidas:
-
---
-El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost_filesystem.so.1.74.0 y se ejecute correctamente.
---
-
-Si ya instalaste manualmente Boost 1.74.0 (siguiendo las instrucciones anteriores), el problema podría estar en que el sistema no sabe dónde encontrar las bibliotecas de Boost.
-
-Para solucionar esto, agrega el directorio de las bibliotecas de Boost a las rutas de bibliotecas compartidas de tu sistema.
-
-Ejecuta el siguiente comando para agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda:
-
-
-echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
-Luego, actualiza la caché de las bibliotecas dinámicas:
-
-sudo ldconfig
-
-https://github.com/dashesy/cc-tool
-
-YA FUNCIOA CC-TOOL
-
-https://ptvo.info/zigbee-switch-configurable-firmware-router-199/
-
-https://domoticaencasa.es/tutorial-ampliamos-cobertura-zigbee2mqtt-cc2530-cc2531/
-
-https://ptvo.info/zigbee-configurable-firmware-features/external-sensors/ds18b20/
-
-Problema, El software de configuración de ptvo sólo corre en windows por lo que para ejecutarlo en Linux Mint he necesitado Wine
-
+Para la instalación de cc-tool en Linux Mint hay que instalar las dependencias, clonar el repositorio y compilarlo para nuestra máquina. Arrancamos con los siguientes comandos:
 #+begin_src bash
-sudo wine FirmwareConfig.exe
+  sudo apt-get update
+  sudo apt-get install git build-essential libusb-1.0-0-dev
+  sudo apt-get install automake autoconf libtool
+  git clone https://github.com/dashesy/cc-tool.git
+  cd cc-tool
 #+end_src
+
+El siguiente paso es configurar la compilación
+#+begin_src bash
+./configure
+#+end_src
+
+Durante el configure obtengo un error que indica que no dispongo de la versión de Boost igual o superior a 1.74:
+#+begin_src bash
+configure: error: cannot find Boost headers version >= 1.74.0
+#+end_src
+
+Instalamos la versión requerida de Boost: (1.74)
+
+Mediante apt se instala la versión 1.71 por lo que hay que descargarla de la web y compilarla para nuestra máquina mediante las siguientes instrucciones.
+#+begin_src 
+wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
+tar -xzf boost_1_74_0.tar.gz
+cd boost_1_74_0
+./bootstrap.sh
+sudo ./b2 install
+#+end_src
+
+Con Boost ya instalado, intento de nuevo la configuración de la compilación
+#+begin_src bash
+./configure
+#+end_src
+
+Ahora, al hacer el "Configure" obtengo el error:
+#+begin_src bash
+configure: error: the libext variable is empty, did you invoke Libtool?
+#+end_src
+
+Parece que no tengo instalado "Libtool" o instalado incorrectamente por lo que lo reinstalo.
+#+begin_src bash
+sudo apt-get install --reinstall libtool
+#+end_src
+
+Volvemos a regenerar el archivo configure:
+#+begin_src bash
+./configure
+#+end_src
+
+Al fin lo pasa sin error pero ahora al hacer el "make" obtengo este error:
+#+begin_src bash
+configure.ac:8: error: required file './compile' not found
+#+end_src
+
+Para corregir este error hay que regenerar los archivos de Autotools y realizar la compilación:
+#+begin_src bash
+autoreconf --install
+make
+sudo make install
+cc-tool --version
+#+end_src
+
+Al comprobar la versión instalada de cc-tool obtengo este error:
+#+begin_src bash
+cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
+#+end_src
+
+Para corregirlo hay que actualizar las rutas de bibliotecas compartidas:
+#+begin_quote
+El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost_filesystem.so.1.74.0 y se ejecute correctamente.
+#+end_quote
+
+Al instalar manualmente Boost hay que agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda y actualizar la actualiza la caché de las bibliotecas dinámicas:
+#+begin_src bash
+echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
+sudo ldconfig
+#+end_src
+
+Con sólo estos pasos podemos decir que ya tenemos instalado cc-tool.
 
 
 
