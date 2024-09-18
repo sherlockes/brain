@@ -13,5 +13,6 @@
 * [[id:7ce0a039-3b8b-4e0b-bbc6-e3fd56c4b635][gphotos-sync]]
 * [[id:6064b7ef-acf5-401f-a11c-1d923bbc85c4][hugo]]
 * [[id:be099c76-aead-4ac1-8251-4ff3562dca85][inkscape]]
+* [[id:8afa947a-6ea7-4302-8af2-9980e2a44a62][mastodon]]
 * [[id:a8a70ed4-0408-48f0-94d2-aa0c74301c53][nemo]]
 * [[id:42e68ab8-cffa-4b48-9974-dfd9a9ebb694][home assistant]]
