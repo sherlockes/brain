@@ -4,8 +4,9 @@
 #+title: mastodon
 #+STARTUP: overview
 #+date: 2024-09-18
+#+filetags: apps
 
-### Migrando de instancia
+*** Migrando de instancia
 
 Voy a migrar de emacs.ch a mas.to y estos son los pasos que he seguido
 
