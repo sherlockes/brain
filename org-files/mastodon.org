@@ -7,7 +7,6 @@
 #+filetags: apps
 
 *** Migrando de instancia
-
 Voy a migrar de emacs.ch a mas.to y estos son los pasos que he seguido
 
 - Crear una nueva cuenta en mas.to
