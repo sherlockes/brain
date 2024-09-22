@@ -6,7 +6,7 @@
 #+date: 2024-09-18
 #+filetags: apps
 
-*** Migrando de instancia
+* Migrando de instancia
 Voy a migrar de emacs.ch a mas.to y estos son los pasos que he seguido
 
 - Crear una nueva cuenta en mas.to
@@ -18,10 +18,13 @@ Voy a migrar de emacs.ch a mas.to y estos son los pasos que he seguido
   - Acceder a la [[https://emacs.ch/settings/migration][/settings/migration]]
 - Importar [[https://mas.to/settings/imports][lista de seguidos]] en la nueva instancia
 
-*** Verificar la identidad en Hugo
+* Verificar la identidad en Hugo
 En el "footer.html" añadimos lo siguiente
 #+begin_src html
   <a rel="me" href="https://mas.to/@sherlockes">Mastodon</a>
 #+end_src
 
-
+Con esto funciona sólo que el enlace es visible, lo podemos cambiar por
+#+begin_src html
+  <link rel="me" href="https://mas.to/@sherlockes">
+#+end_src
