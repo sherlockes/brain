@@ -17,4 +17,11 @@ Voy a migrar de emacs.ch a mas.to y estos son los pasos que he seguido
 - Configurar la redirección a la cuenta nueva en emacs.ch
   - Acceder a la [[https://emacs.ch/settings/migration][/settings/migration]]
 - Importar [[https://mas.to/settings/imports][lista de seguidos]] en la nueva instancia
-    
+
+*** Verificar la identidad en Hugo
+En el "footer.html" añadimos lo siguiente
+#+begin_src html
+  <a rel="me" href="https://mas.to/@sherlockes">Mastodon</a>
+#+end_src
+
+
