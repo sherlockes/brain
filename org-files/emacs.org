@@ -136,6 +136,8 @@ Para mostrar en el arranque los últimos archivos editados uso esta combinación
   - Línea, mover a la siguiente: C-n
   - Palabra, mueve a la anterior: M-b
   - Palabra, mueve a la siguiente: M-f
+  - Paréntesis, llave o corchete, mueve al cierre: C-M-f
+  - Paréntesis, llave o corchete, mueve a la apertura: C-M-b
   - Mueve al primer espacio no blanco -> M-n
   - Scroll Abajo/Arriba --> C-v / M-v
   - Scroll Abajo/Arriba (Otra ventana) --> C-M-v / C-M-S-v (C-M-- C-M-v)
