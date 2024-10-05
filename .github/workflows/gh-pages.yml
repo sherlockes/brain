@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate org-roam-ui page
-        uses: ikoamu/org-roam-ui-hosting@main
+        uses: ikoamu/publish-org-roam-ui@main
         with:
 	  default-section-open: false
           org-roam-db-filename: org-roam.db
