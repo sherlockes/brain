@@ -18,4 +18,5 @@ jobs:
           org-roam-db-filename: org-roam.db
           deploy-to-pages: true
           org-roam-directory: org-files
+          default-section-open: false
           site-title: My Brain
