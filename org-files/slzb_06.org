@@ -136,3 +136,26 @@ serial:
 device_options:
   legacy: false
 #+end_src
+
+*** Programar reinicio
+Usando la integración del [[https://www.home-assistant.io/integrations/smlight][fabricante]] es posible crear una automatización que una vez al día reinicie el dispositivo. Esta es la que yo tengo creada con una hora variable en función del valor de un ayudante.
+#+begin_src yaml
+alias: General - Reseteo diario
+description: ""
+triggers:
+  - at: input_datetime.automatizacion_reseteo_hora
+    trigger: time
+conditions:
+  - condition: state
+    entity_id: input_boolean.automatizacion_reseteo_diario
+    state: "on"
+actions:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.slzb_06_reinicio_del_nucleo
+  - action: hassio.host_reboot
+    data: {}
+mode: single
+#+end_src
