@@ -34,3 +34,6 @@ Tal y como se aclara en este [[https://emacs.stackexchange.com/questions/71480/h
   #+begin_quote
   También es posible introducirlo directamente en el archivo de configuración de emacs mediante la línea ~'(org-link-elisp-skip-confirm-regexp ".*")~ dentro del apartado "Custom-set-variables"
   #+end_quote
+*** Tablas ([[https://orgmode.org/manual/Built_002din-Table-Editor.html][Documentación Oficial]])
+- Nueva tabla: Insertar los encabezados entre "|" y pulsar TAB
+- Línea horizontal: Insertar "|-" al principio de línea y pulsar TAB
