@@ -6,7 +6,7 @@
 #+date: 2023-08-31
 #+filetags: apps:emacs
 
-Dired crea un buffer en Emacs que contiene una lista de un directorio y, opcionalmente, también algunos de sus subdirectorios. Puede usar los comandos Emacs normales para moverse en este buffer y comandos especiales además para operar en los archivos enumerados. Dired es capz de trabajar con directorios locales y remotos.
+Dired crea un buffer en Emacs que contiene una lista de un directorio y, opcionalmente, también algunos de sus subdirectorios. Puede usar los comandos Emacs normales para moverse en este buffer y comandos especiales además para operar en los archivos enumerados. Dired es capaz de trabajar con directorios locales y remotos.
 
 *** [[https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf][Dired Reference Card]]
 *** Visor de imágenes (image-dired)
@@ -21,6 +21,7 @@ Dired crea un buffer en Emacs que contiene una lista de un directorio y, opciona
   - Tamaño completo -> f
 *** Comandos básicos
   - Buscar archivos en directorio: % m
+  - Buscar archivos de forma recursiva: find-name-dired (Selecc dir y después *loquesea*)
   - Cambiar el modo de un fichero -> M (Tras seleccionar)
   - Directorio superior -> ^
   - Cambiar opciones ls -> C-u s
