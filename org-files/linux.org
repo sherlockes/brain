@@ -35,3 +35,34 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
  - Comprobar conexión "sudo wg"
 
 
+*** Ubuntu server
+**** Asignar ip estática ([[https://linuxconfig.org/setting-a-static-ip-address-in-ubuntu-24-04-via-the-command-line][info]])
+Accederemos a la carpeta "/etc/netplan" y editaremos el archivo yaml que se encuentre en su interior.
+
+  #+begin_src bash
+    cd /etc/netplan
+    sudo nano /etc/netplan/50-cloud-init.yaml
+  #+end_src
+
+El contenido del archivo resultante será este
+
+  #+begin_src yaml
+    network:
+    ethernets:
+        enp2s0:
+            dhcp4: no
+            addresses:
+              - 192.168.10.211/24
+            routes:
+              - to: default
+                via: 192.168.10.1
+            nameservers:
+              addresses: [192.168.10.210, 8.8.8.8]
+    version: 2
+    wifis: {}
+  #+end_src
+
+Ya sólo falta aplicar los cambios
+#+begin_src bash
+  sudo netplan apply
+#+end_src
