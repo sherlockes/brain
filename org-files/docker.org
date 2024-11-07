@@ -53,6 +53,7 @@ su - <usuario>
  - Borrar (Todos forzando) -> ~docker container rm -f $(docker container ls -aq)~
  - Arranque en modo interactivo -> ~docker container run -it <imagen>~
  - Arranque desacoplado -> ~docker container run --detach <imagen>~ (o tambien ~-d~)
+ - Arranque montando volumen -> ~docker run -it --rm -v ~/local:/contenedor <imagen>~
  - Parar un contenedor -> ~docker container stop <contenedor>~
  - Parar todos contenedores -> ~docker container stop $(docker container ls -aq)~
  - Puertos -> ~docker container run --publish <máquina>:<contenedor> <imagen>~
