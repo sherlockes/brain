@@ -71,6 +71,18 @@ Para aplicar la configuración y reiniciar la tarjeta de red usaremos ~sudo syst
 *** Habilitar Wake On LAN (84:47:09:24:9e:fc)
 A pesar de que en la BIOS he habilitado el "Wake On LAN" y el encendido automático, cuando envío el paquete a la MAC del servidor no se enciende automáticamente por lo que modificaré los parámetros de la tarjeta de red mediante la aplicación "ethtool" tal y como se explica [[https://www.linuxparty.es/29-internet/8299-configurar-wake-on-lan-wol-en-linux-como-se-usa][aquí]].
 
+ - Listamos las interfaces de red para conocer el nombre ~ip link show~
+   #+begin_src txt
+     1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp1s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 84:47:09:24:9e:fb brd ff:ff:ff:ff:ff:ff
+3: enp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 84:47:09:24:9e:fc brd ff:ff:ff:ff:ff:ff
+4: wlp0s20f3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether b0:dc:ef:ca:9d:65 brd ff:ff:ff:ff:ff:ff
+   #+end_src
+   En este caso vemos que la que está activa es "enp2s0" y pasaremos a analizarla con ethtool
  - Instalamos la aplicación con ~sudo apt install ethtool~
  - Vemos la configuración de la tarjeta de red con ~sudo ethtool enp2s0~
   #+begin_src txt
