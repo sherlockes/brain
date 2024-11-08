@@ -111,6 +111,21 @@ Resulta que este método funciona pero no es persistente y después de un reinic
   ethtool -s enp2s0 wol g
 #+end_src
  - Permiso de ejecución ~sudo chmod +x /etc/network/if-up.d/wol~
+ - Para ejecutar en cada reinicio editamos el crontab de root ~sudo crontab -e~ y añadimos la siguiente línea:
+   #+begin_src text
+     @reboot /etc/network/if-up.d/wol	 
+   #+end_src
+
+*** Apagado remoto
+Tenemos un EQUIPO desde el que queremos apagar un SERVIDOR
+- Creamos la ssh-key en EQUIPO ~ssh-keygen~
+- Copiamos la ssh-key al SERVIDOR ~ssh-copy-id user@TARGET~
+- Ejecutamos visudo en el SERVIDOR ~sudo visudo~
+- Añadimos al final la línea
+  #+begin_src txt
+    sherlockes ALL=NOPASSWD:/sbin/poweroff
+  #+end_src
+- Ya podemos apagar mediante ~ssh -t user@EQUIPO 'sudo poweroff"
 
 *** Instalar Docker
  - Instalación usando repositorio apt según [[https://docs.docker.com/engine/install/debian/#install-using-the-repository][Instrucciones oficiales]]
