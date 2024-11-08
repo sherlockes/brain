@@ -37,6 +37,8 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
 
 *** Ubuntu server
 **** Asignar ip estática ([[https://linuxconfig.org/setting-a-static-ip-address-in-ubuntu-24-04-via-the-command-line][info]])
+No he sido capaz de asignar directemente la IP estática durante la instalación por problemas con la máscara de red así que se la he puesto automática y la cambio después.
+
 Accederemos a la carpeta "/etc/netplan" y editaremos el archivo yaml que se encuentre en su interior.
 
   #+begin_src bash
@@ -66,3 +68,5 @@ Ya sólo falta aplicar los cambios
 #+begin_src bash
   sudo netplan apply
 #+end_src
+**** Habilitar Wake On LAN y apagado remoto
+Ver como se habilitan ambos en [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]].
