@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       95801434-bc76-4f94-a009-3216f9566e42
+:END:
+#+title: lazydocker
+#+STARTUP: overview
+#+date: 2024-11-22
+
