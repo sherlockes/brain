@@ -4,15 +4,7 @@
 #+title: debian
 #+filetags: :so:
 #+STARTUP: show2levels
-
 #+date: <2023-09-04 lun 13:39>
-
-#+hugo_section: notas
-#+hugo_custom_front_matter: :thumbnail "images/debian.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: debian
-#+hugo_categories: sos
-#+hugo_draft: false
 
 Debian, un sistema operativo de código abierto basado en Linux, destaca por su estabilidad, seguridad y compromiso con el software libre. Su versatilidad lo hace apto para servidores, estaciones de trabajo y sistemas embebidos. Utiliza APT, un eficiente sistema de gestión de paquetes, para instalar y actualizar software. Debian es una elección sólida en entornos domésticos y empresariales debido a su confiabilidad y valores de software libre.
 
