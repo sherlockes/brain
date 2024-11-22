@@ -4,4 +4,18 @@
 #+title: lazydocker
 #+STARTUP: overview
 #+date: 2024-11-22
+#+filetags: :apps:
 
+
+
+Instalación en linux:
+#+begin_src bash
+  curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+#+end_src
+
+Queda instalado en $HOME/.local/bin
+
+lo movemos a /usr/local/sbin para poder lanzarlo desde cualquier sitio
+
+atajos de teclado
+https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_es.md
