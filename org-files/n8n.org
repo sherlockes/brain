@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       96160698-e8dc-478b-bc7e-baa1b9916737
+:END:
+#+title: n8n
+#+STARTUP: overview
+#+date: 2024-12-05
+
+### Docker-compose
+
+#+begin_src yaml
+version: '3'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+    networks:
+      - nginx-proxy-manager_default
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=n8n.zgz.sherblog.es
+      - WEBHOOK_URL=https://n8n.zgz.sherblog.es/
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: always
+
+networks:
+  nginx-proxy-manager_default:
+    external: true
+#+end_src
+
+Imprescindible cada vez que se modifique algún parámetro ejecutar
+#+begin_src bash
+  docker-compose down
+  docker-compose up -d
+#+end_src
