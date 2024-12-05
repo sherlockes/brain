@@ -35,3 +35,6 @@ Imprescindible cada vez que se modifique algún parámetro ejecutar
   docker-compose down
   docker-compose up -d
 #+end_src
+
+### Conectar Mastodon
+https://www.youtube.com/watch?v=Vb4TMKjr2_g
