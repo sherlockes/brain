@@ -8,7 +8,7 @@
 ### Docker-compose
 
 #+begin_src yaml
-version: '3'
+  version: '3'
 
 services:
   n8n:
@@ -19,16 +19,37 @@ services:
     ports:
       - "5678:5678"
     environment:
-      - N8N_HOST=n8n.zgz.sherblog.es
-      - WEBHOOK_URL=https://n8n.zgz.sherblog.es/
+      - VUE_APP_URL_BASE_API=https://n8n.zgz.sherblog.es
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n.zgz.sherblog.es
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=336
+      - GENERIC_TIMEZONE=Europe/Madrid
     volumes:
-      - n8n_data:/home/node/.n8n
+      - ~/dockers/n8n/_data:/home/node/.n8n
+      - ~/dockers/n8n/files:/home/node
     restart: always
 
 networks:
   nginx-proxy-manager_default:
     external: true
+
+volumes:
+  n8n_data:
+    external: true
 #+end_src
+
+La carpeta del sistema donde montamos los volúmenes debe tener permisos adecuados
+#+begin_src bash
+sudo chown -R 1000:1000 ~/dockers/n8n
+sudo chmod -R 750 ~/dockers/n8n
+#+end_src
+Esto otorga acceso al usuario node dentro del contenedor (UID 1000).
+
+
+
+
+
 
 Imprescindible cada vez que se modifique algún parámetro ejecutar
 #+begin_src bash
