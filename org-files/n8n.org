@@ -45,6 +45,9 @@ sudo chmod -R 750 ~/dockers/n8n
 Esto otorga acceso al usuario node dentro del contenedor (UID 1000).
 
 
+Actualizar versión
+docker pull docker.n8n.io/n8nio/n8n
+
 
 
 
