@@ -48,6 +48,7 @@ su - <usuario>
  - Listar (Todos que están corriendo) -> ~docker container ls~
  - Listar (Todos) -> ~docker container ls --all~
  - Listar Contenedores y puertos -> ~docker container ls --format 'table {{.ID}}\t{{.Image}}\t{{.Ports}}'~
+ - Variables de entorno (Listar) -> ~docker exec -it id env~
  - Borrar -> ~docker container rm id~
  - Borrar (Todos) -> ~docker rm -f $(docker ps -aq)~
  - Borrar (Todos forzando) -> ~docker container rm -f $(docker container ls -aq)~
