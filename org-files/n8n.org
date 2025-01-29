@@ -50,8 +50,6 @@ docker pull docker.n8n.io/n8nio/n8n
 
 
 
-
-
 Imprescindible cada vez que se modifique algún parámetro ejecutar
 #+begin_src bash
   docker-compose down
