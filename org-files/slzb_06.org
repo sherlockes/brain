@@ -159,3 +159,5 @@ actions:
     data: {}
 mode: single
 #+end_src
+*** Perdida de conexión tras reinicio
+Después de haberse ido un par de veces la luz de la instancia donde tengo instalado el SLZB-06 resulta que Z2M no consigue conectar con el dispositivo a través de la VPN. Es posible acceder a la interface web con normalidad. Finalmente se resuelve el problema activando el modo usb y posteriormente volviendo al modo ethernet.
