@@ -1,0 +1,56 @@
+:PROPERTIES:
+:ID:       03796286-56a5-4748-a0bf-9f4c2d244222
+:END:
+#+title: readeck
+#+STARTUP: overview
+#+date: 2025-02-10
+
+https://readeck.org/en/
+
+*** Docker compose original
+#+begin_src yaml
+version: '3.8'
+services:
+  readeck:
+    image: codeberg.org/readeck/readeck:latest
+    container_name: readeck
+    ports:
+      - "8000:8000"
+    volumes:
+      - readeck-data:/readeck
+    restart: unless-stopped
+volumes:
+  readeck-data:
+#+end_src
+
+
+*** Docker compose modificado (Guardar datos en "~/dockers/readeck/data/"
+Copiar archivos de configuración de la ubicación original a la nueva y modificar los permisos para el usuario, parar y volver arrancar el contenedor.
+
+#+begin_src bash
+  docker cp readeck:/readeck/data/. ~/dockers/readeck/data/
+  sudo chown -R sherlockes:sherlockes ~/dockers/readeck/data
+  docker compose down
+#+end_src
+
+Modificar el archivo "docker-compose.yml"
+
+#+begin_src yaml
+services:
+  readeck:
+    image: codeberg.org/readeck/readeck:latest
+    container_name: readeck
+    ports:
+      - "8000:8000"
+    volumes:
+      - $HOME/dockers/readeck/data:/readeck/data
+    restart: unless-stopped
+#+end_src
+
+Arrancar de nuevo el contenedor
+
+#+begin_src bash
+  docker compose up -d
+#+end_src
+
+Ahora ya tenemos los datos de Readeck en "~/dockers/readeck/data/"
