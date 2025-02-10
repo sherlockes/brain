@@ -4,6 +4,7 @@
 #+title: readeck
 #+STARTUP: overview
 #+date: 2025-02-10
+#+filetags: apps
 
 https://readeck.org/en/
 
