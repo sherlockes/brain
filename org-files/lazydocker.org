@@ -4,7 +4,7 @@
 #+title: lazydocker
 #+STARTUP: overview
 #+date: 2024-11-22
-#+filetags: :apps:
+#+filetags: apps
 
 
 
