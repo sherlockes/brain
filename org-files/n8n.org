@@ -4,6 +4,7 @@
 #+title: n8n
 #+STARTUP: overview
 #+date: 2024-12-05
+#+filetags: apps
 
 ### Docker-compose
 
