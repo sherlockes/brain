@@ -6,8 +6,6 @@
 #+date: 2024-11-22
 #+filetags: apps
 
-
-
 Instalación en linux:
 #+begin_src bash
   curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
