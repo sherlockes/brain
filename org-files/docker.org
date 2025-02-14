@@ -3,7 +3,7 @@
 :END:
 #+title: docker
 #+STARTUP: overview
-#+date: <2025-01-29>
+#+date: <2025-02-14>
 #+filetags: apps
 
 [[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
@@ -15,6 +15,9 @@ chmod u+x get-docker.sh
 sudo ./get-docker.sh
 sudo usermod -aG docker $(whoami)
 #+END_SRC
+
+**Tras la instalación hay que cerrar la sesión de la terminal y volverla a abrir para que los cambios surtan efecto.**
+
 **** Ejecutar sin sudo
 #+begin_src bash
 sudo groupadd docker
@@ -71,8 +74,7 @@ su - <usuario>
  - Eliminar una red -> ~docker network rm <nombre>~
    
 **** Otros
-
-
-
- 
-
+*** Moviendo un contenedor a otro Host
+- Asegurarse que Docker está instalado en el otro Host
+- scp -r ~/dockers/intrubot pi@192.168.10.210:~/dockers/
+- sudo apt-get install docker-compose
