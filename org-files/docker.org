@@ -3,7 +3,7 @@
 :END:
 #+title: docker
 #+STARTUP: overview
-#+date: <2025-02-14>
+#+date: <2025-02-17>
 #+filetags: apps
 
 [[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
@@ -78,3 +78,13 @@ su - <usuario>
 - Asegurarse que Docker está instalado en el otro Host
 - scp -r ~/dockers/intrubot pi@192.168.10.210:~/dockers/
 - sudo apt-get install docker-compose
+*** Crear un contenedor
+
+docker run -it --name test-deps ubuntu:22.04 /bin/bash
+
+Partiendo de ubuntu:22.04
+apt update
+apt upgrade -y
+apt install -y curl
+apt install -y unzip
+curl https://rclone.org/install.sh | bash
