@@ -3,21 +3,10 @@
 :END:
 #+title: linux mint post instalacion
 #+STARTUP: overview
-
 #+date: 2023-08-30
 
-#+hugo_section: notas
-#+hugo_custom_front_matter: :thumbnail "images/mint.png"
-#+setupfile: ./setup.conf
-#+hugo_tags: linux mint
-#+hugo_categories: sos
-#+hugo_draft: false
 
 Con la instalación de [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]] no termina la configuración del sistema, todavía realizo todos estos pasos para dejar a mi gusto el resto de aplicaciones.
-
-#+BEGIN_export html
-<!--more-->
-#+END_export
 
 El primer paso es la instalación de [[https://www.insynchq.com/][Insync]] y crear la carpeta "~/GDrive" donde hacer una sincronización selectiva de "dotfiles" y "sherloscripts" para poder seguir adelante con la configuración.
 
