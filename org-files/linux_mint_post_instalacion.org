@@ -39,10 +39,15 @@ Y este es el script completo:
     # Actualizar el sistema
     sudo apt update
 
+    # Evitar el error "failed to open \EFI\ubuntu\ - Not Found" en el arranque
+    sudo grub-install --no-uefi-secure-boot /dev/sda
+    sudo update-grub
+
     # Crear el enlace a los Dotfiles
     ln -si ~/GDrive/dotfiles ~/dotfiles
 
     # Eliminar el compilador cd c gcc e instalar clang (problemas Sqlite)
+    # (Esta parte no es necesaria con Linux Mint 22)
     sudo apt remove gcc
     sudo apt install clang
 
