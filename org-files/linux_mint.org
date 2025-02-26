@@ -33,3 +33,11 @@ Linux Mint es una distribución de GNU/Linux comunitaria de origen franco-irland
 #+end_src
 
 
+*** Error en el arranque "failed to open \EFI\ubuntu\ - Not Found"
+I had that problem, too. It seems like it occurs on older systems that support UEFI but not secure boot. This fixed it for me (change sda for your system)
+
+#+begin_src bash
+  sudo grub-install --no-uefi-secure-boot /dev/sda
+  sudo update-grub
+#+end_src
+
