@@ -4,7 +4,7 @@
 #+title: python
 #+STARTUP: overview
 #+filetags: code
-#+date: <2023-08-30>
+#+date: <2025-03-21>
 
 Python es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código, se utiliza para desarrollar aplicaciones de todo tipo, por ejemplo: Instagram, Netflix, Spotify, Panda3D, entre otros.​ Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional.
 
@@ -30,11 +30,19 @@ Eliminar filas con campos vacíos -> filtered_x = x.dropna(axis=0)
 *** Creación de entornos virtuales
 - Instalar `virtualenv`:
 #+begin_src bash
-  pip install virtualenv
+  sudo apt install python3-pip
+  sudo apt install python3-virtualenv
 #+end_src
 - Crear un nuevo entorno virtual
 Ve al directorio en el que deseas crear el entorno virtual y ejecuta el siguiente comando para crear uno nuevo. Puedes reemplazar `mi_entorno` con el nombre que prefieras para tu entorno virtual.
 #+begin_src bash
   virtualenv mi_entorno
 #+end_src
-
+- Activar entorno virtual
+#+begin_src bash
+  source mi_entorno/bin/activate
+#+end_src
+- Desactivar el entorno virtual
+#+begin_src bash
+  deactivate
+#+end_src
