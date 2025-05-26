@@ -23,3 +23,7 @@ comandos
 
 /clearobjects              # Eliminar todos los mobs existentes
 /set enable_damage false   # Desactivar daño temporal
+
+/set enable_pvp false      # Desactivar PvP (por si acaso)
+/set enable_damage false
+/time 6000                 # Establecer mediodía (más luz)
