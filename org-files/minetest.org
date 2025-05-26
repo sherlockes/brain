@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       940910ef-9064-4f2a-965f-1a80358f45d9
+:END:
+#+title: minetest
+#+STARTUP: overview
+#+date: 2025-05-26
+
+comandos
+
+/grantme fly          # Privilegio de vuelo
+/grantme creative     # Privilegio de modo creativo
+/grantme fast         # Movimiento rápido (opcional)
+/grantme noclip       # Atravesar bloques (opcional)
+
+
+/creative on          # Activar modo creativo
+/creative off         # Desactivar modo creativo
+
+
+/set time_speed 72    # Velocidad normal
+/set time_speed 0     # Tiempo parado
+
+
+/clearobjects              # Eliminar todos los mobs existentes
+/set enable_damage false   # Desactivar daño temporal
