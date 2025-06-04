@@ -5,27 +5,38 @@
 #+STARTUP: overview
 #+date: 2025-05-26
 
-comandos
+*** Comandos
 
-/grantme fly          # Privilegio de vuelo
-/grantme creative     # Privilegio de modo creativo
-/grantme fast         # Movimiento rápido (opcional)
-/grantme noclip       # Atravesar bloques (opcional)
+**** Privilegios (Usuarios)
+- Personal ~/grantme Priv~
+- Usuario ~/grant user Priv~
 
+**** Privilegios (Lista)
+| Descripción       | Argumento |
+|-------------------+----------|
+| Vuelo             | fly      |
+| Modo creativo     | creative |
+| Movimiento rápido | fast     |
+| Atravesar bloques | noclip   |
+
+**** Tiempo
+| Descripción      | Comando              |
+|------------------+----------------------|
+| Velocidad normal | ~/set time_speed 72~ |
+| Tiempo parado    | ~/set time_speed 0~  |
+| Medio día        | ~/time 6000~         |
+| Despejado        | ~/weather clear~     |
+
+**** Objetos
+| Objetivo                               | Comando                  |
+| -------------------------------------- | ------------------------ |
+| Eliminar todo (Monstruos, ovejas...)   | ~/clearobjects~          |
+
+**** Daño
+| Descripción                      | Comando                    |
+|----------------------------------+----------------------------|
+| Desactivar daño temporal         | ~/set enable_damage false~ |
+| Desactivar ataque entre usuarios | ~/set enable_pvp false~    |
 
 /creative on          # Activar modo creativo
 /creative off         # Desactivar modo creativo
-
-
-/set time_speed 72    # Velocidad normal
-/set time_speed 0     # Tiempo parado
-/time 6000                 # Establecer mediodía (más luz)
-
-
-/clearobjects              # Eliminar todos los mobs existentes
-/set enable_damage false   # Desactivar daño temporal
-/set enable_pvp false      # Desactivar PvP (por si acaso)
-
-
-
-/weather clear             # Despeja el tiempo
