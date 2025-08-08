@@ -10,6 +10,7 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
 *** Sistemas Operativos
 **** [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
 **** [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
+**** [[id:15bf8fef-3d00-41aa-85e1-d5fbb1a9fdc1][ubuntu server]]
 *** Permisos de usuario
  - Cambiar propietario de una carpeta: ~sudo chown nuevo_usuario: carpeta~
  - Cambiar propietario de carpeta recursiva: ~sudo chown -R nuevo_usuario: carpeta~
@@ -35,38 +36,3 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
  - Comprobar conexión "sudo wg"
 
 
-*** Ubuntu server
-**** Asignar ip estática ([[https://linuxconfig.org/setting-a-static-ip-address-in-ubuntu-24-04-via-the-command-line][info]])
-No he sido capaz de asignar directemente la IP estática durante la instalación por problemas con la máscara de red así que se la he puesto automática y la cambio después.
-
-Accederemos a la carpeta "/etc/netplan" y editaremos el archivo yaml que se encuentre en su interior.
-
-  #+begin_src bash
-    cd /etc/netplan
-    sudo nano /etc/netplan/50-cloud-init.yaml
-  #+end_src
-
-El contenido del archivo resultante será este
-
-  #+begin_src yaml
-    network:
-    ethernets:
-        enp2s0:
-            dhcp4: no
-            addresses:
-              - 192.168.10.211/24
-            routes:
-              - to: default
-                via: 192.168.10.1
-            nameservers:
-              addresses: [192.168.10.210, 8.8.8.8]
-    version: 2
-    wifis: {}
-  #+end_src
-
-Ya sólo falta aplicar los cambios
-#+begin_src bash
-  sudo netplan apply
-#+end_src
-**** Habilitar Wake On LAN y apagado remoto
-Ver como se habilitan ambos en [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]].
