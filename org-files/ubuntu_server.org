@@ -11,6 +11,10 @@ info
 *** Asignar ip estática ([[https://linuxconfig.org/setting-a-static-ip-address-in-ubuntu-24-04-via-the-command-line][info]])
 No he sido capaz de asignar directemente la IP estática durante la instalación por problemas con la máscara de red así que se la he puesto automática y la cambio después.
 
+~Actualización:~
+- Subred 192.168.1.0/24
+- Dirección 192.168.1.212
+
 Accederemos a la carpeta "/etc/netplan" y editaremos el archivo yaml que se encuentre en su interior.
 
   #+begin_src bash
