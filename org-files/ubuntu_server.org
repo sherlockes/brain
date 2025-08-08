@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       15bf8fef-3d00-41aa-85e1-d5fbb1a9fdc1
+:END:
+#+title: ubuntu server
+#+STARTUP: overview
+#+date: 2025-08-08
+
+info
