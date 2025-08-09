@@ -16,6 +16,7 @@
 * [[id:be099c76-aead-4ac1-8251-4ff3562dca85][inkscape]]
 * [[id:95801434-bc76-4f94-a009-3216f9566e42][lazydocker]]
 * [[id:8afa947a-6ea7-4302-8af2-9980e2a44a62][mastodon]]
+* [[id:940910ef-9064-4f2a-965f-1a80358f45d9][minetest]]
 * [[id:a8a70ed4-0408-48f0-94d2-aa0c74301c53][nemo]]
 * [[id:96160698-e8dc-478b-bc7e-baa1b9916737][n8n]]
 * [[id:03796286-56a5-4748-a0bf-9f4c2d244222][readeck]]
