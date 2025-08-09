@@ -34,5 +34,6 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
  - Levantar conexión "sudo wg-quick up mivpn"
  - Desconectar "sudo wg-quick down mivpn"
  - Comprobar conexión "sudo wg"
-
-
+*** Clave Público-Privada (Crear y copiar)
+ - Generar la llave ~ssh-keygen~
+ - Copiar la llave al servidor ~ssh-copy-id -i ~/.ssh/id_rsa ip_del_servidor~
