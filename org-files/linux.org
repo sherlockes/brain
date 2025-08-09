@@ -7,10 +7,12 @@
 
 GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por software libre y de código abierto.​ GNU/Linux surge de las contribuciones de varios proyectos de software, entre los cuales destacan GNU (iniciado por Richard Stallman en 1983) y el núcleo Linux (iniciado por Linus Torvalds en 1991).
 
-*** Sistemas Operativos
-**** [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
-**** [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
-**** [[id:15bf8fef-3d00-41aa-85e1-d5fbb1a9fdc1][ubuntu server]]
+** Sistemas Operativos
+*** [[id:9d4a6d4f-e0be-47b4-8780-19a414c8230e][linux mint]]
+*** [[id:bd6414c2-4e32-456d-975d-af557dd03380][debian]]
+*** [[id:15bf8fef-3d00-41aa-85e1-d5fbb1a9fdc1][ubuntu server]]
+
+** Comandos
 *** Permisos de usuario
  - Cambiar propietario de una carpeta: ~sudo chown nuevo_usuario: carpeta~
  - Cambiar propietario de carpeta recursiva: ~sudo chown -R nuevo_usuario: carpeta~
@@ -37,3 +39,4 @@ GNU/Linux  es una familia de sistemas operativos tipo Unix compuesto por softwar
 *** Clave Público-Privada (Crear y copiar)
  - Generar la llave ~ssh-keygen~
  - Copiar la llave al servidor ~ssh-copy-id -i ~/.ssh/id_rsa ip_del_servidor~
+*** WOL (Wake on LAN) ~wakeonlan MAC-address-here~
