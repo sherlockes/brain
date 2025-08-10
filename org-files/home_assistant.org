@@ -8,6 +8,26 @@
 
 Home Assistant es una plataforma de domótica de código abierto que transforma hogares en espacios inteligentes. Ofrece integración para una amplia variedad de dispositivos y servicios, permitiendo el control centralizado de luces, termostatos, cámaras y más. Su interfaz intuitiva y automatizaciones personalizables facilitan la gestión del hogar conectado.
 
+*** Instalación Container sobre Ubuntu server
+ - Instalar [[id:de7aa47f-2138-470f-a412-977c1cf3d42c][docker]] y docker compose
+ - Crear la carpeta "homeassistant" y dentro "config"
+ - Crear dentro de "homeassistant" el archivo "compose.yaml"
+   #+begin_src yaml
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /home/sherlockes/dockers/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+   #+end_src
+ - Ejecutar ~docker compose up -d~ y acceder a http://ip_server:8123
+
+*** Casos
 **** Notificar batería baja de sensores
  - Importar [[https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2Fsbyx%2F1f6f434f0903b872b84c4302637d0890][este]] blueprint
  - Seguir las [[https://community.home-assistant.io/t/low-battery-level-detection-notification-for-all-battery-sensors/258664][intrucciones]].
