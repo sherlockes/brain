@@ -3,7 +3,7 @@
 :END:
 #+title: docker
 #+STARTUP: overview
-#+date: <2025-02-17>
+#+date: <2025-08-10>
 #+filetags: apps
 
 [[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
