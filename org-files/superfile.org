@@ -10,3 +10,15 @@ https://github.com/yorukot/superfile
 - instalar en linux
 
   bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
+  🎉 Installation complete!
+  You can type "spf" to start!
+
+
+Instalar la fuente "Nerdfont" -> https://www.nerdfonts.com/font-downloads
+Copiar la carpeta a /usr/share/fonts
+Regenerar la caché -> ~fc-cache -f -v~
+Abrir una terminal y con el menú derecho "mostrár barra de menús"
+Texto - Tipografía personalizada - Nerdfont
+
+Guía de inicio -> https://superfile.netlify.app/getting-started/tutorial/
