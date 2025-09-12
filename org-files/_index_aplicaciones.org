@@ -20,3 +20,4 @@
 * [[id:a8a70ed4-0408-48f0-94d2-aa0c74301c53][nemo]]
 * [[id:96160698-e8dc-478b-bc7e-baa1b9916737][n8n]]
 * [[id:03796286-56a5-4748-a0bf-9f4c2d244222][readeck]]
+* [[id:d67ed8bb-4123-4718-ac94-bb082e403807][superfile]]
