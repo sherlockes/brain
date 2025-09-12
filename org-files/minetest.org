@@ -40,3 +40,22 @@
 
 /creative on          # Activar modo creativo
 /creative off         # Desactivar modo creativo
+
+
+*** Crear un mapa con https://github.com/luanti-org/minetestmapper
+
+Instalar dependencias ~sudo apt install cmake libgd-dev libhiredis-dev libleveldb-dev libpq-dev libsqlite3-dev zlib1g-dev libzstd-dev~
+Descargar la última versión de https://github.com/luanti-org/minetestmapper
+Descomprimir ~unzip minetestmapper-master.zip~
+Instalar dependencias ~sudo apt install build-essential -y~
+Compilar
+  cmake . -DENABLE_LEVELDB=1
+  make -j$(nproc)
+
+
+
+Cambiar el archivo colors.txt por https://github.com/yrungr/mineclone2mapper/blob/master/colors.txt
+
+
+./minetestmapper -i ~/dockers/minetest/data/worlds/world/ -o map.png --zoom 4
+
