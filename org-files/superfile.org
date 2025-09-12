@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       d67ed8bb-4123-4718-ac94-bb082e403807
+:END:
+#+title: superfile
+#+STARTUP: overview
+#+date: 2025-09-12
+https://github.com/yorukot/superfile
+
+- instalar en linux
+
+  bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
