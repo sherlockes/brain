@@ -59,3 +59,62 @@ Cambiar el archivo colors.txt por https://github.com/yrungr/mineclone2mapper/blo
 
 ./minetestmapper -i ~/dockers/minetest/data/worlds/world/ -o map.png --zoom 4
 
+
+*** Servir el mapa como losetas
+
+Instala la herramienta:
+
+sudo apt update
+sudo apt install -y libvips-tools
+
+
+Lanza el “tileado” (256×256 por defecto):
+
+vips dzsave map.png tiles/map \
+  --suffix .png \
+  --tile-size 256 \
+  --overlap 0
+
+
+Esto crea:
+
+tiles/map.dzi (descriptor)
+
+tiles/map_files/ (carpetas por niveles con los tiles)
+
+
+2) Verlo en el navegador con OpenSeadragon
+
+Crea un index.html junto a la carpeta tiles/ con este contenido mínimo:
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Mapa MineClone2</title>
+  <style>html,body,#viewer{height:100%;margin:0}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.1/openseadragon.min.js"></script>
+</head>
+<body>
+  <div id="viewer"></div>
+  <script>
+    OpenSeadragon({
+      id: "viewer",
+      prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.1/images/",
+      tileSources: "tiles/map.dzi",
+      showNavigator: true
+    });
+  </script>
+</body>
+</html>
+
+3) Servirlo (servidor estático)
+
+Desde la carpeta donde está index.html:
+
+python3 -m http.server 9000
+
+
+Y abre en tu navegador: http://IP_DEL_SERVIDOR:9000
+
+Ventajas: no necesitas georreferenciar nada, soporta zoom fluido y solo con un HTML.
