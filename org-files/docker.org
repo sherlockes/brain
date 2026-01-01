@@ -3,7 +3,7 @@
 :END:
 #+title: docker
 #+STARTUP: overview
-#+date: <2025-08-10>
+#+date: <2026-01-01>
 #+filetags: apps
 
 [[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
@@ -88,3 +88,19 @@ apt upgrade -y
 apt install -y curl
 apt install -y unzip
 curl https://rclone.org/install.sh | bash
+
+
+*** Mis contenedores
+- [[id:b2b7453a-a285-4efd-bd8a-54f6a421513c][dcb]]
+- hoarder
+- homepage
+- hugo-dev
+- intrubot
+- minetest
+- n8n
+- nginx
+- nginx-proxy-manager
+- readeck
+- rsstt
+- sherlocast
+- zerotier-monitor
