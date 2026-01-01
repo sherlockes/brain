@@ -2,7 +2,7 @@
 :ID:       acee2e7c-bdf2-4405-a41e-9ce7c9031d13
 :END:
 #+title: emacs - dired
-#+STARTUP: showall
+#+STARTUP: content
 #+date: 2023-08-31
 #+filetags: apps:emacs
 
