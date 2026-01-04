@@ -5,16 +5,16 @@
 #+STARTUP: overview
 #+date: 2026-01-04
 ** Info
-
-
+Homepage es un panel de inicio y dashboard altamente personalizable para tu infraestructura y servicios auto-alojados. Es una aplicación web rápida, segura y totalmente estática, configurable mediante archivos YAML o etiquetas Docker, y con soporte para más de 100 integraciones de servicios y widgets como tiempo, reloj y estado de contenedores. Permite agrupar enlaces y servicios en un solo lugar, mostrar estado y métricas, y extenderse con widgets personalizados. Su integración con Docker y Kubernetes facilita la detección automática de servicios y su monitorización. Está diseñado para ser usado detrás de un proxy seguro o VPN.
 ** Uso
-
+Mi página de inicio de servicios autoalojados
 
 ** Enlace
-
+https://gethomepage.dev
+http://homepage.zgz.sherblog.es
 
 ** Variables de entorno
--  :: 
+-  HOMEPAGE_ALLOWED_HOSTS: Separados por comas los host en los que está corriendo
 
 ** Volúmenes
 -  → 
@@ -35,7 +35,7 @@
   docker compose up -d
   docker compose logs -f 
   docker compose restart 
-  #+end_src
+#+end_src
 
 ** Backup / Persistencia
 
