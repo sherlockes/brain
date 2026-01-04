@@ -1,0 +1,48 @@
+:PROPERTIES:
+:ID:       f101a6aa-063a-4e6c-9f11-ef68717cb524
+:END:
+#+title: Homepage Docker
+#+STARTUP: overview
+#+date: 2026-01-04
+** Info
+
+
+** Uso
+
+
+** Enlace
+
+
+** Variables de entorno
+-  :: 
+
+** Volúmenes
+-  → 
+
+** Red
+
+
+** Seguridad
+⚠️ 
+
+** docker-compose.yml
+#+begin_src yaml
+
+#+end_src
+
+** Gestión
+#+begin_src bash
+  docker compose up -d
+  docker compose logs -f 
+  docker compose restart 
+  #+end_src
+
+** Backup / Persistencia
+
+
+** Notas
+
+
+** Ver también
+
+
