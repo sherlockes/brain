@@ -3,7 +3,7 @@
 :END:
 #+title: bash
 #+STARTUP: show2levels
-#+date: <2023-08-30>
+#+date: <2026-01-04>
 #+filetags: code
 
 Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario de línea de comandos popular, específicamente un shell de Unix; así como un lenguaje de scripting. Bash fue originalmente escrito por Brian Fox para el sistema operativo GNU.​ Se ha utilizado ampliamente como el intérprete predeterminado para la mayoría de las distribuciones de GNU/Linux.
@@ -11,12 +11,9 @@ Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario
 #+ATTR_HTML: :width 300px
 [[./img/bash.png]]
 
-* Alias
-- Comprobar si existe el archivo ~~/.bash_aliases~
-- Editar el archivo ~/.bashrc si no existe el anterior
-- Añadir el nuevo alias -> alias ll="ls -la"
-- Habilitar los cambios -> source ~/.bashrc
-* Comandos
+* Gestión de archivos
+** chown (propietario de un archivo)
+- Varios archivos ~root chown -R sherlockes:sherlockes /home/sherlockes/dockers/homepage/data~
 ** diff (comparar dos directorios)
 ~diff -qr /ruta/a/carpeta1 /ruta/a/carpeta2~
  - -q muestra solo si los archivos son diferentes.
@@ -25,13 +22,15 @@ Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario
 - ls -a (Listar directorio con ocultos)
 ** mv (mover / renombrar)
 - mv old-name-dir/ new-name-dir (Renombra directorios)
-** sed
-- Imprimir una línea -> sed '2p' file
+
+* Procesos y sistemas
+** ps - Kill (Listar y Matar un proceso)
+
 ** which (Localizar un comando)
 - which comando
+* Red y descargas
 ** Curl
 - Descargar un archivo > curl 'dirección' -o archivo
-** ps - Kill (Listar y Matar un proceso)
 *** Listar procesos (ps -aux)
 - e = muestra todos los procesos
 - f = formato extra completo
@@ -42,30 +41,16 @@ Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario
 - -1 cuelga las llamadas al proceso
 - -9 mata literalmente el proceso
 - -15 termina el proceso
-* Grabar imagen en pendrive o sd
-#+BEGIN_SRC sh
-    # localizar la imagen y descomprimirla
-    unzip loquesea.zip
-    # localizar la unidad del pendrive
-    df -h
-    # desmontar la unidad (o varias...)
-    umount /dev/sdb1
-    umount /dev/sdb2
-    # grabar el pendrive
-    sudo dd bs=1M if=loquesea.img of=dev/sdb status=progress
-#+END_SRC
-* Rclone
-*** Montar una carpeta > rclone mount ruta_remota: ruta_local --daemon
-* Regex
-*** Uso de variable en una expresión regular -> ${var
-* Uso de variables indirectas
-#+begin_src sh
-    var=x; val=foo
-    eval "$var=\$val"
+  
+** Rclone
+***** Montar una carpeta > rclone mount ruta_remota: ruta_local --daemon
 
-    var=x;x=foo
-    echo ${!var}
-#+end_src
+* Texto y expresiones
+** Regex
+*** Uso de variable en una expresión regular -> ${var
+
+** sed
+- Imprimir una línea -> sed '2p' file
 * Scripts
 ** Encabezado
 #+BEGIN_SRC 
@@ -91,5 +76,36 @@ Si cierras la consola y luego abres una nueva sesión en el mismo terminal, el s
 Ambos son equivalentes, con 'set +e' el script no para.
 ** Directorio de un script
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+** Grabar imagen en pendrive o sd
+#+BEGIN_SRC sh
+    # localizar la imagen y descomprimirla
+    unzip loquesea.zip
+    # localizar la unidad del pendrive
+    df -h
+    # desmontar la unidad (o varias...)
+    umount /dev/sdb1
+    umount /dev/sdb2
+    # grabar el pendrive
+    sudo dd bs=1M if=loquesea.img of=dev/sdb status=progress
+#+END_SRC
+
 ** Comentarios
 **** Multilínea -> : '  -------- '
+
+
+** Uso de variables indirectas
+#+begin_src sh
+    var=x; val=foo
+    eval "$var=\$val"
+
+    var=x;x=foo
+    echo ${!var}
+#+end_src
+
+
+* Alias
+- Comprobar si existe el archivo ~~/.bash_aliases~
+- Editar el archivo ~/.bashrc si no existe el anterior
+- Añadir el nuevo alias -> alias ll="ls -la"
+- Habilitar los cambios -> source ~/.bashrc
+
