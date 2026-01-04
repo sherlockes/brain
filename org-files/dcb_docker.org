@@ -1,17 +1,24 @@
 :PROPERTIES:
 :ID:       b2b7453a-a285-4efd-bd8a-54f6a421513c
 :END:
-#+title: dcb_docker
+#+title: Docker Controller Bot
 #+STARTUP: overview
 #+date: 2026-01-01
 
-*** Info
+** Info
 Docker-Controller-Bot es un bot de Telegram que permite controlar tus contenedores Docker remotamente desde un único lugar. Proporciona comandos para listar, arrancar, detener y eliminar contenedores, ver logs, extraer el docker-compose de contenedores y recibir notificaciones de estado o actualizaciones pendientes. También puede actualizar contenedores, cambiar la etiqueta de las imágenes y limpiar recursos no utilizados. El bot se configura mediante variables de entorno (como TELEGRAM_TOKEN y TELEGRAM_ADMIN) y accede al socket de Docker para gestionar el motor local de contenedores. Es útil para administradores que desean gestionar Docker directamente desde Telegram.
 
-*** Enlace
+** Uso
+- Control del homelab desde Telegram
+- Gestión básica sin SSH
+** Enlace
 https://github.com/dgongut/docker-controller-bot
 
-*** docker-compose.yml
+** Variables de entorno
+- TELEGRAM_TOKEN :: Token del bot
+- TELEGRAM_ADMIN :: ID de telegram del administrador
+- CHECK_UPDATE_EVERY_HOURS :: Frecuencia de actualización
+** docker-compose.yml
 #+begin_src yaml
 services:
     docker-controller-bot:
@@ -30,4 +37,9 @@ services:
         restart: always
         network_mode: host
         tty: true
+#+end_src
+** Gestión
+#+begin_src bash
+docker compose up -d
+docker compose logs -f docker-controller-bot
 #+end_src
