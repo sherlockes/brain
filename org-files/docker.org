@@ -95,7 +95,7 @@ curl https://rclone.org/install.sh | bash
 - [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]] (4000)
 - hugo-dev
 - intrubot
-- karakeep
+- [[id:58cdee51-009c-4daa-8b82-1a052c31b948][karakeep]] (3000)
 - minetest
 - n8n
 - nginx
