@@ -1,0 +1,77 @@
+:PROPERTIES:
+:ID:       58cdee51-009c-4daa-8b82-1a052c31b948
+:END:
+#+title: Karakeep Docker
+#+STARTUP: overview
+#+date: 2026-01-05
+** Info
+Karakeep es una aplicación open source “Bookmark Everything” que te permite guardar enlaces, notas, imágenes y archivos en un solo lugar con soporte para autoetiquetado basado en IA, buscador de texto completo y organización por listas. Está diseñada para ser self-hosted, con clientes web y extensiones para navegador, además de apps móviles. Karakeep descarga automáticamente títulos, descripciones e imágenes de tus marcadores, soporta RSS, importación desde otros servicios y ofrece API REST y clientes múltiples. También incluye funciones avanzadas como OCR, archivado completo de páginas y sincronización de marcadores. La documentación cubre instalación, configuración y opciones avanzadas.
+
+** Uso
+Uso Karakeep para guardar los enlaces interesantes organizados por tags
+
+** Enlace
+- https://karakeep.app
+- https://karakeep.zgz.sherblog.es
+  
+** Variables de entorno (.env)
+Hay que crear un par de cadenas aleatorias con el comando ~openssl rand -base64 36~ y el archivo queda así
+#+begin_src bash
+KARAKEEP_VERSION=release
+NEXTAUTH_SECRET=************************************************
+MEILI_MASTER_KEY=************************************************
+NEXTAUTH_URL=http://192.168.10.211:3000
+#+end_src
+
+** Volúmenes
+-  ~/dockers/karakeep/data - Enlaces, info y configuración
+
+** docker-compose.yml
+#+begin_src yaml
+services:
+  web:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    restart: unless-stopped
+    volumes:
+      - ~/dockers/karakeep/data:/data
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    environment:
+      MEILI_ADDR: http://meilisearch:7700
+      BROWSER_WEB_URL: http://chrome:9222
+      DATA_DIR: /data # DON'T CHANGE THIS
+  chrome:
+    image: gcr.io/zenika-hub/alpine-chrome:124
+    restart: unless-stopped
+    command:
+      - --no-sandbox
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+      - --hide-scrollbars
+  meilisearch:
+    image: getmeili/meilisearch:v1.13.3
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - meilisearch:/meili_data
+
+volumes:
+  meilisearch:
+  data:
+#+end_src
+
+** Gestión
+#+begin_src bash
+  docker compose up -d
+  docker compose logs -f 
+  docker compose restart 
+#+end_src
+
+
