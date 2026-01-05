@@ -92,10 +92,10 @@ curl https://rclone.org/install.sh | bash
 
 *** Mis contenedores
 - [[id:b2b7453a-a285-4efd-bd8a-54f6a421513c][dcb]]
-- hoarder
-- [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]]
+- [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]] (4000)
 - hugo-dev
 - intrubot
+- karakeep
 - minetest
 - n8n
 - nginx
