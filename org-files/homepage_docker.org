@@ -16,18 +16,23 @@ http://homepage.zgz.sherblog.es
 ** Variables de entorno
 -  HOMEPAGE_ALLOWED_HOSTS: Separados por comas los host en los que está corriendo
 
-** Volúmenes
--  → 
-
-** Red
-
-
-** Seguridad
-⚠️ 
-
 ** docker-compose.yml
 #+begin_src yaml
-
+services:
+  homepage:
+    user: "1000:1000"
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 4000:3000
+    volumes:
+      - /home/sherlockes/dockers/homepage/data:/app/config
+      - /home/sherlockes/dockers/homepage/data/icons:/app/public/icons
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    restart: unless-stopped
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: homepage.zgz.sherblog.es,192.168.10.211:4000
+networks: {}
 #+end_src
 
 ** Gestión
@@ -37,12 +42,7 @@ http://homepage.zgz.sherblog.es
   docker compose restart 
 #+end_src
 
-** Backup / Persistencia
-
-
 ** Notas
-
-
-** Ver también
-
+- Favoritos: bookmarks.yaml
+- Servicios: services.yaml
 
