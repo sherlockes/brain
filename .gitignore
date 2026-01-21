@@ -1,0 +1,17 @@
+# Org-roam DB (local, no portable)
+org-roam.db
+org-roam.db-journal
+
+# Org ID cache
+org-id-locations
+
+# Auto-generated
+auto/
+*.elc
+
+# Hugo cache si usas Hugo
+public/
+resources/
+
+# Lock files
+*.lock
