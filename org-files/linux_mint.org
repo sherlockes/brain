@@ -41,6 +41,7 @@ I had that problem, too. It seems like it occurs on older systems that support U
   sudo update-grub
 #+end_src
 
+
 *** Tarjeta de red inalámbrica inestable
 ``` bash
 sudo nano /etc/modprobe.d/iwlwifi.conf
