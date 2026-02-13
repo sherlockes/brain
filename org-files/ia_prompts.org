@@ -6,6 +6,46 @@
 #+date: 2026-02-13
 #+filetags: :prompt:pdf:json:
 
+*** Crear artículo para Blog a partir de app web
+#+begin_src txt
+Quiero que escribas un artículo para mi blog https://www.sherblog.es
+
+Contexto importante:
+El blog está hecho con Hugo y los artículos están en Markdown.
+El estilo debe ser igual al del resto de artículos del repositorio:
+https://github.com/sherlockes/sherlockes.github.io
+Analiza varios posts para imitar:
+- tono cercano y divulgativo
+- estructura de encabezados
+- longitud de párrafos
+- uso de listas y bloques de código si procede
+
+Sobre la aplicación:
+
+- URL de la app: [PEGAR AQUÍ]
+
+- Qué hace la app: [EXPLICACIÓN BREVE]
+
+- Por qué la creé: [MOTIVACIÓN]
+
+- Tecnologías usadas: [OPCIONAL]
+
+- Público objetivo: [OPCIONAL]
+
+Requisitos del artículo:
+- Máximo 500 palabras
+- Formato Markdown compatible con Hugo
+ 
+Incluir:
+- introducción breve
+- explicación clara de la funcionalidad
+- posibles usos prácticos
+- cierre natural invitando a probarla
+- Mantener el tono personal, técnico-divulgativo y conciso del blog.
+- No inventar información que no esté en la web de la app.
+
+Devuélveme solo el Markdown del artículo, listo para copiar en el repositorio.
+#+end_src
 *** Extraer menús de pdf para el cole
 
 #+begin_src txt
