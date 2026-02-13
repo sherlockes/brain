@@ -37,7 +37,7 @@ Requisitos del artículo:
 - Formato Markdown compatible con Hugo
 - La salida debe estar exclusivamente en Markdown válido.
 - El título principal debe comenzar con ### (nivel 3 en Markdown).
- 
+- No incluyas explicaciones fuera del Markdown. 
 - Incluir:
  - introducción breve
  - explicación clara de la funcionalidad
