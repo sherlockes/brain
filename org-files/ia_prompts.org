@@ -9,22 +9,22 @@
 *** Extraer menús de pdf para el cole
 
 #+begin_src txt
-Actúa como un experto en ingeniería de datos y extracción de contenido. >
-Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas:
+Actúa como un experto en ingeniería de datos y extracción de contenido.
+Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas de limpieza y filtrado:
 
-Filtrado de fechas: Guarda únicamente los días que sean lectivos. Excluye explícitamente:
-- Sábados y domingos.
-- Días marcados como "VACACIONES" o "FESTIVO".
+Filtrado de fechas: Guarda solo los días lectivos. Excluye fines de semana, días marcados como "FESTIVO" o periodos de "VACACIONES".
+Extracción del Menú: >     * Extrae solo el menú de la comida principal.
+Ignora y elimina toda la información que aparezca después del símbolo "(*)" (correspondiente a la recomendación de cena).
 
-Limpieza de contenido: Para cada día válido, guarda solo el menú de la comida principal.
+Limpieza de Contenido (Refinado):
+Elimina cualquier mención al "pan" o "pan integral".
+Elimina la palabra "Fruta".
+Conserva el postre únicamente si es algo distinto a la fruta (por ejemplo: "Yogur").
+Limpia espacios extra o saltos de línea innecesarios dentro del texto.
 
-IMPORTANTE: Ignora y elimina toda la información que aparezca después del símbolo "(*)" o que se refiera a la "Recomendación cena".
-
-Estructura del JSON: El objeto debe contener exclusivamente dos campos por cada día:
-"fecha": En formato AAAA-MM-DD.
-"menu": El texto limpio de los platos de la comida.
-
-Formato de salida: Devuelve el resultado únicamente como un array de objetos JSON, sin texto explicativo previo o posterior.
+Estructura Técnica:
+Genera un array de objetos con las llaves: "fecha" (en formato AAAA-MM-DD) y "menu" (el texto limpio).
+No incluyas etiquetas de citación, notas al pie, ni texto explicativo. Solo el código JSON puro.
 #+end_src
 
 *** Extraer menú de pdf para "Menú de Sarita"
