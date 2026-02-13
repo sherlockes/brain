@@ -35,14 +35,16 @@ Sobre la aplicación:
 Requisitos del artículo:
 - Máximo 500 palabras
 - Formato Markdown compatible con Hugo
+- La salida debe estar exclusivamente en Markdown válido.
+- El título principal debe comenzar con ### (nivel 3 en Markdown).
  
-Incluir:
-- introducción breve
-- explicación clara de la funcionalidad
-- posibles usos prácticos
-- cierre natural invitando a probarla
-- Mantener el tono personal, técnico-divulgativo y conciso del blog.
-- No inventar información que no esté en la web de la app.
+- Incluir:
+ - introducción breve
+ - explicación clara de la funcionalidad
+ - posibles usos prácticos
+ - cierre natural invitando a probarla
+ - Mantener el tono personal, técnico-divulgativo y conciso del blog.
+ - No inventar información que no esté en la web de la app.
 
 Devuélveme solo el Markdown del artículo, en formato markdown, listo para copiar en el repositorio.
 #+end_src
