@@ -4,10 +4,35 @@
 #+title: markdown
 #+STARTUP: overview
 #+filetags: code
-#+date: <2023-08-30>
+#+date: <2026-02-13>
 
 Markdown es un lenguaje de marcado ligero creado por John Gruber y Aaron Swartz que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
 
 *** [[https://sourceforge.net/p/hugo-generator/wiki/markdown_syntax/#md_ex_lists][Hugo CheatSheet]]
+
 *** [[https://cheatography.com/xaon/cheat-sheets/emacs-markdown-mode/][Emacs CheatSheet]]
  - Insertar un link > C-c C-a l
+
+**** outline-minor-mode
+Añadimos en init.el:
+~~(add-hook 'markdown-mode-hook 'outline-minor-mode)~~
+
+1. Navegación (Moverte por el índice)
+C-c @ C-n (Next): Salta al siguiente encabezado.
+C-c @ C-p (Previous): Salta al encabezado anterior.
+C-c @ C-f (Forward): Salta al siguiente encabezado del mismo nivel
+C-c @ C-b (Backward): Salta al encabezado anterior del mismo nivel.
+C-c @ C-u (Up): Sube un nivel en la jerarquía (de un H3 a su H2 padre).
+
+2. Visibilidad (Plegado de texto)
+Para que el archivo "desaparezca" y solo veas la estructura:
+C-c @ C-t (Hide all): Pliega todo el post. Solo verás los títulos.
+C-c @ C-a (Show all): Despliega absolutamente todo.
+C-c @ C-q (Hide body): Oculta todo el texto, pero deja visibles los títulos y subtítulos.
+C-c @ C-e (Show entry): Despliega solo el texto del apartado en el que estás.
+
+3. Reorganización
+M-x outline-move-subtree-up: Sube toda la sección (título y contenido) por encima de la anterior.
+M-x outline-move-subtree-down: Lo mismo, pero hacia abajo.
+
+
