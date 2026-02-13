@@ -44,7 +44,7 @@ Incluir:
 - Mantener el tono personal, técnico-divulgativo y conciso del blog.
 - No inventar información que no esté en la web de la app.
 
-Devuélveme solo el Markdown del artículo, listo para copiar en el repositorio.
+Devuélveme solo el Markdown del artículo, en formato markdown, listo para copiar en el repositorio.
 #+end_src
 *** Extraer menús de pdf para el cole
 
