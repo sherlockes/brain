@@ -6,6 +6,27 @@
 #+date: 2026-02-13
 #+filetags: :prompt:pdf:json:
 
+*** Extraer menús de pdf para el cole
+
+#+begin_src txt
+Actúa como un experto en ingeniería de datos y extracción de contenido. >
+Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas:
+
+Filtrado de fechas: Guarda únicamente los días que sean lectivos. Excluye explícitamente:
+- Sábados y domingos.
+- Días marcados como "VACACIONES" o "FESTIVO".
+
+Limpieza de contenido: Para cada día válido, guarda solo el menú de la comida principal.
+
+IMPORTANTE: Ignora y elimina toda la información que aparezca después del símbolo "(*)" o que se refiera a la "Recomendación cena".
+
+Estructura del JSON: El objeto debe contener exclusivamente dos campos por cada día:
+"fecha": En formato AAAA-MM-DD.
+"menu": El texto limpio de los platos de la comida.
+
+Formato de salida: Devuelve el resultado únicamente como un array de objetos JSON, sin texto explicativo previo o posterior.
+#+end_src
+
 *** Extraer menú de pdf para "Menú de Sarita"
 Uso este prompt en Gemini para añadir una nueva semana al menú a partir de un pdf en el que están incluidos todos los días y platos.
 
