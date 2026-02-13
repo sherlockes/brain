@@ -7,7 +7,7 @@
 #+filetags: :prompt:pdf:json:
 
 *** Extraer menú de pdf para "Menú de Sarita"
-Uso este prompt para añadir una nueva semana al menú a partir de un pdf en el que están incluidos todos los días y platos.
+Uso este prompt en Gemini para añadir una nueva semana al menú a partir de un pdf en el que están incluidos todos los días y platos.
 
 #+begin_quote
 Actúa como un experto en ingeniería de datos y extracción de contenido. Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas:
