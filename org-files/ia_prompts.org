@@ -1,0 +1,45 @@
+:PROPERTIES:
+:ID:       8ecc1892-6c70-4eee-a25c-fb84d06021b1
+:END:
+#+title: ia-prompts
+#+STARTUP: overview
+#+date: 2026-02-13
+#+filetags: :prompt:pdf:json:
+
+*** Extraer menú de pdf para "Menú de Sarita"
+
+#+begin_quote
+Actúa como un experto en ingeniería de datos y extracción de contenido. Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas:
+
+1. Estructura Jerárquica:
+Raíz: "semanas".
+Nivel 2: El número de la semana (ej: "3") como string.
+Nivel 3: Días de la semana en minúsculas y sin tildes: "lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo".
+
+2. Campos del Objeto Plato:
+Cada plato debe ser un objeto con estos campos exactos:
+"tipo": (Desayuno, Comida, Merienda o Cena).
+"titulo": El nombre del plato.
+"ingredientes": Un array de strings (limpia los puntos y guiones iniciales).
+"pasos": Un array de strings con el proceso.
+"consejo": Texto del apartado "Petit Consejos". Si no existe, pon null.
+
+3. Reglas de Limpieza:
+Si un campo de texto no existe, usa null.
+Si un array no tiene contenido, usa [].
+Elimina saltos de línea innecesarios dentro de los textos.
+
+4. Formato Visual Crítico:
+Devuelve únicamente el código JSON.
+
+IMPORTANTE: Para que la estructura sea visual, formatea el JSON de modo que cada objeto de plato se escriba en una sola línea física (minificado internamente), pero manteniendo la indentación por días.
+
+Ejemplo de estilo visual esperado:
+
+```json
+"lunes": [
+  {"tipo": "Desayuno", "titulo": "Ejemplo", "ingredientes": ["A", "B"], "pasos": ["1", "2"], "consejo": null},
+  {"tipo": "Comida", "titulo": "Ejemplo 2", "ingredientes": ["C"], "pasos": ["3"], "consejo": "Tip"}
+]
+```
+#+end_quote
