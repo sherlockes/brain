@@ -4,6 +4,7 @@
 #+title: linux mint
 #+STARTUP: overview
 #+date: 2023-08-30
+#+filetags: :SO:linux:mint:
 
 
 Linux Mint es una distribución de GNU/Linux comunitaria de origen franco-irlandesa basada en Ubuntu, y a su vez en Debian, que tiene por objetivo proveer "un sistema operativo moderno, elegante y cómodo que sea tanto poderoso como fácil de usar". Linux Mint soporta varios formatos y códecs multimedia al incluir software propietario y empaquetado con una variedad de aplicaciones gratuitas y de código abierto.
