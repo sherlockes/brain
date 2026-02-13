@@ -13,3 +13,5 @@
 * [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
 * [[id:4185090f-0488-404d-b2d0-1782cde99f7b][jinja2]]
 * [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]]
+
+* [[id:8ecc1892-6c70-4eee-a25c-fb84d06021b1][ia-prompts]]
