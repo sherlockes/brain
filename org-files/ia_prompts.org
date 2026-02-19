@@ -7,7 +7,7 @@
 #+filetags: :prompt:pdf:json:
 
 *** Modificaciones en SherloCaster
-Para realizar modificaciones en la app primero hay que pasar el contexto, 
+Para realizar modificaciones en la app primero hay que pasar el contexto, usaremos el siguiente promp y le añadiremos la salida del comando de abajo para dar info de los archivos.
 #+begin_src
 Soy el desarrollador de Sherlocaster, una aplicación dockerizada en Python que automatiza la creación de podcasts. La app descarga audio de YouTube, Twitch y Kick, lo procesa a mono (64kbps), genera un feed RSS compatible y lo sube a un almacenamiento remoto mediante rclone.
 
@@ -19,10 +19,10 @@ Arquitectura:
 A continuación, te adjunto la salida actualizada de los archivos del sistema para que analices el estado actual del código.
 #+end_src
 
-Ejecutamos este comando desde Linux Mint acceciendo en remoto al server conde corre docker y copiando la salida directamente al portapapeles.
+Ejecutamos este comando desde Linux Mint accediendo en remoto al server conde corre docker y copiando la salida directamente al portapapeles.
 
 #+begin_quote
-Imprecindible tener instalado Xclip ~~sudo apt intall xclip~~
+Imprescindible tener instalado Xclip ~~sudo apt intall xclip~~
 #+end_quote
 
 #+begin_src bash
