@@ -9,7 +9,7 @@
 *** Modificaciones en SherloCaster
 Para realizar modificaciones en la app primero hay que pasar el contexto, usaremos el siguiente promp y le añadiremos la salida del comando de abajo para dar info de los archivos.
 #+begin_src
-Soy el desarrollador de Sherlocaster, una aplicación dockerizada en Python que automatiza la creación de podcasts. La app descarga audio de YouTube, Twitch y Kick, lo procesa a mono (64kbps), genera un feed RSS compatible y lo sube a un almacenamiento remoto mediante rclone.
+Soy el desarrollador de Sherlocaster, una aplicación dockerizada en Python que automatiza la creación de podcasts y que puedes ver en el repositorio https://github.com/sherlockes/sherlocaster. La app descarga audio de YouTube, Twitch y Kick, lo procesa a mono (64kbps), genera un feed RSS compatible y lo sube a un almacenamiento remoto mediante rclone.
 
 Arquitectura:
 - Stack: Python 3.12, FastAPI (Web), yt-dlp (YouTube), twitch-dl y Deno (Twitch).
