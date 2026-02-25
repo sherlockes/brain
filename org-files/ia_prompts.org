@@ -29,7 +29,7 @@ Imprescindible tener instalado Xclip ~~sudo apt intall xclip~~
 ssh sherlockes@uber "cd ~/dockers/sherlocaster/ && for f in docker-compose.yaml config.yaml app/main.py app/web.py app/downloader/youtube.py app/core/rss.py; do echo -e \"\n--- \$f ---\"; cat \$f; done" | xclip -selection clipboard
 #+end_src
 
-Tenemos la opción de pasar la carpeta comprimida medianta este comando ejecutado en remoto:
+Tenemos la opción de pasar la carpeta comprimida mediante este comando ejecutado en remoto:
 #+begin_src bash
 ssh sherlockes@192.168.10.211 "cd ~/dockers/sherlocaster && git archive --format=tar.gz HEAD" > sherlocaster_repo.tar.gz1
 #+end_src
