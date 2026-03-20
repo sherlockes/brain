@@ -15,9 +15,11 @@
 * Configuración del Entorno Local
 Para replicar el proyecto en cualquier máquina:
 #+begin_src bash
-python -m venv venv
-source venv/bin/activate  # venv\Scripts\activate en Windows
-pip install flask flask-sqlalchemy psycopg2-binary
+  git clone git@github.com:sherlockes/quizs_evo.git
+  cd quizs_evo
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install flask flask-sqlalchemy psycopg2-binary
 #+end_src
 
 * Arquitectura de Datos (Modelos)
