@@ -6,57 +6,112 @@
 #+date: 2026-03-20
 #+filetags: :project:
 
-* Contexto y Stack Tecnológico
-- **Editor:** Emacs (Org-mode + Python-mode)
-- **Backend:** Flask (Python 3.12+)
-- **Base de Datos:** PostgreSQL (Neon.tech)
-- **Despliegue:** Vercel + GitHub
+#+TITLE: Proyecto Quizs-Evo: Gestión de Usuarios con Firebase
+#+AUTHOR: Documentación de Desarrollo
+#+ROAM_TAGS: firebase javascript webdev project-management
 
-* Configuración del Entorno Local
-Para replicar el proyecto en cualquier máquina:
+* Introducción
+Este documento detalla la configuración técnica y el flujo de trabajo del proyecto *Quizs-Evo*, una plataforma web para la gestión de alumnos y cuestionarios basada en tecnologías *serverless* (Firebase).
+
+* 1. Infraestructura en la Nube (Firebase)
+** 1.1. Creación del Proyecto
+1. Acceder a [[https://console.firebase.google.com/][Firebase Console]].
+2. Crear un nuevo proyecto: =quizs-evo=.
+3. Registrar una *Aplicación Web* (icono </>) para obtener las credenciales del SDK.
+
+** 1.2. Activación de Servicios
+*** Firebase Authentication
+- **Función:** Gestiona el acceso (login/password).
+- **Configuración:** Habilitar el proveedor "Correo electrónico/contraseña".
+
+*** Cloud Firestore (Base de Datos)
+- **Función:** Almacena la lista de usuarios para la interfaz del Admin.
+- **Configuración:** Crear en "Modo de prueba".
+- **Reglas de Seguridad:**
+#+begin_src javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+#+end_src
+
+* 2. Código Fuente (index.html)
+El sistema utiliza módulos de Firebase (v10.7.1) cargados vía CDN.
+
+** 2.1. Configuración del SDK y Base de Datos
+#+begin_src javascript
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, collection, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSy...",
+    authDomain: "quizs-evo.firebaseapp.com",
+    projectId: "quizs-evo",
+    storageBucket: "quizs-evo.appspot.com",
+    messagingSenderId: "424341251554",
+    appId: "1:424341251554:web:..."
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+#+end_src
+
+** 2.2. Importación Masiva desde CSV
+Se utiliza la librería =PapaParse= para procesar archivos locales y subirlos a la nube.
+#+begin_src javascript
+// Bucle de procesamiento de filas
+for (let usuario of results.data) {
+    if(usuario.email && usuario.password) {
+        // Registro en Authentication (Acceso)
+        await createUserWithEmailAndPassword(auth, usuario.email, usuario.password);
+        
+        // Registro en Firestore (Tabla visual)
+        await setDoc(doc(db, "usuarios", usuario.email), {
+            email: usuario.email,
+            rol: "alumno"
+        });
+    }
+}
+#+end_src
+
+* 3. Gestión de Versiones (Git & GitHub)
+Para documentar el progreso y proteger el código.
+
+** 3.1. Repositorio Local
 #+begin_src bash
-  git clone git@github.com:sherlockes/quizs_evo.git
-  cd quizs_evo
-  python3 -m venv venv
-  source venv/bin/activate
-  pip install flask flask-sqlalchemy psycopg2-binary
+# Iniciar el repositorio
+git init
+
+# Añadir el archivo principal
+git add index.html
+
+# Realizar el primer commit
+git commit -m "Initial commit: Sistema de login, importación CSV y tabla Firestore"
 #+end_src
 
-* Arquitectura de Datos (Modelos)
-Las tablas viven en Neon.tech. La conexión requiere =sslmode=require=.
+** 3.2. Repositorio Remoto (GitHub)
+#+begin_src bash
+# Conectar con el servidor (Sustituir con tu URL)
+git remote add origin https://github.com/TU_USUARIO/quizs-evo.git
 
-** Tabla: Usuario
-- ID (Primary Key)
-- Nombre
-- Email (Único)
-
-** Tabla: Resultado
-- ID
-- Usuario_ID (Foreign Key)
-- Puntuación
-- Tiempo (Segundos)
-- Fecha
-
-** Tabla: Cuestionario (Índice de JSONs)
-- ID
-- Título
-- Archivo_JSON (Ruta al archivo en /static/cuestionarios/)
-- Nivel/Tema
-
-* Flujo de Trabajo (Git/Vercel)
-1. Editar en Emacs.
-2. Hacer push a GitHub: ~git push origin main~.
-3. Vercel detecta el cambio y despliega automáticamente.
-
-* Snippets de Control (Consola Python)
-#+begin_src python
-from app import app, db
-with app.app_context():
-    db.create_all()  # Sincroniza el modelo con Neon
+# Renombrar rama y subir datos
+git branch -M main
+git push -u origin main
 #+end_src
 
-* Pendientes [0/4]
-** TODO Mover preguntas del JSON de "Contaminación" a la carpeta /static.
-** TODO Crear la lógica de lectura dinámica de archivos JSON en Flask.
-** TODO Implementar el cronómetro (JavaScript o Python time).
-** TODO Formulario de creación o importación de usuarios.
+* 4. Estado Actual del Proyecto
+- [X] Registro y Login funcional.
+- [X] Diferenciación de rol de Administrador.
+- [X] Importación de alumnos vía CSV exitosa.
+- [X] Sincronización en tiempo real con Firestore para ver/borrar usuarios.
+
+* 5. Próximos Pasos (Fase 2)
+- [ ] Implementar carga de cuestionarios mediante archivo JSON.
+- [ ] Crear motor de renderizado de preguntas para el alumno.
+- [ ] Almacenar resultados de exámenes en una nueva colección =resultados=.
