@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-roam primeros pasos</title>
@@ -202,15 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">org-roam primeros pasos</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgd0273d0">1. Como empezar</a></li>
-<li><a href="#orgd768c2f">2. Configuración en init.el</a></li>
-</ul>
-</div>
-</div>
 <p>
 La curva de aprendizaje de <a href="org_roam.html#ID-80ce4bf8-3936-45bf-adc9-041795828500">org-roam</a> es complicada sin una guía adecuada que serguir, estos son los primeros pasos por donde hay que empezar si quieres crear tu base de conocimiento.
 </p>
@@ -237,19 +228,19 @@ La instalación de "emacsql" como dependencia de "Org-roam" me ha dado muchos pr
 <h2 id="orgd768c2f"><span class="section-number-2">2.</span> Configuración en init.el</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-elisp">(make-directory "~/conocimiento" t)
-(setq org-roam-directory (file-truename "~/conocimiento"))
+<pre class="src src-elisp">(make-directory <span style="color: #95e454;">"~/conocimiento"</span> t)
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> org-roam-directory (file-truename <span style="color: #95e454;">"~/conocimiento"</span>))
 (org-roam-db-autosync-mode)
-(setq org-roam-completion-system 'ivy)
-(setq org-roam-completion-everywhere t)
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> org-roam-completion-system 'ivy)
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> org-roam-completion-everywhere t)
 (ivy-mode 1)
 
-(global-set-key (kbd "C-c n f") 'org-roam-node-find)
-(global-set-key (kbd "C-c n l") 'org-roam-buffer-toggle) el Buffer Org-Roam
-(global-set-key (kbd "C-c n i") 'org-roam-node-insert)
-(global-set-key (kbd "C-c n t") 'org-roam-tag-add)
-(global-set-key (kbd "C-c n a") 'org-roam-alias-add)
-(global-set-key (kbd "C-c n o") 'org-id-get-create)
+(global-set-key (kbd <span style="color: #95e454;">"C-c n f"</span>) 'org-roam-node-find)
+(global-set-key (kbd <span style="color: #95e454;">"C-c n l"</span>) 'org-roam-buffer-toggle) el Buffer Org-Roam
+(global-set-key (kbd <span style="color: #95e454;">"C-c n i"</span>) 'org-roam-node-insert)
+(global-set-key (kbd <span style="color: #95e454;">"C-c n t"</span>) 'org-roam-tag-add)
+(global-set-key (kbd <span style="color: #95e454;">"C-c n a"</span>) 'org-roam-alias-add)
+(global-set-key (kbd <span style="color: #95e454;">"C-c n o"</span>) 'org-id-get-create)
 </pre>
 </div>
 </div>
@@ -258,7 +249,7 @@ La instalación de "emacsql" como dependencia de "Org-roam" me ha dado muchos pr
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-30 mié 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>linux mint post instalacion</title>
@@ -231,58 +231,58 @@ Y este es el script completo:
 
 <div class="org-src-container">
 <pre class="src src-bash">
-# Actualizar el sistema
-sudo apt update
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Actualizar el sistema
+</span>sudo apt update
 
-# Evitar el error "failed to open \EFI\ubuntu\ - Not Found" en el arranque
-sudo grub-install --no-uefi-secure-boot /dev/sda
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Evitar el error "failed to open \EFI\ubuntu\ - Not Found" en el arranque
+</span>sudo grub-install --no-uefi-secure-boot /dev/sda
 sudo update-grub
 
-# Crear el enlace a los Dotfiles
-ln -si ~/GDrive/dotfiles ~/dotfiles
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Crear el enlace a los Dotfiles
+</span>ln -si ~/GDrive/dotfiles ~/dotfiles
 
-# Eliminar el compilador cd c gcc e instalar clang (problemas Sqlite)
-# (Esta parte no es necesaria con Linux Mint 22)
-sudo apt remove gcc
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Eliminar el compilador cd c gcc e instalar clang (problemas Sqlite)
+</span><span style="color: #99968b;"># </span><span style="color: #99968b;">(Esta parte no es necesaria con Linux Mint 22)
+</span>sudo apt remove gcc
 sudo apt install clang
 
-# Instalación de Emacs y corrección ortográfica
-sudo apt install emacs
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instalaci&#243;n de Emacs y correcci&#243;n ortogr&#225;fica
+</span>sudo apt install emacs
 sudo apt install ispell
 sudo apt install aspell-es
 
-# Instalación de Hugo
-sudo apt install hugo
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instalaci&#243;n de Hugo
+</span>sudo apt install hugo
 
-# Instalación del cliente para Wireguard
-sudo apt install wireguard
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instalaci&#243;n del cliente para Wireguard
+</span>sudo apt install wireguard
 sudo apt install resolvc
 
-# Instalación y configuración de git
-sudo apt install git
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instalaci&#243;n y configuraci&#243;n de git
+</span>sudo apt install git
 git config --global user.email sherlockes@yahoo.es
 git config --global user.name sherlockes
 
-# Instalación de Zerotier y adhesión a red personal
-curl -s https://install.zerotier.com/ | sudo bash
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instalaci&#243;n de Zerotier y adhesi&#243;n a red personal
+</span>curl -s https://install.zerotier.com/ | sudo bash
 sudo zerotier-cli join 83048a0632dad18a
 
-# Instala Rclone y crea el directorio de configuración
-sudo -v ; curl https://rclone.org/install.sh | sudo bash
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Instala Rclone y crea el directorio de configuraci&#243;n
+</span>sudo -v ; curl https://rclone.org/install.sh | sudo bash
 mkdir -p ~/.config/rclone
 
-# Configuración mediante Dotfiles
-ln -si ~/dotfiles/bash/.bash_aliases ~/.bash_aliases
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Configuraci&#243;n mediante Dotfiles
+</span>ln -si ~/dotfiles/bash/.bash_aliases ~/.bash_aliases
 ln -si ~/dotfiles/emacs/.emacs ~/.emacs
 ln -si ~/dotfiles/emacs/.emacs.d/bookmarks ~/.emacs.d/bookmarks
 ln -si ~/dotfiles/ssh/config ~/.ssh/config
 ln -si ~/dotfiles/rclone/rclone.conf ~/.config/rclone/rclone.conf
 
-# Eliminar paquetes sobrantes
-sudo apt autoremove
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Eliminar paquetes sobrantes
+</span>sudo apt autoremove
 
-# Genera la llave ssh
-ssh-keygen
+<span style="color: #99968b;"># </span><span style="color: #99968b;">Genera la llave ssh
+</span>ssh-keygen
 </pre>
 </div>
 
@@ -296,7 +296,7 @@ ssh-keygen
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-30</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

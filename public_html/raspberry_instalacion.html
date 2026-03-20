@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Raspberry - Instalación</title>
@@ -202,25 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">Raspberry - Instalación</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org9bb5e2d">1. Instalando PI OS Lite</a>
-<ul>
-<li><a href="#orgcda0547">1.1. Grabar la imagen mediante Imager y actualizar el sistema.</a></li>
-<li><a href="#org5bc44a0">1.2. Generar la llave ssh</a></li>
-<li><a href="#org473d5ea">1.3. Copiar la llave ssh a Github y GitLab.</a></li>
-<li><a href="#org51271e3">1.4. Instalar y configurar git</a></li>
-<li><a href="#orgc43755e">1.5. Clonar SherloScripts</a></li>
-<li><a href="#org8b239ce">1.6. Open Network Manager UI with para asignar ip estática</a></li>
-<li><a href="#orgeb948ff">1.7. Instalar Pi-Hole</a></li>
-<li><a href="#org9fd8821">1.8. Instalar Rclone (Web).</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 <p>
 Partimos con la <a href="raspberry.html#ID-d3201961-966d-4371-ae48-5dbcab004573">raspberry</a> vacía y estos son los pasos que hay que dar. He probado a hacer un script que con el paso del tiempo siempre falla en un punto u otro, así quedan las instrucciones claras.
 </p>
@@ -261,8 +242,8 @@ Abrir el archivo ".ssh/id<sub>rsa.pub</sub>" con un editor de texto y copiar el 
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-bash">sudo apt install git
-git config --global user.email "sherlockes@yahoo.es"
-git config --global user.name "Sherlockes"
+git config --global user.email <span style="color: #95e454;">"sherlockes@yahoo.es"</span>
+git config --global user.name <span style="color: #95e454;">"Sherlockes"</span>
 </pre>
 </div>
 </div>
@@ -308,7 +289,7 @@ git config --global user.name "Sherlockes"
 <div id="postamble" class="status">
 <p class="date">Date: 2023-12-15</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

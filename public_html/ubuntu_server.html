@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ubuntu server</title>
@@ -202,15 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">ubuntu server</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org8b86ab9">1. Asignar ip estática (info)</a></li>
-<li><a href="#org7f132c0">2. Habilitar Wake On LAN y apagado remoto</a></li>
-</ul>
-</div>
-</div>
 <p>
 info
 </p>
@@ -236,7 +227,7 @@ Accederemos a la carpeta "/etc/netplan" y editaremos el archivo yaml que se encu
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">cd /etc/netplan
+<pre class="src src-bash"><span style="color: #e5786d;">cd</span> /etc/netplan
 sudo nano /etc/netplan/50-cloud-init.yaml
 </pre>
 </div>
@@ -246,19 +237,19 @@ El contenido del archivo resultante será este
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">network:
-ethernets:
-    enp2s0:
-        dhcp4: no
-        addresses:
+<pre class="src src-yaml"><span style="color: #cae682;">network</span>:
+<span style="color: #cae682;">ethernets</span>:
+    <span style="color: #cae682;">enp2s0</span>:
+        <span style="color: #cae682;">dhcp4</span>: <span style="color: #e5786d;">no</span>
+        <span style="color: #cae682;">addresses</span>:
           - 192.168.10.211/24
-        routes:
-          - to: default
-            via: 192.168.10.1
-        nameservers:
-          addresses: [192.168.10.210, 8.8.8.8]
-version: 2
-wifis: {}
+        <span style="color: #cae682;">routes</span>:
+          - <span style="color: #cae682;">to</span>: default
+            <span style="color: #cae682;">via</span>: 192.168.10.1
+        <span style="color: #cae682;">nameservers</span>:
+          <span style="color: #cae682;">addresses</span>: [192.168.10.210, 8.8.8.8]
+<span style="color: #cae682;">version</span>: 2
+<span style="color: #cae682;">wifis</span>: {}
 </pre>
 </div>
 
@@ -283,7 +274,7 @@ Ver como se habilitan ambos en <a href="debian.html#ID-bd6414c2-4e32-456d-975d-a
 <div id="postamble" class="status">
 <p class="date">Date: 2025-08-08</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

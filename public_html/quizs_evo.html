@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>quizs_evo</title>
@@ -202,32 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">quizs<sub>evo</sub></h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgcba7878">1. Contexto y Stack Tecnológico</a></li>
-<li><a href="#org7c7e8fc">2. Configuración del Entorno Local</a></li>
-<li><a href="#org6288c55">3. Arquitectura de Datos (Modelos)</a>
-<ul>
-<li><a href="#orga5e64ba">3.1. Tabla: Usuario</a></li>
-<li><a href="#orgd320316">3.2. Tabla: Resultado</a></li>
-<li><a href="#orgf9a0569">3.3. Tabla: Cuestionario (Índice de JSONs)</a></li>
-</ul>
-</li>
-<li><a href="#orgaf6ae48">4. Flujo de Trabajo (Git/Vercel)</a></li>
-<li><a href="#orgc04bf5a">5. Snippets de Control (Consola Python)</a></li>
-<li><a href="#orgfbfb45b">6. Pendientes <code>[0/4]</code></a>
-<ul>
-<li><a href="#org23ac05d">6.1. <span class="todo TODO">TODO</span> Mover preguntas del JSON de "Contaminación" a la carpeta /static.</a></li>
-<li><a href="#org6017a51">6.2. <span class="todo TODO">TODO</span> Crear la lógica de lectura dinámica de archivos JSON en Flask.</a></li>
-<li><a href="#org345c2f4">6.3. <span class="todo TODO">TODO</span> Implementar el cronómetro (JavaScript o Python time).</a></li>
-<li><a href="#org220d001">6.4. <span class="todo TODO">TODO</span> Formulario de creación o importación de usuarios.</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 
 <div id="outline-container-orgcba7878" class="outline-2">
 <h2 id="orgcba7878"><span class="section-number-2">1.</span> Contexto y Stack Tecnológico</h2>
@@ -249,8 +223,8 @@ Para replicar el proyecto en cualquier máquina:
 </p>
 <div class="org-src-container">
 <pre class="src src-bash">python -m venv venv
-source venv/bin/activate  # venv\Scripts\activate en Windows
-pip install flask flask-sqlalchemy psycopg2-binary
+<span style="color: #e5786d;">source</span> venv/bin/activate  <span style="color: #99968b;"># </span><span style="color: #99968b;">venv\Scripts\activate en Windows
+</span>pip install flask flask-sqlalchemy psycopg2-binary
 </pre>
 </div>
 </div>
@@ -316,9 +290,9 @@ Las tablas viven en Neon.tech. La conexión requiere <code>sslmode=require</code
 <h2 id="orgc04bf5a"><span class="section-number-2">5.</span> Snippets de Control (Consola Python)</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-python">from app import app, db
-with app.app_context():
-    db.create_all()  # Sincroniza el modelo con Neon
+<pre class="src src-python"><span style="color: #8ac6f2; font-weight: bold;">from</span> app <span style="color: #8ac6f2; font-weight: bold;">import</span> app, db
+<span style="color: #8ac6f2; font-weight: bold;">with</span> app.app_context():
+    db.create_all()  <span style="color: #99968b;"># </span><span style="color: #99968b;">Sincroniza el modelo con Neon</span>
 </pre>
 </div>
 </div>
@@ -345,7 +319,7 @@ with app.app_context():
 <div id="postamble" class="status">
 <p class="date">Date: 2026-03-20</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

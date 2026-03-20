@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ox-hugo</title>
@@ -202,24 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">ox-hugo</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orge0faacc">1. Documentación Oficial</a></li>
-<li><a href="#org8b1165a">2. Fechas</a></li>
-<li><a href="#orgd365d2e">3. Archivo setup.conf</a></li>
-<li><a href="#orgf20fc48">4. Exportar</a>
-<ul>
-<li><a href="#orgfda0675">4.1. Problema con la exportación de Links</a></li>
-<li><a href="#orgfd636f8">4.2. Auto exportar mediante ".dir-locals.el"</a></li>
-<li><a href="#org7b7ad93">4.3. Auto exportar mediante "hook" al guardar</a></li>
-</ul>
-</li>
-<li><a href="#orgb6e7526">5. Imágenes</a></li>
-</ul>
-</div>
-</div>
 <p>
 <a href="https://ox-hugo.scripter.co">Ox-hugo</a> es una herramienta de <a href="emacs.html#ID-c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07">Emacs</a> que simplifica la conversión de contenido desde Org Mode a <a href="markdown.html#ID-5f94cb35-4aa6-4b6b-8b9f-5e0dde6cd4eb">Markdown</a> para su uso con <a href="hugo.html#ID-6064b7ef-acf5-401f-a11c-1d923bbc85c4">Hugo</a>, un generador de sitios web. Facilita la creación de blogs y sitios web, permitiendo a los usuarios escribir en <a href="org_mode.html#ID-d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9">Org Mode</a> y luego exportar a un formato compatible con Hugo.
 </p>
@@ -266,7 +248,7 @@ Para no tener que añadir todos los campos de exportación en dad docuento org, 
 Hay que añadir el siguiente código - <a href="https://github.com/kaushalmodi/ox-hugo/issues/483">Enlace</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(setq org-id-extra-files (directory-files-recursively org-roam-directory "\\.org$")))
+<pre class="src src-elisp">(<span style="color: #8ac6f2; font-weight: bold;">setq</span> org-id-extra-files (directory-files-recursively org-roam-directory <span style="color: #95e454;">"\\.org$"</span>)))
 </pre>
 </div>
 <p>
@@ -281,7 +263,7 @@ Tienen que estar todos los archivos de Org-Roam en la carpeta raiz, de lo contra
 Para auto exportar todos los archivos de una carpeta al guardar, segun la documentación <a href="https://ox-hugo.scripter.co/doc/auto-export-on-saving/#enable-for-the-whole-project">oficial</a> hay que crear un documento ".dir-locals.el" en la raiz del proyecto (Por encima de la carpeta donde están los *.org) con el siguiente contenido.
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(("content-org/"
+<pre class="src src-elisp">((<span style="color: #95e454;">"content-org/"</span>
 . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
 </pre>
 </div>
@@ -300,17 +282,17 @@ Primero tenemos que crear un hook que se ejecute cuando guardamos un archivo den
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(defun funcion-al-guardar ()
-  (interactive)
-  (if (string= (file-name-extension buffer-file-name) "org")
-    (org-hugo-export-wim-to-md :all-subtrees))
+<pre class="src src-elisp">(<span style="color: #8ac6f2; font-weight: bold;">defun</span> <span style="color: #cae682;">funcion-al-guardar</span> ()
+  (<span style="color: #8ac6f2; font-weight: bold;">interactive</span>)
+  (<span style="color: #8ac6f2; font-weight: bold;">if</span> (string= (file-name-extension buffer-file-name) <span style="color: #95e454;">"org"</span>)
+    (org-hugo-export-wim-to-md <span style="color: #e5786d;">:all-subtrees</span>))
 
-  (let ((default-directory "~/brain"))
-    (shell-command "gitup")
+  (<span style="color: #8ac6f2; font-weight: bold;">let</span> ((default-directory <span style="color: #95e454;">"~/brain"</span>))
+    (shell-command <span style="color: #95e454;">"gitup"</span>)
   )
 )
 
-(add-hook 'after-save-hook (lambda () (when (and buffer-file-name (string-prefix-p brain-dir buffer-file-name))(funcion-al-guardar))))
+(add-hook 'after-save-hook (<span style="color: #8ac6f2; font-weight: bold;">lambda</span> () (<span style="color: #8ac6f2; font-weight: bold;">when</span> (<span style="color: #8ac6f2; font-weight: bold;">and</span> buffer-file-name (string-prefix-p brain-dir buffer-file-name))(funcion-al-guardar))))
 </pre>
 </div>
 </div>
@@ -337,7 +319,7 @@ Para comprobar a medida que escribimos que la imagen ha sido bien introducida us
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-30 mié 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

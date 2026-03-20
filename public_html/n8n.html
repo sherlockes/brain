@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>n8n</title>
@@ -207,33 +207,33 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">services:
-  n8n:
-    image: docker.n8n.io/n8nio/n8n
-    container_name: n8n
-    networks:
+<pre class="src src-yaml"><span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">n8n</span>:
+    <span style="color: #cae682;">image</span>: docker.n8n.io/n8nio/n8n
+    <span style="color: #cae682;">container_name</span>: n8n
+    <span style="color: #cae682;">networks</span>:
       - nginx-proxy-manager_default
-    ports:
-      - "5678:5678"
-    environment:
+    <span style="color: #cae682;">ports</span>:
+      - <span style="color: #95e454;">"5678:5678"</span>
+    <span style="color: #cae682;">environment</span>:
       - VUE_APP_URL_BASE_API=https://n8n.zgz.sherblog.es
       - N8N_PROTOCOL=https
       - WEBHOOK_URL=https://n8n.zgz.sherblog.es
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=336
       - GENERIC_TIMEZONE=Europe/Madrid
-    volumes:
+    <span style="color: #cae682;">volumes</span>:
       - ~/dockers/n8n/_data:/home/node/.n8n
       - ~/dockers/n8n/files:/home/node
-    restart: always
+    <span style="color: #cae682;">restart</span>: always
 
-networks:
-  nginx-proxy-manager_default:
-    external: true
+<span style="color: #cae682;">networks</span>:
+  <span style="color: #cae682;">nginx-proxy-manager_default</span>:
+    <span style="color: #cae682;">external</span>: <span style="color: #e5786d;">true</span>
 
-volumes:
-  n8n_data:
-    external: true
+<span style="color: #cae682;">volumes</span>:
+  <span style="color: #cae682;">n8n_data</span>:
+    <span style="color: #cae682;">external</span>: <span style="color: #e5786d;">true</span>
 </pre>
 </div>
 
@@ -274,7 +274,7 @@ docker-compose up -d
 <div id="postamble" class="status">
 <p class="date">Date: 2024-12-05</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gphotos-sync</title>
@@ -202,17 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">gphotos-sync</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgb00732e">1. Instalación en contenedor</a></li>
-<li><a href="#orgaf09f53">2. Configuración YAML para Container Manager</a></li>
-<li><a href="#orge159ff5">3. Creación de una tarea programada</a></li>
-<li><a href="#org0cc98a9">4. Enlaces de interés</a></li>
-</ul>
-</div>
-</div>
 <p>
 Google Photos Sync descarga todas las fotos y videos subidos a Google Photos, organizándolos localmente según información del álbum. Respaldando también 'Creaciones' como animaciones, panoramas y collages, el software es de solo lectura y no altera la biblioteca en la nube, eliminando así el riesgo de dañar los datos.
 </p>
@@ -234,17 +223,17 @@ Básicamente, el contenedor necesita dos volúmenes, uno para la ubicación del 
 <h2 id="orgaf09f53"><span class="section-number-2">2.</span> Configuración YAML para Container Manager</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-yaml">  services:
-  gphotos-sync:
-    image: ghcr.io/gilesknap/gphotos-sync
-    container_name: gphotos-sync
-    volumes:
+<pre class="src src-yaml">  <span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">gphotos-sync</span>:
+    <span style="color: #cae682;">image</span>: ghcr.io/gilesknap/gphotos-sync
+    <span style="color: #cae682;">container_name</span>: gphotos-sync
+    <span style="color: #cae682;">volumes</span>:
       - /volume1/homes/sherlockes/.config/gphotos-sync:/config
       - /volume1/homes/sherlockes/gphotos:/storage
-    ports:
-      - "8080:8080"
-    command: /storage
-#    restart: unless-stopped
+    <span style="color: #cae682;">ports</span>:
+      - <span style="color: #95e454;">"8080:8080"</span>
+    <span style="color: #cae682;">command</span>: /storage
+<span style="color: #99968b;">#    </span><span style="color: #99968b;">restart: unless-stopped</span>
 </pre>
 </div>
 
@@ -285,7 +274,7 @@ Vamos a hacer que se ejecute el contenedor un par de veces a la semana mediante 
 <div id="postamble" class="status">
 <p class="date">Date: 2024-02-01</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

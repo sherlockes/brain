@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-roam publish</title>
@@ -230,35 +230,35 @@ Copiamos la estructura del repo de <a href="https://github.com/ikoamu/publish-or
 Añadimos a la configuración de emacs las siguientes líneas.
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(setq org-roam-directory "/path/to/org-roam-dir")
-(setq org-roam-db-location "/path/to/org-roam-dir/org-files/org-roam.db")
+<pre class="src src-lisp">(setq org-roam-directory <span style="color: #95e454;">"/path/to/org-roam-dir"</span>)
+(setq org-roam-db-location <span style="color: #95e454;">"/path/to/org-roam-dir/org-files/org-roam.db"</span>)
 </pre>
 </div></li>
 <li><p>
 Dentro de la carpeta ".github/workflows" creamos el archivo "gh-pages.yml"
 </p>
 <div class="org-src-container">
-<pre class="src src-yaml">name: Generate static org-roam-ui page
-on:
-  push:
-    branches:
+<pre class="src src-yaml"><span style="color: #cae682;">name</span>: Generate static org-roam-ui page
+<span style="color: #e5786d;">on</span>:
+  <span style="color: #cae682;">push</span>:
+    <span style="color: #cae682;">branches</span>:
       - main
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+<span style="color: #cae682;">permissions</span>:
+  <span style="color: #cae682;">contents</span>: read
+  <span style="color: #cae682;">pages</span>: write
+  <span style="color: #cae682;">id-token</span>: write
 
-jobs:
-  main:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate org-roam-ui page
-        uses: ikoamu/org-roam-ui-hosting@main
-        with:
-          org-roam-db-filename: org-roam.db
-          deploy-to-pages: true
-          org-roam-directory: org-files
-          site-title: My Brain
+<span style="color: #cae682;">jobs</span>:
+  <span style="color: #cae682;">main</span>:
+    <span style="color: #cae682;">runs-on</span>: ubuntu-latest
+    <span style="color: #cae682;">steps</span>:
+      - <span style="color: #cae682;">name</span>: Generate org-roam-ui page
+        <span style="color: #cae682;">uses</span>: ikoamu/org-roam-ui-hosting@main
+        <span style="color: #cae682;">with</span>:
+          <span style="color: #cae682;">org-roam-db-filename</span>: org-roam.db
+          <span style="color: #cae682;">deploy-to-pages</span>: <span style="color: #e5786d;">true</span>
+          <span style="color: #cae682;">org-roam-directory</span>: org-files
+          <span style="color: #cae682;">site-title</span>: My Brain
 </pre>
 </div>
 
@@ -277,7 +277,7 @@ Según hemos definido el archivo de configuración, tanto los archivos "*.org" c
 <div id="postamble" class="status">
 <p class="date">Date: 2024-06-11</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>home assistant</title>
@@ -202,27 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">home assistant</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org4f68855">1. Instalación Container sobre Ubuntu server</a></li>
-<li><a href="#org41976fc">2. Casos</a>
-<ul>
-<li><a href="#org9691d74">2.1. Notificar batería baja de sensores</a></li>
-<li><a href="#orgc4397a7">2.2. Añadir Control remoto de Amazon Fire Stick</a></li>
-<li><a href="#org9cd7f90">2.3. Casa ZgZ - Galería - Sensor puerta</a></li>
-<li><a href="#orgb6b4490">2.4. Casa Zgz - Salón - Emparejar GU10 Ikea Tradfri</a></li>
-<li><a href="#org830a6ce">2.5. Zigbee2Mqtt</a>
-<ul>
-<li><a href="#org1986229">2.5.1. Intalar</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 <p>
 Home Assistant es una plataforma de domótica de código abierto que transforma hogares en espacios inteligentes. Ofrece integración para una amplia variedad de dispositivos y servicios, permitiendo el control centralizado de luces, termostatos, cámaras y más. Su interfaz intuitiva y automatizaciones personalizables facilitan la gestión del hogar conectado.
 </p>
@@ -237,17 +216,17 @@ Home Assistant es una plataforma de domótica de código abierto que transforma 
 Crear dentro de "homeassistant" el archivo "compose.yaml"
 </p>
 <div class="org-src-container">
-<pre class="src src-yaml">services:
-  homeassistant:
-    container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
-    volumes:
+<pre class="src src-yaml"><span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">homeassistant</span>:
+    <span style="color: #cae682;">container_name</span>: homeassistant
+    <span style="color: #cae682;">image</span>: <span style="color: #95e454;">"ghcr.io/home-assistant/home-assistant:stable"</span>
+    <span style="color: #cae682;">volumes</span>:
       - /home/sherlockes/dockers/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-    restart: unless-stopped
-    privileged: true
-    network_mode: host
+    <span style="color: #cae682;">restart</span>: unless-stopped
+    <span style="color: #cae682;">privileged</span>: <span style="color: #e5786d;">true</span>
+    <span style="color: #cae682;">network_mode</span>: host
 </pre>
 </div></li>
 <li>Ejecutar <code>docker compose up -d</code> y acceder a <a href="http://ip_server:8123">http://ip_server:8123</a></li>
@@ -328,14 +307,14 @@ En caso de que el dispositivo no esté disponible un tiempo después de haber si
 <li>Editar "Configuration.yaml" en zigbee2mqtt</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-yaml">mqtt:
-  server: mqtt://core-mosquitto:1883
-  user: addons
-  password: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
-frontend:
-  port: 8099
-serial:
-  port: /dev/ttyUSB1
+<pre class="src src-yaml"><span style="color: #cae682;">mqtt</span>:
+  <span style="color: #cae682;">server</span>: mqtt://core-mosquitto:1883
+  <span style="color: #cae682;">user</span>: addons
+  <span style="color: #cae682;">password</span>: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
+<span style="color: #cae682;">frontend</span>:
+  <span style="color: #cae682;">port</span>: 8099
+<span style="color: #cae682;">serial</span>:
+  <span style="color: #cae682;">port</span>: /dev/ttyUSB1
 </pre>
 </div>
 </div>
@@ -346,7 +325,7 @@ serial:
 <div id="postamble" class="status">
 <p class="date">Date: 2024-01-17</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

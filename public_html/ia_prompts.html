@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:49 -->
+<!-- 2026-03-20 vie 12:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ia-prompts</title>
@@ -202,17 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">ia-prompts</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgf5bf0c7">1. Modificaciones en SherloCaster</a></li>
-<li><a href="#orgdf5b755">2. Crear artículo para Blog a partir de app web</a></li>
-<li><a href="#org5e99826">3. Extraer menús de pdf para el cole</a></li>
-<li><a href="#orgbb7350a">4. Extraer menú de pdf para "Menú de Sarita"</a></li>
-</ul>
-</div>
-</div>
 
 <div id="outline-container-orgf5bf0c7" class="outline-2">
 <h2 id="orgf5bf0c7"><span class="section-number-2">1.</span> Modificaciones en SherloCaster</h2>
@@ -243,7 +232,7 @@ Imprescindible tener instalado Xclip <code>~sudo apt intall xclip~</code>
 </blockquote>
 
 <div class="org-src-container">
-<pre class="src src-bash">ssh sherlockes@uber "cd ~/dockers/sherlocaster/ &amp;&amp; for f in docker-compose.yaml config.yaml app/main.py app/web.py app/downloader/youtube.py app/core/rss.py; do echo -e \"\n--- \$f ---\"; cat \$f; done" | xclip -selection clipboard
+<pre class="src src-bash">ssh sherlockes@uber <span style="color: #95e454;">"cd ~/dockers/sherlocaster/ &amp;&amp; for f in docker-compose.yaml config.yaml app/main.py app/web.py app/downloader/youtube.py app/core/rss.py; do echo -e \"\n--- \$f ---\"; cat \$f; done"</span> | xclip -selection clipboard
 </pre>
 </div>
 
@@ -251,7 +240,7 @@ Imprescindible tener instalado Xclip <code>~sudo apt intall xclip~</code>
 Tenemos la opción de pasar la carpeta comprimida mediante este comando ejecutado en remoto:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">ssh sherlockes@192.168.10.211 "cd ~/dockers/sherlocaster &amp;&amp; git archive --format=tar.gz HEAD" &gt; sherlocaster_repo.tar.gz1
+<pre class="src src-bash">ssh sherlockes@192.168.10.211 <span style="color: #95e454;">"cd ~/dockers/sherlocaster &amp;&amp; git archive --format=tar.gz HEAD"</span> &gt; sherlocaster_repo.tar.gz1
 </pre>
 </div>
 </div>
@@ -401,7 +390,7 @@ Ejemplo de estilo visual esperado:
 <div id="postamble" class="status">
 <p class="date">Date: 2026-02-13</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:49</p>
+<p class="date">Created: 2026-03-20 vie 12:56</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

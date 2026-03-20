@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-roam</title>
@@ -202,18 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">org-roam</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org9ecb8a2">1. Primeros pasos</a></li>
-<li><a href="#orgf0e481f">2. Comandos esenciales</a></li>
-<li><a href="#orgf51aec5">3. Plantillas</a></li>
-<li><a href="#org20ae301">4. Sincronizar con repositorio en Github</a></li>
-<li><a href="#org053aea3">5. Exportar org-roam-ui a una web estática</a></li>
-</ul>
-</div>
-</div>
 <p>
 Org-Roam en una extensión de <a href="emacs.html#ID-c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07">Emacs</a> diseñada para facilitar la toma de notas y la organización de información en forma de documentos interconectados. Está especialmente diseñada para usuarios que emplean <a href="org_mode.html#ID-d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9">Org-Mode</a> en <a href="emacs.html#ID-c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07">Emacs</a>, que es un sistema de organización y gestión de tareas altamente personalizable.
 </p>
@@ -234,9 +222,9 @@ Org-Roam en una extensión de <a href="emacs.html#ID-c6e7e0fc-cb04-4a4d-beb3-193
 Si la carpeta "org-roam" ya está creada se cambia el directorio de trabajo a la misma y se actualiza el repositorio. Si la carpeta no está creada descarga el repositorio
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">  (if (file-exists-p "~/org-roam/")
-    (let ((default-directory "~/org-roam"))(shell-command "git pull"))
-  (let ((default-directory "~/"))(shell-command "git clone git@github.com:sherlockes/org-roam.git"))
+<pre class="src src-elisp">  (<span style="color: #8ac6f2; font-weight: bold;">if</span> (file-exists-p <span style="color: #95e454;">"~/org-roam/"</span>)
+    (<span style="color: #8ac6f2; font-weight: bold;">let</span> ((default-directory <span style="color: #95e454;">"~/org-roam"</span>))(shell-command <span style="color: #95e454;">"git pull"</span>))
+  (<span style="color: #8ac6f2; font-weight: bold;">let</span> ((default-directory <span style="color: #95e454;">"~/"</span>))(shell-command <span style="color: #95e454;">"git clone git@github.com:sherlockes/org-roam.git"</span>))
 )
 </pre>
 </div>
@@ -249,18 +237,18 @@ Para conseguir que se sincronice tras modificar algún archivo usaremos un "hook
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(defun org-roam-update()
-  (interactive)
+<pre class="src src-elisp">(<span style="color: #8ac6f2; font-weight: bold;">defun</span> <span style="color: #cae682;">org-roam-update</span>()
+  (<span style="color: #8ac6f2; font-weight: bold;">interactive</span>)
 
-      (let ((default-directory "~/org-roam")) 
-          (shell-command "git add --all")
-          (shell-command "git commit -m 'Update'")
-          (shell-command "git push")
+      (<span style="color: #8ac6f2; font-weight: bold;">let</span> ((default-directory <span style="color: #95e454;">"~/org-roam"</span>)) 
+          (shell-command <span style="color: #95e454;">"git add --all"</span>)
+          (shell-command <span style="color: #95e454;">"git commit -m '</span><span style="color: #e5786d;">Update</span><span style="color: #95e454;">'"</span>)
+          (shell-command <span style="color: #95e454;">"git push"</span>)
       )
   )
-(defun funcion-al-guardar ()
-  (let ((directorio-org-roam (expand-file-name "org-roam" (getenv "HOME"))))
-    (when (string-prefix-p directorio-org-roam buffer-file-name)
+(<span style="color: #8ac6f2; font-weight: bold;">defun</span> <span style="color: #cae682;">funcion-al-guardar</span> ()
+  (<span style="color: #8ac6f2; font-weight: bold;">let</span> ((directorio-org-roam (expand-file-name <span style="color: #95e454;">"org-roam"</span> (getenv <span style="color: #95e454;">"HOME"</span>))))
+    (<span style="color: #8ac6f2; font-weight: bold;">when</span> (string-prefix-p directorio-org-roam buffer-file-name)
       (org-roam-update))))
 
 (add-hook 'after-save-hook 'funcion-al-guardar)
@@ -276,7 +264,7 @@ Para conseguir que se sincronice tras modificar algún archivo usaremos un "hook
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-30 mié 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

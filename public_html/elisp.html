@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>elisp</title>
@@ -202,16 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">elisp</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org6df3162">1. Variables</a></li>
-<li><a href="#orge6e924a">2. Archivo</a></li>
-<li><a href="#org5cdec8d">3. Shell-command</a></li>
-</ul>
-</div>
-</div>
 <p>
 Emacs Lisp es un dialecto del lenguaje de programación Lisp que se usa en los editores GNU Emacs y XEmacs. Emacs Lisp es a veces llamado Elisp, lo cual tiene el riesgo de llevar a confundirlo con otro dialecto de Lisp que tiene el mismo nombre.
 </p>
@@ -249,11 +239,11 @@ La mayoría de las funciones de edición de Emacs vienen de código escrito en L
 Hay que añadir las siguientes variables en el archivo de configuración principal
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(setq explicit-shell-file-name "/bin/bash")
-(setq shell-file-name "bash")                                                                 
-(setq explicit-bash.exe-args '("--noediting" "--login" "-ic"))
-(setq shell-command-switch "-ic")
-(setenv "SHELL" shell-file-name)
+<pre class="src src-elisp">(<span style="color: #8ac6f2; font-weight: bold;">setq</span> explicit-shell-file-name <span style="color: #95e454;">"/bin/bash"</span>)
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> shell-file-name <span style="color: #95e454;">"bash"</span>)                                                                 
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> explicit-bash.exe-args '(<span style="color: #95e454;">"--noediting"</span> <span style="color: #95e454;">"--login"</span> <span style="color: #95e454;">"-ic"</span>))
+(<span style="color: #8ac6f2; font-weight: bold;">setq</span> shell-command-switch <span style="color: #95e454;">"-ic"</span>)
+(setenv <span style="color: #95e454;">"SHELL"</span> shell-file-name)
 </pre>
 </div>
 </div>
@@ -262,7 +252,7 @@ Hay que añadir las siguientes variables en el archivo de configuración princip
 <div id="postamble" class="status">
 <p class="date">Date: 2023-09-04 lun 12:33</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

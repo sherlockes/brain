@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Karakeep Docker</title>
@@ -202,20 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">Karakeep Docker</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org5657f0a">1. Info</a></li>
-<li><a href="#org6640b26">2. Uso</a></li>
-<li><a href="#orgd6341f3">3. Enlace</a></li>
-<li><a href="#orgdfae63e">4. Variables de entorno (.env)</a></li>
-<li><a href="#orga675895">5. Volúmenes</a></li>
-<li><a href="#org6ff3e95">6. docker-compose.yml</a></li>
-<li><a href="#org404a159">7. Gestión</a></li>
-</ul>
-</div>
-</div>
 <div id="outline-container-org5657f0a" class="outline-2">
 <h2 id="org5657f0a"><span class="section-number-2">1.</span> Info</h2>
 <div class="outline-text-2" id="text-1">
@@ -251,10 +237,10 @@ Uso Karakeep para guardar los enlaces interesantes organizados por tags
 Hay que crear un par de cadenas aleatorias con el comando <code>openssl rand -base64 36</code> y el archivo queda así
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">KARAKEEP_VERSION=release
-NEXTAUTH_SECRET=************************************************
-MEILI_MASTER_KEY=************************************************
-NEXTAUTH_URL=http://192.168.10.211:3000
+<pre class="src src-bash"><span style="color: #cae682;">KARAKEEP_VERSION</span>=release
+<span style="color: #cae682;">NEXTAUTH_SECRET</span>=************************************************
+<span style="color: #cae682;">MEILI_MASTER_KEY</span>=************************************************
+<span style="color: #cae682;">NEXTAUTH_URL</span>=http://192.168.10.211:3000
 </pre>
 </div>
 </div>
@@ -273,43 +259,43 @@ NEXTAUTH_URL=http://192.168.10.211:3000
 <h2 id="org6ff3e95"><span class="section-number-2">6.</span> docker-compose.yml</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
-<pre class="src src-yaml">services:
-  web:
-    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
-    restart: unless-stopped
-    volumes:
+<pre class="src src-yaml"><span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">web</span>:
+    <span style="color: #cae682;">image</span>: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    <span style="color: #cae682;">restart</span>: unless-stopped
+    <span style="color: #cae682;">volumes</span>:
       - ~/dockers/karakeep/data:/data
-    ports:
+    <span style="color: #cae682;">ports</span>:
       - 3000:3000
-    env_file:
+    <span style="color: #cae682;">env_file</span>:
       - .env
-    environment:
-      MEILI_ADDR: http://meilisearch:7700
-      BROWSER_WEB_URL: http://chrome:9222
-      DATA_DIR: /data # DON'T CHANGE THIS
-  chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:124
-    restart: unless-stopped
-    command:
+    <span style="color: #cae682;">environment</span>:
+      <span style="color: #cae682;">MEILI_ADDR</span>: http://meilisearch:7700
+      <span style="color: #cae682;">BROWSER_WEB_URL</span>: http://chrome:9222
+      <span style="color: #cae682;">DATA_DIR</span>: /data <span style="color: #99968b;"># </span><span style="color: #99968b;">DON'T CHANGE THIS
+</span>  <span style="color: #cae682;">chrome</span>:
+    <span style="color: #cae682;">image</span>: gcr.io/zenika-hub/alpine-chrome:124
+    <span style="color: #cae682;">restart</span>: unless-stopped
+    <span style="color: #cae682;">command</span>:
       - --no-sandbox
       - --disable-gpu
       - --disable-dev-shm-usage
       - --remote-debugging-address=0.0.0.0
       - --remote-debugging-port=9222
       - --hide-scrollbars
-  meilisearch:
-    image: getmeili/meilisearch:v1.13.3
-    restart: unless-stopped
-    env_file:
+  <span style="color: #cae682;">meilisearch</span>:
+    <span style="color: #cae682;">image</span>: getmeili/meilisearch:v1.13.3
+    <span style="color: #cae682;">restart</span>: unless-stopped
+    <span style="color: #cae682;">env_file</span>:
       - .env
-    environment:
-      MEILI_NO_ANALYTICS: "true"
-    volumes:
+    <span style="color: #cae682;">environment</span>:
+      <span style="color: #cae682;">MEILI_NO_ANALYTICS</span>: <span style="color: #95e454;">"true"</span>
+    <span style="color: #cae682;">volumes</span>:
       - meilisearch:/meili_data
 
-volumes:
-  meilisearch:
-  data:
+<span style="color: #cae682;">volumes</span>:
+  <span style="color: #cae682;">meilisearch</span>:
+  <span style="color: #cae682;">data</span>:
 </pre>
 </div>
 </div>
@@ -330,7 +316,7 @@ docker compose restart
 <div id="postamble" class="status">
 <p class="date">Date: 2026-01-05</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

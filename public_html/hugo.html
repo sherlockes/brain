@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>hugo</title>
@@ -202,25 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">hugo</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org3ea65e1">1. MarkDown</a></li>
-<li><a href="#org9bd49f4">2. Crear un enlace interno</a></li>
-<li><a href="#org9c8f735">3. Clonar el repositorio</a></li>
-<li><a href="#org3875108">4. Insertar</a></li>
-<li><a href="#org0e6d7fb">5. Server</a></li>
-<li><a href="#org8e609fc">6. Shortcodes</a>
-<ul>
-<li><a href="#orga074cc8">6.1. Crear un trozo en borrador</a></li>
-</ul>
-</li>
-<li><a href="#orgfd1b9f0">7. TOC - Seleccionar encabezados a mostrar</a></li>
-<li><a href="#org05fac96">8. Ordenar post por fecha de modificación</a></li>
-</ul>
-</div>
-</div>
 <p>
 Hugo es un moderno framework para creación de sitios web de propósito general. Se ubica en la categoría de los nuevos generadores de sitios estáticos,​ basados en la arquitectura dinámica JAMstack y es escrito completamente en Go.
 </p>
@@ -312,11 +293,11 @@ Aquí iremos añadiendo el contenido con el que queremos actualizar la entrada..
 <h2 id="orgfd1b9f0"><span class="section-number-2">7.</span> TOC - Seleccionar encabezados a mostrar</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
-<pre class="src src-toml">[markup]	
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 2
+<pre class="src src-toml">[<span style="color: #92a65e; font-weight: bold;">markup</span>]        
+  [<span style="color: #92a65e; font-weight: bold;">markup.tableOfContents</span>]
+    <span style="color: #cae682;">endLevel</span> = 3
+    <span style="color: #cae682;">ordered</span> = <span style="color: #8ac6f2; font-weight: bold;">false</span>
+    <span style="color: #cae682;">startLevel</span> = 2
 </pre>
 </div>
 </div>
@@ -328,10 +309,10 @@ Aquí iremos añadiendo el contenido con el que queremos actualizar la entrada..
 En el archivo config.toml añadir lo siguiente para que se genere la variable "lastmod"
 </p>
 <div class="org-src-container">
-<pre class="src src-toml">enableGitInfo = true			
+<pre class="src src-toml"><span style="color: #cae682;">enableGitInfo</span> = <span style="color: #8ac6f2; font-weight: bold;">true</span>                    
 
-[frontmatter]
-  lastmod = ["lastmod", ":git", "date", "publishDate"]
+[<span style="color: #92a65e; font-weight: bold;">frontmatter</span>]
+  <span style="color: #cae682;">lastmod</span> = [<span style="color: #95e454;">"lastmod"</span>, <span style="color: #95e454;">":git"</span>, <span style="color: #95e454;">"date"</span>, <span style="color: #95e454;">"publishDate"</span>]
 </pre>
 </div>
 
@@ -357,7 +338,7 @@ a esto
 <div id="postamble" class="status">
 <p class="date">Date: 2023-09-04 lun 13:40</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

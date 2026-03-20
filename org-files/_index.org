@@ -17,4 +17,7 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
   - linux
   - aplicaciones ( #+filetags: apps )
   - projects ( #+filetags: project )
-  
+
+Tips
+
+- Para evitar la corrección ortográfica al exportar ~:with-ispell nil~

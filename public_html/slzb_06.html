@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SLZB-06</title>
@@ -202,19 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">SLZB-06</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org7f9074c">1. Configurar cliente Wireguard en HA</a></li>
-<li><a href="#org08fc6dd">2. Configuración general del SLZB-06</a></li>
-<li><a href="#org18dbc13">3. Configuración de vpn del SLZB-06</a></li>
-<li><a href="#org40b7b12">4. Añadir una nueva instancia de Zigbee2mqtt</a></li>
-<li><a href="#org7ddbe1e">5. Programar reinicio</a></li>
-<li><a href="#orgf49aa3b">6. Perdida de conexión tras reinicio</a></li>
-</ul>
-</div>
-</div>
 <p>
 <a href="https://smlight.tech/product/slzb-06/">https://smlight.tech/product/slzb-06/</a>
 </p>
@@ -227,11 +214,11 @@ Con el complemento de <a href="https://community.home-assistant.io/t/home-assist
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">- name: slzb-06
-  addresses:
+<pre class="src src-yaml">- <span style="color: #cae682;">name</span>: slzb-06
+  <span style="color: #cae682;">addresses</span>:
     - 172.27.66.3
-  allowed_ips: []
-  client_allowed_ips:
+  <span style="color: #cae682;">allowed_ips</span>: []
+  <span style="color: #cae682;">client_allowed_ips</span>:
     - 192.168.10.0/24
     - 172.27.66.2/24
 </pre>
@@ -318,10 +305,10 @@ host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route re
 <li>En configuration.yaml de HA añadir</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-yaml">command_line:
-  - sensor:
-      name: wireguard_route
-      command: host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+<pre class="src src-yaml"><span style="color: #cae682;">command_line</span>:
+  - <span style="color: #cae682;">sensor</span>:
+      <span style="color: #cae682;">name</span>: wireguard_route
+      <span style="color: #cae682;">command</span>: host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
 </pre>
 </div>
 
@@ -358,11 +345,11 @@ data<sub>path</sub>: /config/zigbee2mqtt<sub>co</sub>
 socat:
 </p>
 <div class="org-src-container">
-<pre class="src src-yaml">enabled: false
-master: pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777
-slave: tcp-listen:8486,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5
-options: "-d -d"
-log: false
+<pre class="src src-yaml"><span style="color: #cae682;">enabled</span>: <span style="color: #e5786d;">false</span>
+<span style="color: #cae682;">master</span>: pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777
+<span style="color: #cae682;">slave</span>: tcp-listen:8486,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5
+<span style="color: #cae682;">options</span>: <span style="color: #95e454;">"-d -d"</span>
+<span style="color: #cae682;">log</span>: <span style="color: #e5786d;">false</span>
 </pre>
 </div>
 
@@ -378,10 +365,10 @@ El directorio de configuración deberá ser diferente al de la instancia de Z2M 
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-yaml">homeassistant: true
-data_path: /config/zigbee2mqtt_co
-advanced:
-  network_key:
+<pre class="src src-yaml"><span style="color: #cae682;">homeassistant</span>: <span style="color: #e5786d;">true</span>
+<span style="color: #cae682;">data_path</span>: /config/zigbee2mqtt_co
+<span style="color: #cae682;">advanced</span>:
+  <span style="color: #cae682;">network_key</span>:
     - 171
     - 22
     - 21
@@ -398,8 +385,8 @@ advanced:
     - 114
     - 212
     - 157
-  pan_id: 6754
-  ext_pan_id:
+  <span style="color: #cae682;">pan_id</span>: 6754
+  <span style="color: #cae682;">ext_pan_id</span>:
     - 115
     - 127
     - 62
@@ -408,21 +395,21 @@ advanced:
     - 93
     - 10
     - 43
-  homeassistant_legacy_entity_attributes: false
-  legacy_api: false
-  legacy_availability_payload: false
-  chanel: 11
-mqtt:
-  server: mqtt://core-mosquitto:1883
-  user: addons
-  password: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
-  base_topic: zigbee2mqtt_co
-frontend:
-  port: 8099
-serial:
-  port: tcp://172.27.66.3:6638
-device_options:
-  legacy: false
+  <span style="color: #cae682;">homeassistant_legacy_entity_attributes</span>: <span style="color: #e5786d;">false</span>
+  <span style="color: #cae682;">legacy_api</span>: <span style="color: #e5786d;">false</span>
+  <span style="color: #cae682;">legacy_availability_payload</span>: <span style="color: #e5786d;">false</span>
+  <span style="color: #cae682;">chanel</span>: 11
+<span style="color: #cae682;">mqtt</span>:
+  <span style="color: #cae682;">server</span>: mqtt://core-mosquitto:1883
+  <span style="color: #cae682;">user</span>: addons
+  <span style="color: #cae682;">password</span>: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
+  <span style="color: #cae682;">base_topic</span>: zigbee2mqtt_co
+<span style="color: #cae682;">frontend</span>:
+  <span style="color: #cae682;">port</span>: 8099
+<span style="color: #cae682;">serial</span>:
+  <span style="color: #cae682;">port</span>: tcp://172.27.66.3:6638
+<span style="color: #cae682;">device_options</span>:
+  <span style="color: #cae682;">legacy</span>: <span style="color: #e5786d;">false</span>
 </pre>
 </div>
 </div>
@@ -435,24 +422,24 @@ device_options:
 Usando la integración del <a href="https://www.home-assistant.io/integrations/smlight">fabricante</a> es posible crear una automatización que una vez al día reinicie el dispositivo. Esta es la que yo tengo creada con una hora variable en función del valor de un ayudante.
 </p>
 <div class="org-src-container">
-<pre class="src src-yaml">alias: General - Reseteo diario
-description: ""
-triggers:
-  - at: input_datetime.automatizacion_reseteo_hora
-    trigger: time
-conditions:
-  - condition: state
-    entity_id: input_boolean.automatizacion_reseteo_diario
-    state: "on"
-actions:
-  - action: button.press
-    metadata: {}
-    data: {}
-    target:
-      entity_id: button.slzb_06_reinicio_del_nucleo
-  - action: hassio.host_reboot
-    data: {}
-mode: single
+<pre class="src src-yaml"><span style="color: #cae682;">alias</span>: General - Reseteo diario
+<span style="color: #cae682;">description</span>: <span style="color: #95e454;">""</span>
+<span style="color: #cae682;">triggers</span>:
+  - <span style="color: #cae682;">at</span>: input_datetime.automatizacion_reseteo_hora
+    <span style="color: #cae682;">trigger</span>: time
+<span style="color: #cae682;">conditions</span>:
+  - <span style="color: #cae682;">condition</span>: state
+    <span style="color: #cae682;">entity_id</span>: input_boolean.automatizacion_reseteo_diario
+    <span style="color: #cae682;">state</span>: <span style="color: #95e454;">"on"</span>
+<span style="color: #cae682;">actions</span>:
+  - <span style="color: #cae682;">action</span>: button.press
+    <span style="color: #cae682;">metadata</span>: {<span style="color: #cae682;">}
+    data</span>: {<span style="color: #cae682;">}
+    target</span>:
+      <span style="color: #cae682;">entity_id</span>: button.slzb_06_reinicio_del_nucleo
+  - <span style="color: #cae682;">action</span>: hassio.host_reboot
+    <span style="color: #cae682;">data</span>: {<span style="color: #cae682;">}
+mode</span>: single
 </pre>
 </div>
 </div>
@@ -469,7 +456,7 @@ Después de haberse ido un par de veces la luz de la instancia donde tengo insta
 <div id="postamble" class="status">
 <p class="date">Date: 2024-08-14</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

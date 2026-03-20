@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>debian</title>
@@ -202,28 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">debian</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org77b3b7e">1. PDF - Instalar la compatibilidad para impresión a PDF</a></li>
-<li><a href="#org5077e82">2. GPG - Reparar el error de gpg (Video)</a></li>
-<li><a href="#orge61e8df">3. APT - Buscar packetes instalados -&gt; apt list &#x2013;installed nombre</a></li>
-<li><a href="#org59b712a">4. Instalación en un servidor</a>
-<ul>
-<li><a href="#org5b10f51">4.1. Descargar Debian y copiar la iso a un usb</a></li>
-<li><a href="#orgeca9de0">4.2. Configurar la BIOS para arrancar desde el USB</a></li>
-<li><a href="#org0c38031">4.3. Instalar Debian</a></li>
-<li><a href="#orgb2ae33b">4.4. Instalar sudo</a></li>
-<li><a href="#orgd26b69d">4.5. Modificar "/etc/network/interfaces" (IP estática)</a></li>
-<li><a href="#org3197c9b">4.6. Habilitar Wake On LAN (84:47:09:24:9e:fc)</a></li>
-<li><a href="#org25d9b08">4.7. Apagado remoto</a></li>
-<li><a href="#org52427e3">4.8. Instalar Docker</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 <p>
 Debian, un sistema operativo de código abierto basado en Linux, destaca por su estabilidad, seguridad y compromiso con el software libre. Su versatilidad lo hace apto para servidores, estaciones de trabajo y sistemas embebidos. Utiliza APT, un eficiente sistema de gestión de paquetes, para instalar y actualizar software. Debian es una elección sólida en entornos domésticos y empresariales debido a su confiabilidad y valores de software libre.
 </p>
@@ -285,8 +263,8 @@ Al terminar la instalación nos pedirá que quitemos el usb y reiniciemos el pc
 <h3 id="orgb2ae33b"><span class="section-number-3">4.4.</span> Instalar sudo</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
-<pre class="src src-bash">su -   # Ingresa como root
-apt update
+<pre class="src src-bash">su -   <span style="color: #99968b;"># </span><span style="color: #99968b;">Ingresa como root
+</span>apt update
 apt install sudo
 usermod -aG sudo tu_usuario
 </pre>
@@ -301,17 +279,17 @@ La interface de red principal se llama "enp2s0" y el archivo quedará así
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash"># This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
+<pre class="src src-bash"><span style="color: #99968b;"># </span><span style="color: #99968b;">This file describes the network interfaces available on your system
+</span><span style="color: #99968b;"># </span><span style="color: #99968b;">and how to activate them. For more information, see interfaces(5).
+</span>
+<span style="color: #e5786d;">source</span> /etc/network/interfaces.d/*
 
-source /etc/network/interfaces.d/*
-
-# The loopback network interface
-auto lo
+<span style="color: #99968b;"># </span><span style="color: #99968b;">The loopback network interface
+</span>auto lo
 iface lo inet loopback
 
-# The primary network interface
-auto enp2s0
+<span style="color: #99968b;"># </span><span style="color: #99968b;">The primary network interface
+</span>auto enp2s0
 iface enp2s0 inet static
 address 192.168.10.211
 netmask 255.255.255.0
@@ -386,8 +364,8 @@ Resulta que este método funciona pero no es persistente y después de un reinic
 <li>Crear archivo "wol" <code>sudo nano /etc/network/if-up.d/wol</code></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash">#!/bin/bash
-ethtool -s enp2s0 wol g
+<pre class="src src-bash"><span style="color: #99968b;">#</span><span style="color: #99968b;">!/bin/</span><span style="color: #8ac6f2; font-weight: bold;">bash</span><span style="color: #99968b;">
+</span>ethtool -s enp2s0 wol g
 </pre>
 </div>
 <ul class="org-ul">
@@ -396,7 +374,7 @@ ethtool -s enp2s0 wol g
 Para ejecutar en cada reinicio editamos el crontab de root <code>sudo crontab -e</code> y añadimos la siguiente línea:
 </p>
 <div class="org-src-container">
-<pre class="src src-text">@reboot /etc/network/if-up.d/wol	 
+<pre class="src src-text">@reboot /etc/network/if-up.d/wol         
 </pre>
 </div></li>
 </ul>
@@ -439,7 +417,7 @@ Añadimos al final la línea
 <div id="postamble" class="status">
 <p class="date">Date: 2023-09-04 lun 13:39</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

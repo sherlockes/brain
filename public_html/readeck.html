@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>readeck</title>
@@ -202,15 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">readeck</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgec62470">1. Docker compose original</a></li>
-<li><a href="#orgb0ff5ec">2. Docker compose modificado (Guardar datos en "~/dockers/readeck/data/"</a></li>
-</ul>
-</div>
-</div>
 <p>
 <a href="https://readeck.org/en/">https://readeck.org/en/</a>
 </p>
@@ -219,18 +210,18 @@
 <h2 id="orgec62470"><span class="section-number-2">1.</span> Docker compose original</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-yaml">version: '3.8'
-services:
-  readeck:
-    image: codeberg.org/readeck/readeck:latest
-    container_name: readeck
-    ports:
-      - "8000:8000"
-    volumes:
+<pre class="src src-yaml"><span style="color: #cae682;">version</span>: <span style="color: #95e454;">'3.8'</span>
+<span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">readeck</span>:
+    <span style="color: #cae682;">image</span>: codeberg.org/readeck/readeck:latest
+    <span style="color: #cae682;">container_name</span>: readeck
+    <span style="color: #cae682;">ports</span>:
+      - <span style="color: #95e454;">"8000:8000"</span>
+    <span style="color: #cae682;">volumes</span>:
       - readeck-data:/readeck
-    restart: unless-stopped
-volumes:
-  readeck-data:
+    <span style="color: #cae682;">restart</span>: unless-stopped
+<span style="color: #cae682;">volumes</span>:
+  <span style="color: #cae682;">readeck-data</span>:
 </pre>
 </div>
 </div>
@@ -256,15 +247,15 @@ Modificar el archivo "docker-compose.yml"
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">services:
-  readeck:
-    image: codeberg.org/readeck/readeck:latest
-    container_name: readeck
-    ports:
-      - "8000:8000"
-    volumes:
+<pre class="src src-yaml"><span style="color: #cae682;">services</span>:
+  <span style="color: #cae682;">readeck</span>:
+    <span style="color: #cae682;">image</span>: codeberg.org/readeck/readeck:latest
+    <span style="color: #cae682;">container_name</span>: readeck
+    <span style="color: #cae682;">ports</span>:
+      - <span style="color: #95e454;">"8000:8000"</span>
+    <span style="color: #cae682;">volumes</span>:
       - $HOME/dockers/readeck/data:/readeck/data
-    restart: unless-stopped
+    <span style="color: #cae682;">restart</span>: unless-stopped
 </pre>
 </div>
 
@@ -286,7 +277,7 @@ Ahora ya tenemos los datos de Readeck en "~/dockers/readeck/data/"
 <div id="postamble" class="status">
 <p class="date">Date: 2025-02-10</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

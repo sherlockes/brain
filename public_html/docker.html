@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>docker</title>
@@ -202,30 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">docker</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org047d133">1. Instalación</a>
-<ul>
-<li><a href="#org9e1044d">1.1. Ejecutar sin sudo</a></li>
-</ul>
-</li>
-<li><a href="#org515cabf">2. Comandos básicos</a>
-<ul>
-<li><a href="#org8e748bd">2.1. Sistema</a></li>
-<li><a href="#org972cde4">2.2. Imágenes</a></li>
-<li><a href="#orgcfff75d">2.3. Contenedores</a></li>
-<li><a href="#org13ef34e">2.4. Redes</a></li>
-<li><a href="#orgfdac7ab">2.5. Otros</a></li>
-</ul>
-</li>
-<li><a href="#org4ee6d1e">3. Moviendo un contenedor a otro Host</a></li>
-<li><a href="#org03e33b4">4. Crear un contenedor</a></li>
-<li><a href="#orgf59bcec">5. Mis contenedores</a></li>
-</ul>
-</div>
-</div>
 <p>
 <a href="https://www.docker.com">Docker</a> es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
 </p>
@@ -237,7 +213,7 @@
 <pre class="src src-bash">curl -fsSL https://get.docker.com -o get-docker.sh
 chmod u+x get-docker.sh
 sudo ./get-docker.sh
-sudo usermod -aG docker $(whoami)
+sudo usermod -aG docker $(<span style="color: #fa8072;">whoami</span>)
 </pre>
 </div>
 
@@ -393,7 +369,7 @@ curl <a href="https://rclone.org/install.sh">https://rclone.org/install.sh</a> |
 <div id="postamble" class="status">
 <p class="date">Date: 2026-01-05 lun 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

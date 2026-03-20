@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>strava</title>
@@ -202,16 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">strava</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgc99df53">1. Bibliotecas y módulos necesarios</a></li>
-<li><a href="#orgda8a255">2. Credenciales</a></li>
-<li><a href="#org2fa8061">3. Script en python</a></li>
-</ul>
-</div>
-</div>
 <p>
 Lo que pretende una creación de un propio "heatmap" a partir de mis actividades de Strava usando <a href="python.html#ID-06032c9e-2664-4b4d-9bd3-ed72e16768a1">python</a>. Veremos hasta donde llegamos y por donde pasamos&#x2026;
 </p>
@@ -257,11 +247,11 @@ Para cargar estas credenciales como variables a la hora de usar el script emplea
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">ruta_strava = '/home/sherlockes/strava/'
-ruta_archivo_env = ruta_strava + '.env'
+<pre class="src src-python"><span style="color: #cae682;">ruta_strava</span> = <span style="color: #95e454;">'/home/sherlockes/strava/'</span>
+<span style="color: #cae682;">ruta_archivo_env</span> = ruta_strava + <span style="color: #95e454;">'.env'</span>
 load_dotenv(ruta_archivo_env)
-client_id = os.getenv('CLIENT_ID')
-client_secret = os.getenv('CLIENT_SECRET')
+<span style="color: #cae682;">client_id</span> = os.getenv(<span style="color: #95e454;">'CLIENT_ID'</span>)
+<span style="color: #cae682;">client_secret</span> = os.getenv(<span style="color: #95e454;">'CLIENT_SECRET'</span>)
 </pre>
 </div>
 </div>
@@ -271,11 +261,11 @@ client_secret = os.getenv('CLIENT_SECRET')
 <h2 id="org2fa8061"><span class="section-number-2">3.</span> Script en python</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-python">from stravalib.client import Client
+<pre class="src src-python"><span style="color: #8ac6f2; font-weight: bold;">from</span> stravalib.client <span style="color: #8ac6f2; font-weight: bold;">import</span> Client
 
-client = Client()
-authorize_url = client.authorization_url(
-    client_id=114649, redirect_uri="http://localhost:8282/authorized"
+<span style="color: #cae682;">client</span> = Client()
+<span style="color: #cae682;">authorize_url</span> = client.authorization_url(
+    client_id=114649, redirect_uri=<span style="color: #95e454;">"http://localhost:8282/authorized"</span>
 )
 </pre>
 </div>
@@ -285,7 +275,7 @@ authorize_url = client.authorization_url(
 <div id="postamble" class="status">
 <p class="date">Date: 2023-10-31</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

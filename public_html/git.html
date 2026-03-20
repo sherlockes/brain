@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git</title>
@@ -202,20 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">git</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org5541c5b">0.1. Borrar último commit (Si el repositorio local y el remoto están sincronizados)</a></li>
-<li><a href="#org866a137">0.2. Actualizar el repositorio local -&gt; git fetch</a></li>
-</ul>
-</li>
-<li><a href="#org344cab5">1. Gitlab</a>
-<ul>
-<li><a href="#orgfa6dfa0">1.1. Servir directorio como html estático</a></li>
-</ul>
-</div>
-</div>
 <p>
 Git es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Su propósito es llevar registro de los cambios en archivos de computadora incluyendo coordinar el trabajo que varias personas realizan sobre archivos compartidos en un repositorio de código.
 </p>
@@ -243,18 +229,18 @@ git push origin -f
 Este es el contenido del archivo ".gitlab-ci.yml" situado en la raiz del repositorio, se publicará la carpeta "public"
 </p>
 <div class="org-src-container">
-<pre class="src src-yaml">  image: busybox
+<pre class="src src-yaml">  <span style="color: #cae682;">image</span>: busybox
 
-pages:
-  stage: deploy
-  environment: production
-  script:
-    - echo "The site will be deployed to $CI_PAGES_URL"
-  artifacts:
-    paths:
+<span style="color: #cae682;">pages</span>:
+  <span style="color: #cae682;">stage</span>: deploy
+  <span style="color: #cae682;">environment</span>: production
+  <span style="color: #cae682;">script</span>:
+    - echo <span style="color: #95e454;">"The site will be deployed to $CI_PAGES_URL"</span>
+  <span style="color: #cae682;">artifacts</span>:
+    <span style="color: #cae682;">paths</span>:
       - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  <span style="color: #cae682;">rules</span>:
+    - <span style="color: #cae682;">if</span>: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 </pre>
 </div>
 </div>
@@ -264,7 +250,7 @@ pages:
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-30 mié 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

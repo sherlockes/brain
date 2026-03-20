@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Docker Controller Bot</title>
@@ -202,19 +202,6 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">Docker Controller Bot</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org99d0b38">1. Info</a></li>
-<li><a href="#org3692078">2. Uso</a></li>
-<li><a href="#orgb014ab8">3. Enlace</a></li>
-<li><a href="#org6c29ac4">4. Variables de entorno</a></li>
-<li><a href="#orgdee8651">5. docker-compose.yml</a></li>
-<li><a href="#org4af06b0">6. Gestión</a></li>
-</ul>
-</div>
-</div>
 
 <div id="outline-container-org99d0b38" class="outline-2">
 <h2 id="org99d0b38"><span class="section-number-2">1.</span> Info</h2>
@@ -257,23 +244,23 @@ Docker-Controller-Bot es un bot de Telegram que permite controlar tus contenedor
 <h2 id="orgdee8651"><span class="section-number-2">5.</span> docker-compose.yml</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-yaml">services:
-    docker-controller-bot:
-        environment:
+<pre class="src src-yaml"><span style="color: #cae682;">services</span>:
+    <span style="color: #cae682;">docker-controller-bot</span>:
+        <span style="color: #cae682;">environment</span>:
             - TELEGRAM_TOKEN=*****************************
             - TELEGRAM_ADMIN=********
             - CONTAINER_NAME=docker-controller-bot
             - TZ=Europe/Madrid
             - CHECK_UPDATE_EVERY_HOURS=8
             - LANGUAGE=ES
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock # NO CAMBIAR
-            - /home/sherlockes/dockers/dcb:/app/schedule # CAMBIAR LA PARTE IZQ&gt;
-        image: dgongut/docker-controller-bot:latest
-        container_name: docker-controller-bot
-        restart: always
-        network_mode: host
-        tty: true
+        <span style="color: #cae682;">volumes</span>:
+            - /var/run/docker.sock:/var/run/docker.sock <span style="color: #99968b;"># </span><span style="color: #99968b;">NO CAMBIAR
+</span>            - /home/sherlockes/dockers/dcb:/app/schedule <span style="color: #99968b;"># </span><span style="color: #99968b;">CAMBIAR LA PARTE IZQ&gt;
+</span>        <span style="color: #cae682;">image</span>: dgongut/docker-controller-bot:latest
+        <span style="color: #cae682;">container_name</span>: docker-controller-bot
+        <span style="color: #cae682;">restart</span>: always
+        <span style="color: #cae682;">network_mode</span>: host
+        <span style="color: #cae682;">tty</span>: <span style="color: #e5786d;">true</span>
 </pre>
 </div>
 </div>
@@ -292,7 +279,7 @@ docker compose logs -f docker-controller-bot
 <div id="postamble" class="status">
 <p class="date">Date: 2026-01-01</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:43 -->
+<!-- 2026-03-20 vie 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>bash</title>
@@ -234,66 +234,12 @@
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">bash</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgf224da3">1. Gestión de archivos</a>
-<ul>
-<li><a href="#orge498f69">1.1. chown (propietario de un archivo)</a></li>
-<li><a href="#org1661c5b">1.2. diff (comparar dos directorios)</a></li>
-<li><a href="#orgb5bc4ae">1.3. ls (listar directorio)</a></li>
-<li><a href="#org0aa26f7">1.4. mv (mover / renombrar)</a></li>
-</ul>
-</li>
-<li><a href="#org3975b4f">2. Procesos y sistemas</a>
-<ul>
-<li><a href="#orgcfe32d1">2.1. ps - Kill (Listar y Matar un proceso)</a></li>
-<li><a href="#org229233f">2.2. which (Localizar un comando)</a></li>
-</ul>
-</li>
-<li><a href="#org9f74e4b">3. Red y descargas</a>
-<ul>
-<li><a href="#org223b356">3.1. Curl</a>
-<ul>
-<li><a href="#org381935b">3.1.1. Listar procesos (ps -aux)</a></li>
-<li><a href="#org005076d">3.1.2. Matar procesos (kill -9 pid)</a></li>
-</ul>
-</li>
-<li><a href="#org3cda93e">3.2. Rclone</a></li>
-</ul>
-</li>
-<li><a href="#org2cf533a">4. Texto y expresiones</a>
-<ul>
-<li><a href="#orge6b90f4">4.1. Regex</a>
-<ul>
-<li><a href="#org5ef1439">4.1.1. Uso de variable en una expresión regular -&gt; ${var</a></li>
-</ul>
-</li>
-<li><a href="#org8cd3eb8">4.2. sed</a></li>
-</ul>
-</li>
-<li><a href="#org862a4ce">5. Scripts</a>
-<ul>
-<li><a href="#org0b1ea91">5.1. Encabezado</a></li>
-<li><a href="#orgaf9a323">5.2. Lanzar un script y cerrar la terminal <code>./nombre_del_script.sh &amp;</code></a></li>
-<li><a href="#orgd25efa3">5.3. Parar un script ante un error</a></li>
-<li><a href="#orgc24de22">5.4. Directorio de un script</a></li>
-<li><a href="#orga22c963">5.5. Grabar imagen en pendrive o sd</a></li>
-<li><a href="#orga0a61b5">5.6. Comentarios</a></li>
-<li><a href="#org7724707">5.7. Uso de variables indirectas</a></li>
-</ul>
-</li>
-<li><a href="#org60d3968">6. Alias</a></li>
-</ul>
-</div>
-</div>
 <p>
 Hola GNU Bash o simplemente Bash (Bourne-again shell) es una interfaz de usuario de línea de comandos popular, específicamente un shell de Unix; así como un lenguaje de scripting. Bash fue originalmente escrito por Brian Fox para el sistema operativo GNU.​ Se ha utilizado ampliamente como el intérprete predeterminado para la mayoría de las distribuciones de GNU/Linux.
 </p>
 
 
-<div id="orgdc61630" class="figure">
+<div id="orga0a3c77" class="figure">
 <p><img src="./img/bash.png" alt="bash.png" width="300px" />
 </p>
 </div>
@@ -480,15 +426,15 @@ script<sub>dir</sub>=\(( cd -- "\)( dirname &#x2013; "${BASH<sub>SOURCE</sub>[0]
 <h3 id="orga22c963"><span class="section-number-3">5.5.</span> Grabar imagen en pendrive o sd</h3>
 <div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
-<pre class="src src-sh"># localizar la imagen y descomprimirla
-unzip loquesea.zip
-# localizar la unidad del pendrive
-df -h
-# desmontar la unidad (o varias...)
-umount /dev/sdb1
+<pre class="src src-sh"><span style="color: #99968b;"># </span><span style="color: #99968b;">localizar la imagen y descomprimirla
+</span>unzip loquesea.zip
+<span style="color: #99968b;"># </span><span style="color: #99968b;">localizar la unidad del pendrive
+</span>df -h
+<span style="color: #99968b;"># </span><span style="color: #99968b;">desmontar la unidad (o varias...)
+</span>umount /dev/sdb1
 umount /dev/sdb2
-# grabar el pendrive
-sudo dd bs=1M if=loquesea.img of=dev/sdb status=progress
+<span style="color: #99968b;"># </span><span style="color: #99968b;">grabar el pendrive
+</span>sudo dd <span style="color: #cae682;">bs</span>=1M <span style="color: #cae682;">if</span>=loquesea.img <span style="color: #cae682;">of</span>=dev/sdb <span style="color: #cae682;">status</span>=progress
 </pre>
 </div>
 </div>
@@ -508,11 +454,11 @@ sudo dd bs=1M if=loquesea.img of=dev/sdb status=progress
 <h3 id="org7724707"><span class="section-number-3">5.7.</span> Uso de variables indirectas</h3>
 <div class="outline-text-3" id="text-5-7">
 <div class="org-src-container">
-<pre class="src src-sh">var=x; val=foo
-eval "$var=\$val"
+<pre class="src src-sh"><span style="color: #cae682;">var</span>=x; <span style="color: #cae682;">val</span>=foo
+<span style="color: #e5786d;">eval</span> <span style="color: #95e454;">"$var=\$val"</span>
 
-var=x;x=foo
-echo ${!var}
+<span style="color: #cae682;">var</span>=x;<span style="color: #cae682;">x</span>=foo
+<span style="color: #e5786d;">echo</span> ${<span style="color: #cae682;">!</span>var}
 </pre>
 </div>
 </div>
@@ -535,7 +481,7 @@ echo ${!var}
 <div id="postamble" class="status">
 <p class="date">Date: 2026-01-04 dom 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="date">Created: 2026-03-20 vie 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
