@@ -7,12 +7,12 @@
 #+filetags: code
 #+OPTIONS: ispell:nil
 
-* [[id:b2eb44fa-1010-4219-9dea-ea4458e92d64][bash]]
-* [[id:06032c9e-2664-4b4d-9bd3-ed72e16768a1][python]]
-* [[id:5f94cb35-4aa6-4b6b-8b9f-5e0dde6cd4eb][markdown]]
-* [[id:461af998-e8ee-4b7e-a56d-56d6058d57f0][regexp]]
-* [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
-* [[id:4185090f-0488-404d-b2d0-1782cde99f7b][jinja2]]
-* [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]]
+** [[id:b2eb44fa-1010-4219-9dea-ea4458e92d64][bash]]
+** [[id:06032c9e-2664-4b4d-9bd3-ed72e16768a1][python]]
+** [[id:5f94cb35-4aa6-4b6b-8b9f-5e0dde6cd4eb][markdown]]
+** [[id:461af998-e8ee-4b7e-a56d-56d6058d57f0][regexp]]
+** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
+** [[id:4185090f-0488-404d-b2d0-1782cde99f7b][jinja2]]
+** [[id:d0e0ffd7-78fa-4fe9-a6b2-3a59223169c9][org-mode]]
 
-* [[id:8ecc1892-6c70-4eee-a25c-fb84d06021b1][ia-prompts]]
+** [[id:8ecc1892-6c70-4eee-a25c-fb84d06021b1][ia-prompts]]
