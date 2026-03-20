@@ -5,10 +5,11 @@
 #+STARTUP: overview
 #+date: 2026-02-13
 #+filetags: :prompt:pdf:json:
+#+OPTIONS: ispell:nil
 
 *** Modificaciones en SherloCaster
 Para realizar modificaciones en la app primero hay que pasar el contexto, usaremos el siguiente promp y le añadiremos la salida del comando de abajo para dar info de los archivos.
-#+begin_src
+#+begin_src txt
 Soy el desarrollador de Sherlocaster, una aplicación dockerizada en Python que automatiza la creación de podcasts y que puedes ver en el repositorio https://github.com/sherlockes/sherlocaster. La app descarga audio de YouTube, Twitch y Kick, lo procesa a mono (64kbps), genera un feed RSS compatible y lo sube a un almacenamiento remoto mediante rclone.
 
 Arquitectura:

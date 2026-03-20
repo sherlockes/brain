@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>cc-tool</title>
+<title>SLZB-06</title>
 <meta name="author" content="Sherlockes" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -201,135 +201,275 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">cc-tool</h1>
+<h1 class="title">SLZB-06</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7f9074c">1. Configurar cliente Wireguard en HA</a></li>
+<li><a href="#org08fc6dd">2. Configuración general del SLZB-06</a></li>
+<li><a href="#org18dbc13">3. Configuración de vpn del SLZB-06</a></li>
+<li><a href="#org40b7b12">4. Añadir una nueva instancia de Zigbee2mqtt</a></li>
+<li><a href="#org7ddbe1e">5. Programar reinicio</a></li>
+<li><a href="#orgf49aa3b">6. Perdida de conexión tras reinicio</a></li>
+</ul>
+</div>
+</div>
 <p>
-Para la instalación de cc-tool en Linux Mint hay que instalar las dependencias, clonar el repositorio y compilarlo para nuestra máquina. Arrancamos con los siguientes comandos:
+<a href="https://smlight.tech/product/slzb-06/">https://smlight.tech/product/slzb-06/</a>
 </p>
+
+<div id="outline-container-org7f9074c" class="outline-2">
+<h2 id="org7f9074c"><span class="section-number-2">1.</span> Configurar cliente Wireguard en HA</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Con el complemento de <a href="https://community.home-assistant.io/t/home-assistant-community-add-on-wireguard/134662">Wireguard</a> instalado y funcionando en el servidor de <a href="home_assistant.html#ID-42e68ab8-cffa-4b48-9974-dfd9a9ebb694">home assistant</a> hay que añadir un nuevo cliente en el archivo de configuración
+</p>
+
 <div class="org-src-container">
-<pre class="src src-bash">sudo apt-get update
-sudo apt-get install git build-essential libusb-1.0-0-dev
-sudo apt-get install automake autoconf libtool
-git clone https://github.com/dashesy/cc-tool.git
-cd cc-tool
+<pre class="src src-yaml">- name: slzb-06
+  addresses:
+    - 172.27.66.3
+  allowed_ips: []
+  client_allowed_ips:
+    - 192.168.10.0/24
+    - 172.27.66.2/24
 </pre>
 </div>
-
-<p>
-El siguiente paso es configurar la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
+</div>
 </div>
 
-<p>
-Durante el configure obtengo un error que indica que no dispongo de la versión de Boost igual o superior a 1.74:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: cannot find Boost headers version &gt;= 1.74.0
-</pre>
+<div id="outline-container-org08fc6dd" class="outline-2">
+<h2 id="org08fc6dd"><span class="section-number-2">2.</span> Configuración general del SLZB-06</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Acceder a <a href="http://slzb-06.local/">http://slzb-06.local/</a></li>
+<li>Cambiar el idioma</li>
+<li>Configurar Modo del módulo de radio como "Zigbee coordinador"</li>
+<li>Configurar Modo de conexión como "Ethernet conexión"</li>
+</ul>
+</div>
 </div>
 
-<p>
-Instalamos la versión requerida de Boost: (1.74)
+<div id="outline-container-org18dbc13" class="outline-2">
+<h2 id="org18dbc13"><span class="section-number-2">3.</span> Configuración de vpn del SLZB-06</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Habilitar vpn en slzb-06.local</li>
+<li><p>
+Los parámetros con los que rellenar los siguientes campos se encuentran en el archivo "/ssl/wireguard/slzb-06/client.conf" de nuestro servidor de Home Assistant donde está corriendo el complemento de Wireguard
 </p>
 
-<p>
-Mediante apt se instala la versión 1.71 por lo que hay que descargarla de la web y compilarla para nuestra máquina mediante las siguientes instrucciones.
-</p>
-<pre class="example">
-wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
-tar -xzf boost_1_74_0.tar.gz
-cd boost_1_74_0
-./bootstrap.sh
-sudo ./b2 install
-</pre>
-
-<p>
-Con Boost ya instalado, intento de nuevo la configuración de la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Ahora, al hacer el "Configure" obtengo el error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: the libext variable is empty, did you invoke Libtool?
-</pre>
-</div>
-
-<p>
-Parece que no tengo instalado "Libtool" o instalado incorrectamente por lo que lo reinstalo.
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get install --reinstall libtool
-</pre>
-</div>
-
-<p>
-Volvemos a regenerar el archivo configure:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Al fin lo pasa sin error pero ahora al hacer el "make" obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure.ac:8: error: required file './compile' not found
-</pre>
-</div>
-
-<p>
-Para corregir este error hay que regenerar los archivos de Autotools y realizar la compilación:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">autoreconf --install
-make
-sudo make install
-cc-tool --version
-</pre>
-</div>
-
-<p>
-Al comprobar la versión instalada de cc-tool obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
-</pre>
-</div>
-
-<p>
-Para corregirlo hay que actualizar las rutas de bibliotecas compartidas:
-</p>
 <blockquote>
 <p>
-El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost<sub>filesystem.so.1.74.0</sub> y se ejecute correctamente.
+Para poder acceder al directorio raiz, en Home assistant Ajustes-Complementos-File editor desactivar la opción "Enforce Basepath"
 </p>
-</blockquote>
+</blockquote></li>
+
+<li>Rellenar los siguiente campos</li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Dirección IP local</td>
+<td class="org-left">172.27.66.3</td>
+</tr>
+
+<tr>
+<td class="org-left">Llave privada</td>
+<td class="org-left">PrivateKey</td>
+</tr>
+
+<tr>
+<td class="org-left">Dirección IP del terminal</td>
+<td class="org-left">homezgz.ddns.net</td>
+</tr>
+
+<tr>
+<td class="org-left">Llava pública</td>
+<td class="org-left">PublicKey</td>
+</tr>
+
+<tr>
+<td class="org-left">Puerto de terminal</td>
+<td class="org-left">51820</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>En HA acceder a "<a href="https://github.com/hassio-addons/addon-ssh">Advanced SSH &amp; Web Terminal</a>"</li>
+<li>Deshabilitar el modo de protección</li>
+<li><p>
+Ejecutar el siguiente comando
+</p>
+
+<pre class="example">
+host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+</pre></li>
+
+<li>En configuration.yaml de HA añadir</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-yaml">command_line:
+  - sensor:
+      name: wireguard_route
+      command: host_result=$(host a0d7b954-wireguard); addon_ip=${host_result##* }; ip route replace 172.27.66.0/24 via $addon_ip; echo $addon_ip
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Reiniciar HA</li>
+</ul>
 
 <p>
-Al instalar manualmente Boost hay que agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda y actualizar la actualiza la caché de las bibliotecas dinámicas:
+Siguiendo el artículo de <a href="https://programarfacil.com/domotica/multiples-casas-con-home-assistant/">ProgramarFacil</a> he llegado hasta aquí. Ahora me encuentro con que en mi servidor ya tengo instaladas una instancia de ZHA y Z2M por lo que no puedo seguir sus pasos
+</p>
+</div>
+</div>
+
+<div id="outline-container-org40b7b12" class="outline-2">
+<h2 id="org40b7b12"><span class="section-number-2">4.</span> Añadir una nueva instancia de Zigbee2mqtt</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Para añadir una nueva instancia de Z2M hay que hacer un truco añadiendo en la tienda de complementos un repositorio duplicado de zigbee2mqtt
+</p>
+
+<p>
+<a href="https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/">https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/</a>
+<a href="https://github.com/zigbee2mqtt/hassio-zigbee2mqtt//">https://github.com/zigbee2mqtt/hassio-zigbee2mqtt//</a>
+</p>
+
+<ul class="org-ul">
+<li>Añadimos la nueva instancia</li>
+<li><p>
+En las opciones del complemento incluimos lo siguiente
+data<sub>path</sub>: /config/zigbee2mqtt<sub>co</sub>
+</p>
+
+<p>
+socat:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
-sudo ldconfig
+<pre class="src src-yaml">enabled: false
+master: pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777
+slave: tcp-listen:8486,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5
+options: "-d -d"
+log: false
 </pre>
 </div>
 
 <p>
-Con sólo estos pasos podemos decir que ya tenemos instalado cc-tool.
+puerto:8486
+</p>
+
+<p>
+El directorio de configuración deberá ser diferente al de la instancia de Z2M que ya teníamos instalada y el puerto uno mayor.
+</p></li>
+
+<li>Editamos el archivo "/homeassistant/zigbee2mqtt<sub>co</sub>/configuration.yaml" para dejarlo con el siguiente contenido.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-yaml">homeassistant: true
+data_path: /config/zigbee2mqtt_co
+advanced:
+  network_key:
+    - 171
+    - 22
+    - 21
+    - 221
+    - 215
+    - 33
+    - 213
+    - 8
+    - 233
+    - 18
+    - 232
+    - 17
+    - 56
+    - 114
+    - 212
+    - 157
+  pan_id: 6754
+  ext_pan_id:
+    - 115
+    - 127
+    - 62
+    - 198
+    - 250
+    - 93
+    - 10
+    - 43
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+  chanel: 11
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: OuyaiCh5acai7aebohz5Noh3Ziegho0ich7jo8HeicheiH5yahhiaphaiTifog9k
+  base_topic: zigbee2mqtt_co
+frontend:
+  port: 8099
+serial:
+  port: tcp://172.27.66.3:6638
+device_options:
+  legacy: false
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ddbe1e" class="outline-2">
+<h2 id="org7ddbe1e"><span class="section-number-2">5.</span> Programar reinicio</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Usando la integración del <a href="https://www.home-assistant.io/integrations/smlight">fabricante</a> es posible crear una automatización que una vez al día reinicie el dispositivo. Esta es la que yo tengo creada con una hora variable en función del valor de un ayudante.
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml">alias: General - Reseteo diario
+description: ""
+triggers:
+  - at: input_datetime.automatizacion_reseteo_hora
+    trigger: time
+conditions:
+  - condition: state
+    entity_id: input_boolean.automatizacion_reseteo_diario
+    state: "on"
+actions:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.slzb_06_reinicio_del_nucleo
+  - action: hassio.host_reboot
+    data: {}
+mode: single
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf49aa3b" class="outline-2">
+<h2 id="orgf49aa3b"><span class="section-number-2">6.</span> Perdida de conexión tras reinicio</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Después de haberse ido un par de veces la luz de la instancia donde tengo instalado el SLZB-06 resulta que Z2M no consigue conectar con el dispositivo a través de la VPN. Es posible acceder a la interface web con normalidad. Finalmente se resuelve el problema activando el modo usb y posteriormente volviendo al modo ethernet.
 </p>
 </div>
+</div>
+</div>
 <div id="postamble" class="status">
-<p class="date">Date: 2024-09-11</p>
+<p class="date">Date: 2024-08-14</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

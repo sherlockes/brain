@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:17 -->
+<!-- 2026-03-20 vie 12:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>index</title>
+<title>zha</title>
 <meta name="author" content="Sherlockes" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,7 +193,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css'>
+<link rel='stylesheet' type='text/css' href='https://gongzhitaao.org/orgcss/org.css'/>
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -201,31 +201,73 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">index</h1>
-<p>
-Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
-</p>
-
-<ul class="org-ul">
-<li><a href="_index_lenguajes.html#ID-192ac837-de8f-4dbb-a294-2d0ff360184f">Lenguajes de programación</a></li>
-<li><a href="linux.html#ID-ccb379dd-3d92-4290-9fbd-5e56606da7bc">Linux</a></li>
-<li><a href="_index_aplicaciones.html#ID-9c1e38a5-2c38-4370-b483-f637457686d4">Aplicaciones</a></li>
-<li><a href="_index_hardware.html#ID-95515039-0726-44b0-a140-2d60edcff021">Hardware</a></li>
-<li><a href="projects.html#ID-efa93d01-3a2a-4286-85c2-47bbfb633670">projects</a></li>
-
-<li>Indice
-<ul class="org-ul">
-<li>lenguajes ( #+filetags: code )</li>
-<li>linux</li>
-<li>aplicaciones ( #+filetags: apps )</li>
-<li>projects ( #+filetags: project )</li>
-</ul></li>
+<h1 class="title">zha</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org05bfaf1">1. Calibración del TS130F para las persianas</a>
+<ul>
+<li><a href="#orgac98dca">1.1. Calibración por movimiento</a></li>
+<li><a href="#org2a372a0">1.2. Calibración por tiempo</a></li>
+</ul>
+</li>
 </ul>
 </div>
+</div>
+<p>
+La integración ZHA permite conectar dispositivos Zigbee a <a href="home_assistant.html#ID-42e68ab8-cffa-4b48-9974-dfd9a9ebb694">Home Assistant</a> de forma inalámbrica usando coordinadores Zigbee. Emplea la biblioteca zigpy de <a href="python.html#ID-06032c9e-2664-4b4d-9bd3-ed72e16768a1">Python</a> para implementar una pila Zigbee independiente del hardware. Todos los coordinadores compatibles con zigpy son utilizables con ZHA.
+</p>
+<!--more-->
+
+<div id="outline-container-org05bfaf1" class="outline-2">
+<h2 id="org05bfaf1"><span class="section-number-2">1.</span> Calibración del TS130F para las persianas</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgac98dca" class="outline-3">
+<h3 id="orgac98dca"><span class="section-number-3">1.1.</span> Calibración por movimiento</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Este tipo de calibración consiste en activar el modo de calibración y realizar un movimiento de la persiana entre sus extremos siguiendo estos pasos:
+</p>
+<ul class="org-ul">
+<li>En la pestaña "Clústeres" selecciona los clústeres "TuyaCoveringCluster"</li>
+<li>En el atributo "Calibration" poner "0" como valor</li>
+<li>Escribir atributo para entrar en el modo de calibración</li>
+<li>En la pestaña comandos seleccionar "down<sub>close</sub>" y emitir el comando</li>
+<li>La persiana empieza a bajar</li>
+<li>Seleccionar el comando "stop" y esperar mientras baja la persiana.</li>
+<li>Emitir el comando justo cuando llegue a la posición de cerrada.</li>
+<li>Seleccionar el comando "up<sub>open</sub>" y emitirlo.</li>
+<li>Mientras la persiana sube seleccionar el comando "stop"</li>
+<li>Justo cuando la persiana llega arriba emitir el comando "stop"</li>
+<li>En el atributo "Calibration" poner "1" como valor</li>
+<li>Escribir el atributo para salir del modo de calibración.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2a372a0" class="outline-3">
+<h3 id="org2a372a0"><span class="section-number-3">1.2.</span> Calibración por tiempo</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Es muy probable que a que la persiana va haciendo varios ciclos de subidas y bajadas esta no llegue a alcanzar una de las posiciones extremas. En este caso realizaremos una recalibración del tiempo de subida/bajada. Para definir los pasos supondremos el caso de que la persiana no llegue a subir del todo.
+</p>
+<ul class="org-ul">
+<li>En la pestaña "Clústeres" selecciona los clústeres "TuyaCoveringCluster"</li>
+<li>En la pestaña "Atributos" seleccionamos y leemos "current position lift percentage"</li>
+<li>Introducimos y escribimos el porcentaje real de subida para poder seguir subiendo.</li>
+<li>Subir la persiana (Si no alcanza la pos superior, repetir el paso anterior)</li>
+<li>Leer el atributo "Calibration time" (Décimas de segundo)</li>
+<li>Incrementar y escribir el valor con el tiempo que le faltaba para llegar arriba</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div id="postamble" class="status">
-<p class="date">Date: 2023-08-30</p>
+<p class="date">Date: 2024-02-08</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:17</p>
+<p class="date">Created: 2026-03-20 vie 12:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

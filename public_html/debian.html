@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-20 vie 12:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>debian</title>
+<meta name="author" content="Sherlockes" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel='stylesheet' type='text/css' href='https://gongzhitaao.org/orgcss/org.css'/>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">debian</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org77b3b7e">1. PDF - Instalar la compatibilidad para impresión a PDF</a></li>
+<li><a href="#org5077e82">2. GPG - Reparar el error de gpg (Video)</a></li>
+<li><a href="#orge61e8df">3. APT - Buscar packetes instalados -&gt; apt list &#x2013;installed nombre</a></li>
+<li><a href="#org59b712a">4. Instalación en un servidor</a>
+<ul>
+<li><a href="#org5b10f51">4.1. Descargar Debian y copiar la iso a un usb</a></li>
+<li><a href="#orgeca9de0">4.2. Configurar la BIOS para arrancar desde el USB</a></li>
+<li><a href="#org0c38031">4.3. Instalar Debian</a></li>
+<li><a href="#orgb2ae33b">4.4. Instalar sudo</a></li>
+<li><a href="#orgd26b69d">4.5. Modificar "/etc/network/interfaces" (IP estática)</a></li>
+<li><a href="#org3197c9b">4.6. Habilitar Wake On LAN (84:47:09:24:9e:fc)</a></li>
+<li><a href="#org25d9b08">4.7. Apagado remoto</a></li>
+<li><a href="#org52427e3">4.8. Instalar Docker</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Debian, un sistema operativo de código abierto basado en Linux, destaca por su estabilidad, seguridad y compromiso con el software libre. Su versatilidad lo hace apto para servidores, estaciones de trabajo y sistemas embebidos. Utiliza APT, un eficiente sistema de gestión de paquetes, para instalar y actualizar software. Debian es una elección sólida en entornos domésticos y empresariales debido a su confiabilidad y valores de software libre.
+</p>
+
+<!--more-->
+
+<div id="outline-container-org77b3b7e" class="outline-2">
+<h2 id="org77b3b7e"><span class="section-number-2">1.</span> PDF - Instalar la compatibilidad para impresión a PDF</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh">apt-get -y install cups
+apt-get -y install printer-driver-cups-pdf
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5077e82" class="outline-2">
+<h2 id="org5077e82"><span class="section-number-2">2.</span> GPG - Reparar el error de gpg (<a href="https://www.youtube.com/watch?v=AFNPYDWXeVI">Video</a>)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Las firmas siguientes no se pudieron verificar porque su clave pública no está disponible: NO<sub>PUBKEY</sub> 4EB27DB2A3B88B8B
+<code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge61e8df" class="outline-2">
+<h2 id="orge61e8df"><span class="section-number-2">3.</span> APT - Buscar packetes instalados -&gt; apt list &#x2013;installed nombre</h2>
+</div>
+<div id="outline-container-org59b712a" class="outline-2">
+<h2 id="org59b712a"><span class="section-number-2">4.</span> Instalación en un servidor</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org5b10f51" class="outline-3">
+<h3 id="org5b10f51"><span class="section-number-3">4.1.</span> Descargar <a href="https://www.debian.org/distrib/">Debian</a> y copiar la iso a un usb</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Puesto que el servidor va a tener conexión a internet, descargamos una imagen de instalación pequeña.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeca9de0" class="outline-3">
+<h3 id="orgeca9de0"><span class="section-number-3">4.2.</span> Configurar la BIOS para arrancar desde el USB</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Se accede mediante F2 y se pone el primer medio de arranque el usb
+</p>
+</div>
+</div>
+<div id="outline-container-org0c38031" class="outline-3">
+<h3 id="org0c38031"><span class="section-number-3">4.3.</span> Instalar Debian</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Al terminar la instalación nos pedirá que quitemos el usb y reiniciemos el pc
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2ae33b" class="outline-3">
+<h3 id="orgb2ae33b"><span class="section-number-3">4.4.</span> Instalar sudo</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-bash">su -   # Ingresa como root
+apt update
+apt install sudo
+usermod -aG sudo tu_usuario
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd26b69d" class="outline-3">
+<h3 id="orgd26b69d"><span class="section-number-3">4.5.</span> Modificar "/etc/network/interfaces" (IP estática)</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+La interface de red principal se llama "enp2s0" y el archivo quedará así
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"># This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto enp2s0
+iface enp2s0 inet static
+address 192.168.10.211
+netmask 255.255.255.0
+gateway 192.168.10.1
+dns-nameservers 192.168.10.210 8.8.8.8
+</pre>
+</div>
+
+<p>
+Para aplicar la configuración y reiniciar la tarjeta de red usaremos <code>sudo systemctl restart networking</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3197c9b" class="outline-3">
+<h3 id="org3197c9b"><span class="section-number-3">4.6.</span> Habilitar Wake On LAN (84:47:09:24:9e:fc)</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+A pesar de que en la BIOS he habilitado el "Wake On LAN" y el encendido automático, cuando envío el paquete a la MAC del servidor no se enciende automáticamente por lo que modificaré los parámetros de la tarjeta de red mediante la aplicación "ethtool" tal y como se explica <a href="https://www.linuxparty.es/29-internet/8299-configurar-wake-on-lan-wol-en-linux-como-se-usa">aquí</a>.
+</p>
+
+<ul class="org-ul">
+<li><p>
+Listamos las interfaces de red para conocer el nombre <code>ip link show</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">     1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp1s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 84:47:09:24:9e:fb brd ff:ff:ff:ff:ff:ff
+3: enp2s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 84:47:09:24:9e:fc brd ff:ff:ff:ff:ff:ff
+4: wlp0s20f3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether b0:dc:ef:ca:9d:65 brd ff:ff:ff:ff:ff:ff
+</pre>
+</div>
+<p>
+En este caso vemos que la que está activa es "enp2s0" y pasaremos a analizarla con ethtool
+</p></li>
+<li>Instalamos la aplicación con <code>sudo apt install ethtool</code></li>
+<li><p>
+Vemos la configuración de la tarjeta de red con <code>sudo ethtool enp2s0</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">PHYAD: 0
+Transceiver: external
+MDI-X: Unknown
+Supports Wake-on: pumbg
+Wake-on: d
+Link detected: yes
+</pre>
+</div></li>
+<li><p>
+<code>ethtool -s enp2s0 wol g</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">PHYAD: 0
+Transceiver: external
+MDI-X: Unknown
+Supports Wake-on: pumbg
+Wake-on: g
+Link detected: yes
+</pre>
+</div></li>
+</ul>
+
+<p>
+Resulta que este método funciona pero no es persistente y después de un reinicio se desactiva el WOL por lo que hay que crear un script que lo active en cada reinicio del servidor.
+</p>
+
+<ul class="org-ul">
+<li>Crear archivo "wol" <code>sudo nano /etc/network/if-up.d/wol</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash">#!/bin/bash
+ethtool -s enp2s0 wol g
+</pre>
+</div>
+<ul class="org-ul">
+<li>Permiso de ejecución <code>sudo chmod +x /etc/network/if-up.d/wol</code></li>
+<li><p>
+Para ejecutar en cada reinicio editamos el crontab de root <code>sudo crontab -e</code> y añadimos la siguiente línea:
+</p>
+<div class="org-src-container">
+<pre class="src src-text">@reboot /etc/network/if-up.d/wol	 
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org25d9b08" class="outline-3">
+<h3 id="org25d9b08"><span class="section-number-3">4.7.</span> Apagado remoto</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+Tenemos un EQUIPO desde el que queremos apagar un SERVIDOR
+</p>
+<ul class="org-ul">
+<li>Creamos la ssh-key en EQUIPO <code>ssh-keygen</code></li>
+<li>Copiamos la ssh-key al SERVIDOR <code>ssh-copy-id user@TARGET</code></li>
+<li>Ejecutamos visudo en el SERVIDOR <code>sudo visudo</code></li>
+<li><p>
+Añadimos al final la línea
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">sherlockes ALL=NOPASSWD:/sbin/poweroff
+</pre>
+</div></li>
+<li>Ya podemos apagar mediante ~ssh -t user@EQUIPO 'sudo poweroff"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org52427e3" class="outline-3">
+<h3 id="org52427e3"><span class="section-number-3">4.8.</span> Instalar Docker</h3>
+<div class="outline-text-3" id="text-4-8">
+<ul class="org-ul">
+<li>Instalación usando repositorio apt según <a href="https://docs.docker.com/engine/install/debian/#install-using-the-repository">Instrucciones oficiales</a></li>
+<li>Modificar usuarios para poder ejecutar docker sin sudo: <a href="https://docs.docker.com/engine/install/linux-postinstall/">info</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2023-09-04 lun 13:39</p>
+<p class="author">Author: Sherlockes</p>
+<p class="date">Created: 2026-03-20 vie 12:43</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

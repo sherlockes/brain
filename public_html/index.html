@@ -6,7 +6,7 @@
 <!-- 2026-03-20 vie 12:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>cc-tool</title>
+<title>index</title>
 <meta name="author" content="Sherlockes" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -201,133 +201,29 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">cc-tool</h1>
+<h1 class="title">index</h1>
 <p>
-Para la instalación de cc-tool en Linux Mint hay que instalar las dependencias, clonar el repositorio y compilarlo para nuestra máquina. Arrancamos con los siguientes comandos:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get update
-sudo apt-get install git build-essential libusb-1.0-0-dev
-sudo apt-get install automake autoconf libtool
-git clone https://github.com/dashesy/cc-tool.git
-cd cc-tool
-</pre>
-</div>
-
-<p>
-El siguiente paso es configurar la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Durante el configure obtengo un error que indica que no dispongo de la versión de Boost igual o superior a 1.74:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: cannot find Boost headers version &gt;= 1.74.0
-</pre>
-</div>
-
-<p>
-Instalamos la versión requerida de Boost: (1.74)
+Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
 </p>
 
-<p>
-Mediante apt se instala la versión 1.71 por lo que hay que descargarla de la web y compilarla para nuestra máquina mediante las siguientes instrucciones.
-</p>
-<pre class="example">
-wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
-tar -xzf boost_1_74_0.tar.gz
-cd boost_1_74_0
-./bootstrap.sh
-sudo ./b2 install
-</pre>
+<ul class="org-ul">
+<li><a href="_index_lenguajes.html#ID-192ac837-de8f-4dbb-a294-2d0ff360184f">Lenguajes de programación</a></li>
+<li><a href="linux.html#ID-ccb379dd-3d92-4290-9fbd-5e56606da7bc">Linux</a></li>
+<li><a href="_index_aplicaciones.html#ID-9c1e38a5-2c38-4370-b483-f637457686d4">Aplicaciones</a></li>
+<li><a href="_index_hardware.html#ID-95515039-0726-44b0-a140-2d60edcff021">Hardware</a></li>
+<li><a href="projects.html#ID-efa93d01-3a2a-4286-85c2-47bbfb633670">projects</a></li>
 
-<p>
-Con Boost ya instalado, intento de nuevo la configuración de la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Ahora, al hacer el "Configure" obtengo el error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: the libext variable is empty, did you invoke Libtool?
-</pre>
-</div>
-
-<p>
-Parece que no tengo instalado "Libtool" o instalado incorrectamente por lo que lo reinstalo.
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get install --reinstall libtool
-</pre>
-</div>
-
-<p>
-Volvemos a regenerar el archivo configure:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Al fin lo pasa sin error pero ahora al hacer el "make" obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure.ac:8: error: required file './compile' not found
-</pre>
-</div>
-
-<p>
-Para corregir este error hay que regenerar los archivos de Autotools y realizar la compilación:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">autoreconf --install
-make
-sudo make install
-cc-tool --version
-</pre>
-</div>
-
-<p>
-Al comprobar la versión instalada de cc-tool obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
-</pre>
-</div>
-
-<p>
-Para corregirlo hay que actualizar las rutas de bibliotecas compartidas:
-</p>
-<blockquote>
-<p>
-El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost<sub>filesystem.so.1.74.0</sub> y se ejecute correctamente.
-</p>
-</blockquote>
-
-<p>
-Al instalar manualmente Boost hay que agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda y actualizar la actualiza la caché de las bibliotecas dinámicas:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
-sudo ldconfig
-</pre>
-</div>
-
-<p>
-Con sólo estos pasos podemos decir que ya tenemos instalado cc-tool.
-</p>
+<li>Indice
+<ul class="org-ul">
+<li>lenguajes ( #+filetags: code )</li>
+<li>linux</li>
+<li>aplicaciones ( #+filetags: apps )</li>
+<li>projects ( #+filetags: project )</li>
+</ul></li>
+</ul>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2024-09-11</p>
+<p class="date">Date: 2023-08-30</p>
 <p class="author">Author: Sherlockes</p>
 <p class="date">Created: 2026-03-20 vie 12:44</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>

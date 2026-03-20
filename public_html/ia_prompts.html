@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>cc-tool</title>
+<title>ia-prompts</title>
 <meta name="author" content="Sherlockes" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -201,135 +201,206 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">cc-tool</h1>
-<p>
-Para la instalación de cc-tool en Linux Mint hay que instalar las dependencias, clonar el repositorio y compilarlo para nuestra máquina. Arrancamos con los siguientes comandos:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get update
-sudo apt-get install git build-essential libusb-1.0-0-dev
-sudo apt-get install automake autoconf libtool
-git clone https://github.com/dashesy/cc-tool.git
-cd cc-tool
-</pre>
+<h1 class="title">ia-prompts</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf5bf0c7">1. Modificaciones en SherloCaster</a></li>
+<li><a href="#orgdf5b755">2. Crear artículo para Blog a partir de app web</a></li>
+<li><a href="#org5e99826">3. Extraer menús de pdf para el cole</a></li>
+<li><a href="#orgbb7350a">4. Extraer menú de pdf para "Menú de Sarita"</a></li>
+</ul>
+</div>
 </div>
 
+<div id="outline-container-orgf5bf0c7" class="outline-2">
+<h2 id="orgf5bf0c7"><span class="section-number-2">1.</span> Modificaciones en SherloCaster</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-El siguiente paso es configurar la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Durante el configure obtengo un error que indica que no dispongo de la versión de Boost igual o superior a 1.74:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: cannot find Boost headers version &gt;= 1.74.0
-</pre>
-</div>
-
-<p>
-Instalamos la versión requerida de Boost: (1.74)
-</p>
-
-<p>
-Mediante apt se instala la versión 1.71 por lo que hay que descargarla de la web y compilarla para nuestra máquina mediante las siguientes instrucciones.
+Para realizar modificaciones en la app primero hay que pasar el contexto, usaremos el siguiente promp y le añadiremos la salida del comando de abajo para dar info de los archivos.
 </p>
 <pre class="example">
-wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
-tar -xzf boost_1_74_0.tar.gz
-cd boost_1_74_0
-./bootstrap.sh
-sudo ./b2 install
+Soy el desarrollador de Sherlocaster, una aplicación dockerizada en Python que automatiza la creación de podcasts y que puedes ver en el repositorio https://github.com/sherlockes/sherlocaster. La app descarga audio de YouTube, Twitch y Kick, lo procesa a mono (64kbps), genera un feed RSS compatible y lo sube a un almacenamiento remoto mediante rclone.
+
+Arquitectura:
+- Stack: Python 3.12, FastAPI (Web), yt-dlp (YouTube), twitch-dl y Deno (Twitch).
+- Componentes: Un contenedor para el worker (main.py) y otro para la API/Web (web.py).
+- Persistencia: Carpeta /data para audio, estado JSON y el archivo feed.xml.
+
+A continuación, te adjunto la salida actualizada de los archivos del sistema para que analices el estado actual del código.
 </pre>
 
 <p>
-Con Boost ya instalado, intento de nuevo la configuración de la compilación
+Ejecutamos este comando desde Linux Mint accediendo en remoto al server conde corre docker y copiando la salida directamente al portapapeles.
 </p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
 
-<p>
-Ahora, al hacer el "Configure" obtengo el error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: the libext variable is empty, did you invoke Libtool?
-</pre>
-</div>
-
-<p>
-Parece que no tengo instalado "Libtool" o instalado incorrectamente por lo que lo reinstalo.
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get install --reinstall libtool
-</pre>
-</div>
-
-<p>
-Volvemos a regenerar el archivo configure:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Al fin lo pasa sin error pero ahora al hacer el "make" obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure.ac:8: error: required file './compile' not found
-</pre>
-</div>
-
-<p>
-Para corregir este error hay que regenerar los archivos de Autotools y realizar la compilación:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">autoreconf --install
-make
-sudo make install
-cc-tool --version
-</pre>
-</div>
-
-<p>
-Al comprobar la versión instalada de cc-tool obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
-</pre>
-</div>
-
-<p>
-Para corregirlo hay que actualizar las rutas de bibliotecas compartidas:
-</p>
 <blockquote>
 <p>
-El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost<sub>filesystem.so.1.74.0</sub> y se ejecute correctamente.
+Imprescindible tener instalado Xclip <code>~sudo apt intall xclip~</code>
 </p>
 </blockquote>
 
-<p>
-Al instalar manualmente Boost hay que agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda y actualizar la actualiza la caché de las bibliotecas dinámicas:
-</p>
 <div class="org-src-container">
-<pre class="src src-bash">echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
-sudo ldconfig
+<pre class="src src-bash">ssh sherlockes@uber "cd ~/dockers/sherlocaster/ &amp;&amp; for f in docker-compose.yaml config.yaml app/main.py app/web.py app/downloader/youtube.py app/core/rss.py; do echo -e \"\n--- \$f ---\"; cat \$f; done" | xclip -selection clipboard
 </pre>
 </div>
 
 <p>
-Con sólo estos pasos podemos decir que ya tenemos instalado cc-tool.
+Tenemos la opción de pasar la carpeta comprimida mediante este comando ejecutado en remoto:
 </p>
+<div class="org-src-container">
+<pre class="src src-bash">ssh sherlockes@192.168.10.211 "cd ~/dockers/sherlocaster &amp;&amp; git archive --format=tar.gz HEAD" &gt; sherlocaster_repo.tar.gz1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf5b755" class="outline-2">
+<h2 id="orgdf5b755"><span class="section-number-2">2.</span> Crear artículo para Blog a partir de app web</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-txt">Quiero que escribas un artículo para mi blog https://www.sherblog.es
+
+Contexto importante:
+El blog está hecho con Hugo y los artículos están en Markdown.
+El estilo debe ser igual al del resto de artículos del repositorio:
+https://github.com/sherlockes/sherlockes.github.io
+Analiza varios posts para imitar:
+- tono cercano y divulgativo
+- estructura de encabezados
+- longitud de párrafos
+- uso de listas y bloques de código si procede
+
+Sobre la aplicación:
+
+- URL de la app: [PEGAR AQUÍ]
+
+- Qué hace la app: [EXPLICACIÓN BREVE]
+
+- Por qué la creé: [MOTIVACIÓN]
+
+- Tecnologías usadas: [OPCIONAL]
+
+- Público objetivo: [OPCIONAL]
+
+Requisitos del artículo:
+- Máximo 500 palabras
+- Formato Markdown compatible con Hugo
+- La salida debe estar exclusivamente en Markdown válido.
+- El título principal debe comenzar con ### (nivel 3 en Markdown).
+- No incluyas explicaciones fuera del Markdown. 
+- Incluir:
+ - introducción breve
+ - explicación clara de la funcionalidad
+ - posibles usos prácticos
+ - cierre natural invitando a probarla
+ - Mantener el tono personal, técnico-divulgativo y conciso del blog.
+ - No inventar información que no esté en la web de la app.
+
+Devuélveme solo el Markdown del artículo, en formato markdown, listo para copiar en el repositorio.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5e99826" class="outline-2">
+<h2 id="org5e99826"><span class="section-number-2">3.</span> Extraer menús de pdf para el cole</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-txt">Actúa como un experto en ingeniería de datos y extracción de contenido.
+Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas de limpieza y filtrado:
+
+Filtrado de fechas: Guarda solo los días lectivos. Excluye fines de semana, días marcados como "FESTIVO" o periodos de "VACACIONES".
+Extracción del Menú: &gt;     * Extrae solo el menú de la comida principal.
+Ignora y elimina toda la información que aparezca después del símbolo "(*)" (correspondiente a la recomendación de cena).
+
+Limpieza de Contenido (Refinado):
+Elimina cualquier mención al "pan" o "pan integral".
+Elimina la palabra "Fruta".
+Conserva el postre únicamente si es algo distinto a la fruta (por ejemplo: "Yogur").
+Limpia espacios extra o saltos de línea innecesarios dentro del texto.
+
+Estructura Técnica:
+Genera un array de objetos con las llaves: "fecha" (en formato AAAA-MM-DD) y "menu" (el texto limpio).
+No incluyas etiquetas de citación, notas al pie, ni texto explicativo. Solo el código JSON puro.
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbb7350a" class="outline-2">
+<h2 id="orgbb7350a"><span class="section-number-2">4.</span> Extraer menú de pdf para "Menú de Sarita"</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Uso este prompt en Gemini para añadir una nueva semana al menú a partir de un pdf en el que están incluidos todos los días y platos.
+</p>
+
+<blockquote>
+<p>
+Actúa como un experto en ingeniería de datos y extracción de contenido. Procesa el PDF adjunto y conviértelo en un archivo JSON siguiendo estas reglas estrictas:
+</p>
+
+<ol class="org-ol">
+<li>Estructura Jerárquica:</li>
+</ol>
+<p>
+Raíz: "semanas".
+Nivel 2: El número de la semana (ej: "3") como string.
+Nivel 3: Días de la semana en minúsculas y sin tildes: "lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo".
+</p>
+
+<ol class="org-ol">
+<li>Campos del Objeto Plato:</li>
+</ol>
+<p>
+Cada plato debe ser un objeto con estos campos exactos:
+"tipo": (Desayuno, Comida, Merienda o Cena).
+"titulo": El nombre del plato.
+"ingredientes": Un array de strings (limpia los puntos y guiones iniciales).
+"pasos": Un array de strings con el proceso.
+"consejo": Texto del apartado "Petit Consejos". Si no existe, pon null.
+</p>
+
+<ol class="org-ol">
+<li>Reglas de Limpieza:</li>
+</ol>
+<p>
+Si un campo de texto no existe, usa null.
+Si un array no tiene contenido, usa [].
+Elimina saltos de línea innecesarios dentro de los textos.
+</p>
+
+<ol class="org-ol">
+<li>Formato Visual Crítico:</li>
+</ol>
+<p>
+Devuelve únicamente el código JSON.
+</p>
+
+<p>
+IMPORTANTE: Para que la estructura sea visual, formatea el JSON de modo que cada objeto de plato se escriba en una sola línea física (minificado internamente), pero manteniendo la indentación por días.
+</p>
+
+<p>
+Ejemplo de estilo visual esperado:
+</p>
+
+<p>
+```json
+"lunes": [
+  {"tipo": "Desayuno", "titulo": "Ejemplo", "ingredientes": ["A", "B"], "pasos": ["1", "2"], "consejo": null},
+  {"tipo": "Comida", "titulo": "Ejemplo 2", "ingredientes": ["C"], "pasos": ["3"], "consejo": "Tip"}
+]
+```
+</p>
+</blockquote>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2024-09-11</p>
+<p class="date">Date: 2026-02-13</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 vie 12:44 -->
+<!-- 2026-03-20 vie 12:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>cc-tool</title>
+<title>org-mode</title>
 <meta name="author" content="Sherlockes" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -201,135 +201,86 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">cc-tool</h1>
+<h1 class="title">org-mode</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf24bc1b">1. Comandos importantes</a></li>
+<li><a href="#orgc048bf3">2. Easy templates (plantillas sencillas) &lt;s Tab Link</a></li>
+<li><a href="#org645cac8">3. Modificar las plantillas editando org-structure-template-alist</a></li>
+<li><a href="#org6f67db9">4. Niklasfasching Org mode parser</a></li>
+<li><a href="#org04734ac">5. Insertar enlace a una función</a></li>
+<li><a href="#org1c55f63">6. Tablas (Documentación Oficial)</a></li>
+</ul>
+</div>
+</div>
 <p>
-Para la instalación de cc-tool en Linux Mint hay que instalar las dependencias, clonar el repositorio y compilarlo para nuestra máquina. Arrancamos con los siguientes comandos:
+Un modo principal de GNU <a href="emacs.html#ID-c6e7e0fc-cb04-4a4d-beb3-1936f0d3aa07">Emacs</a> para mantener notas, documentos de autoría, cuadernos computacionales, programación alfabetizada, mantenimiento de listas de tareas, planificación de proyectos y más, en un sistema de texto sin formato rápido y efectivo.
+</p>
+
+<div id="outline-container-orgf24bc1b" class="outline-2">
+<h2 id="orgf24bc1b"><span class="section-number-2">1.</span> Comandos importantes</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Insertar un enlace -&gt; C-c C-l</li>
+<li>Insertar un bloque de código -&gt; C-c C-, s</li>
+<li>Insertar un trozo de código -&gt; <code>~codigo~</code> o <code>=codigo=</code></li>
+<li>Tachar una palabra -&gt; <code>Palabra tachada</code></li>
+<li>Insertar un tag -&gt; C-c C-q (C-c C-c)</li>
+<li>Insertar una cita -&gt; &lt;q TAB</li>
+<li>Encabezado, Ordenar (org-sort) -&gt; C-c ^</li>
+<li>Encabezado, Nuevo del mismo nivel -&gt; C-Ret</li>
+<li>Encabezados, Visualización inicial -&gt; C-u C-u TAB - <a href="https://orgmode.org/manual/Initial-visibility.html">Manual</a></li>
+<li>Línea, Borrar toda la línea (whole-line-or-region.el) -&gt; C-w</li>
+<li>Línea, Copiar toda la línea (whole-line-or-region.el) -&gt; M-w</li>
+<li>Lista, Ordenar (org-sort-list) -&gt; C-c ^</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc048bf3" class="outline-2">
+<h2 id="orgc048bf3"><span class="section-number-2">2.</span> Easy templates (plantillas sencillas) &lt;s Tab <a href="https://www.gnu.org/software/emacs/manual/html_node/org/Easy-templates.html">Link</a></h2>
+</div>
+<div id="outline-container-org645cac8" class="outline-2">
+<h2 id="org645cac8"><span class="section-number-2">3.</span> Modificar las plantillas editando org-structure-template-alist</h2>
+</div>
+<div id="outline-container-org6f67db9" class="outline-2">
+<h2 id="org6f67db9"><span class="section-number-2">4.</span> <a href="https://niklasfasching.github.io/go-org/">Niklasfasching Org mode parser</a></h2>
+</div>
+<div id="outline-container-org04734ac" class="outline-2">
+<h2 id="org04734ac"><span class="section-number-2">5.</span> Insertar enlace a una función</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Para insertar un enlace a una función de emacs (elisp) en un archivo *.org se usará el siguiente formato.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">sudo apt-get update
-sudo apt-get install git build-essential libusb-1.0-0-dev
-sudo apt-get install automake autoconf libtool
-git clone https://github.com/dashesy/cc-tool.git
-cd cc-tool
+<pre class="src src-elisp">[[elisp:(función)][Título del enlace]]
 </pre>
 </div>
-
 <p>
-El siguiente paso es configurar la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Durante el configure obtengo un error que indica que no dispongo de la versión de Boost igual o superior a 1.74:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: cannot find Boost headers version &gt;= 1.74.0
-</pre>
-</div>
-
-<p>
-Instalamos la versión requerida de Boost: (1.74)
-</p>
-
-<p>
-Mediante apt se instala la versión 1.71 por lo que hay que descargarla de la web y compilarla para nuestra máquina mediante las siguientes instrucciones.
-</p>
-<pre class="example">
-wget https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.gz
-tar -xzf boost_1_74_0.tar.gz
-cd boost_1_74_0
-./bootstrap.sh
-sudo ./b2 install
-</pre>
-
-<p>
-Con Boost ya instalado, intento de nuevo la configuración de la compilación
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Ahora, al hacer el "Configure" obtengo el error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure: error: the libext variable is empty, did you invoke Libtool?
-</pre>
-</div>
-
-<p>
-Parece que no tengo instalado "Libtool" o instalado incorrectamente por lo que lo reinstalo.
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">sudo apt-get install --reinstall libtool
-</pre>
-</div>
-
-<p>
-Volvemos a regenerar el archivo configure:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">./configure
-</pre>
-</div>
-
-<p>
-Al fin lo pasa sin error pero ahora al hacer el "make" obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">configure.ac:8: error: required file './compile' not found
-</pre>
-</div>
-
-<p>
-Para corregir este error hay que regenerar los archivos de Autotools y realizar la compilación:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">autoreconf --install
-make
-sudo make install
-cc-tool --version
-</pre>
-</div>
-
-<p>
-Al comprobar la versión instalada de cc-tool obtengo este error:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">cc-tool: error while loading shared libraries: libboost_filesystem.so.1.74.0: cannot open shared object file: No such file or directory
-</pre>
-</div>
-
-<p>
-Para corregirlo hay que actualizar las rutas de bibliotecas compartidas:
+Tal y como se aclara en este <a href="https://emacs.stackexchange.com/questions/71480/how-can-i-link-to-emacs-help-from-org-mode">post</a> si queremos que no se no pregunte por la confirmación de la ejecución de la función deberemos editar la variable <code>~org-link-elisp-skip-confirm-regexp~</code> e introducir ".*" como valor.
 </p>
 <blockquote>
 <p>
-El comando ldconfig se usa para actualizar la caché de las bibliotecas dinámicas del sistema, lo cual es necesario si has instalado bibliotecas manualmente o si has agregado nuevas rutas de búsqueda de bibliotecas. Esta solución debería permitir que cc-tool encuentre la biblioteca libboost<sub>filesystem.so.1.74.0</sub> y se ejecute correctamente.
+También es posible introducirlo directamente en el archivo de configuración de emacs mediante la línea <code>'(org-link-elisp-skip-confirm-regexp ".*")</code> dentro del apartado "Custom-set-variables"
 </p>
 </blockquote>
-
-<p>
-Al instalar manualmente Boost hay que agregar el directorio de las bibliotecas de Boost (generalmente /usr/local/lib si instalaste desde la fuente) a las rutas de búsqueda y actualizar la actualiza la caché de las bibliotecas dinámicas:
-</p>
-<div class="org-src-container">
-<pre class="src src-bash">echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/boost.conf
-sudo ldconfig
-</pre>
 </div>
-
-<p>
-Con sólo estos pasos podemos decir que ya tenemos instalado cc-tool.
-</p>
+</div>
+<div id="outline-container-org1c55f63" class="outline-2">
+<h2 id="org1c55f63"><span class="section-number-2">6.</span> Tablas (<a href="https://orgmode.org/manual/Built_002din-Table-Editor.html">Documentación Oficial</a>)</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Nueva tabla: Insertar los encabezados entre "|" y pulsar TAB</li>
+<li>Línea horizontal: Insertar "|-" al principio de línea y pulsar TAB</li>
+</ul>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2024-09-11</p>
+<p class="date">Date: 2023-08-30 mié 00:00</p>
 <p class="author">Author: Sherlockes</p>
-<p class="date">Created: 2026-03-20 vie 12:44</p>
+<p class="date">Created: 2026-03-20 vie 12:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
