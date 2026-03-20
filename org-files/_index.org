@@ -2,7 +2,7 @@
 :ID:       fbd8ad5a-7936-43c9-9155-1456cde0cfe4
 :END:
 #+title: index
-#+STARTUP: show2levels
+#+STARTUP: content
 #+date: 2023-08-30
 
 Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta con archivos de texto en Org-mode.
@@ -13,7 +13,8 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 * [[id:95515039-0726-44b0-a140-2d60edcff021][Hardware]]
 * [[id:efa93d01-3a2a-4286-85c2-47bbfb633670][projects]]                                         :project:
 
-  
+-----
+
 * Org-Roam tips
 Tags a un nodo ~#+filetags: :proyecto:urgente:trabajo:~
 Tags a un encabezado ~C-c C-q~
