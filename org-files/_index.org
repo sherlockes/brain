@@ -17,4 +17,5 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
   - lenguajes ( #+filetags: code )
   - linux
   - aplicaciones ( #+filetags: apps )
+  - projects ( #+filetags: project )
   
