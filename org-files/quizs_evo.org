@@ -53,7 +53,8 @@ with app.app_context():
     db.create_all()  # Sincroniza el modelo con Neon
 #+end_src
 
-* Pendientes [0/3]
-- [ ] Mover preguntas del JSON de "Contaminación" a la carpeta /static.
-- [ ] Crear la lógica de lectura dinámica de archivos JSON en Flask.
-- [ ] Implementar el cronómetro (JavaScript o Python time).
+* Pendientes [0/4]
+** TODO Mover preguntas del JSON de "Contaminación" a la carpeta /static.
+** TODO Crear la lógica de lectura dinámica de archivos JSON en Flask.
+** TODO Implementar el cronómetro (JavaScript o Python time).
+** TODO Formulario de creación o importación de usuarios.
