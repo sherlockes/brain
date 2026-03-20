@@ -2,9 +2,9 @@
 :ID:       28ff4efd-6d27-4ce3-b2be-5298e26784a7
 :END:
 #+title: quizs_evo
-#+STARTUP: overview
+#+STARTUP: showall
 #+date: 2026-03-20
-#+filetags: project
+#+filetags: :project:
 
 * Contexto y Stack Tecnológico
 - **Editor:** Emacs (Org-mode + Python-mode)
