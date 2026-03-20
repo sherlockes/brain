@@ -13,13 +13,7 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 * [[id:95515039-0726-44b0-a140-2d60edcff021][Hardware]]
 * [[id:efa93d01-3a2a-4286-85c2-47bbfb633670][projects]]                                         :project:
 
------
-
-
------
-
-
------
+* -----
 
 * Org-Roam tips
 - Tags a un nodo ~#+filetags: :proyecto:urgente:trabajo:~
