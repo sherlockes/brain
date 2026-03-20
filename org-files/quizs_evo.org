@@ -1,0 +1,59 @@
+:PROPERTIES:
+:ID:       28ff4efd-6d27-4ce3-b2be-5298e26784a7
+:END:
+#+title: quizs_evo
+#+STARTUP: overview
+#+date: 2026-03-20
+#+filetags: project
+
+* Contexto y Stack Tecnológico
+- **Editor:** Emacs (Org-mode + Python-mode)
+- **Backend:** Flask (Python 3.12+)
+- **Base de Datos:** PostgreSQL (Neon.tech)
+- **Despliegue:** Vercel + GitHub
+
+* Configuración del Entorno Local
+Para replicar el proyecto en cualquier máquina:
+#+begin_src bash
+python -m venv venv
+source venv/bin/activate  # venv\Scripts\activate en Windows
+pip install flask flask-sqlalchemy psycopg2-binary
+#+end_src
+
+* Arquitectura de Datos (Modelos)
+Las tablas viven en Neon.tech. La conexión requiere =sslmode=require=.
+
+** Tabla: Usuario
+- ID (Primary Key)
+- Nombre
+- Email (Único)
+
+** Tabla: Resultado
+- ID
+- Usuario_ID (Foreign Key)
+- Puntuación
+- Tiempo (Segundos)
+- Fecha
+
+** Tabla: Cuestionario (Índice de JSONs)
+- ID
+- Título
+- Archivo_JSON (Ruta al archivo en /static/cuestionarios/)
+- Nivel/Tema
+
+* Flujo de Trabajo (Git/Vercel)
+1. Editar en Emacs.
+2. Hacer push a GitHub: ~git push origin main~.
+3. Vercel detecta el cambio y despliega automáticamente.
+
+* Snippets de Control (Consola Python)
+#+begin_src python
+from app import app, db
+with app.app_context():
+    db.create_all()  # Sincroniza el modelo con Neon
+#+end_src
+
+* Pendientes [0/3]
+- [ ] Mover preguntas del JSON de "Contaminación" a la carpeta /static.
+- [ ] Crear la lógica de lectura dinámica de archivos JSON en Flask.
+- [ ] Implementar el cronómetro (JavaScript o Python time).
