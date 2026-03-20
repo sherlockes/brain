@@ -25,3 +25,11 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 - Tags a un nodo ~#+filetags: :proyecto:urgente:trabajo:~
 - Tags a un encabezado ~C-c C-q~
 - Encabezados, visualización ~#+STARTUP: fold/nofold/content~
+
+
+#+begin_src elisp :results value
+(mapcar #'car (org-roam-db-query [:select :distinct [tag] :from tags]))
+#+end_src
+
+#+RESULTS:
+| hardware | SO | linux | mint | apps | code | emacs | so | prompt | pdf | json | project |
