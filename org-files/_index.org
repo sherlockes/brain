@@ -15,7 +15,10 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 
 -----
 
+
+-----
+
 * Org-Roam tips
-Tags a un nodo ~#+filetags: :proyecto:urgente:trabajo:~
-Tags a un encabezado ~C-c C-q~
-Encabezados, visualización ~#+STARTUP: fold/nofold/content~
+- Tags a un nodo ~#+filetags: :proyecto:urgente:trabajo:~
+- Tags a un encabezado ~C-c C-q~
+- Encabezados, visualización ~#+STARTUP: fold/nofold/content~
