@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       fbd8ad5a-7936-43c9-9155-1456cde0cfe4
 :END:
-#+title: indexivi
+#+title: index
 #+STARTUP: content
 #+date: 2023-08-30
 
@@ -12,6 +12,9 @@ Esta es mi base de conocimiento generada gracias a Org-Roam. Todo en una carpeta
 * [[id:9c1e38a5-2c38-4370-b483-f637457686d4][Aplicaciones]]                                        :apps:
 * [[id:95515039-0726-44b0-a140-2d60edcff021][Hardware]]
 * [[id:efa93d01-3a2a-4286-85c2-47bbfb633670][projects]]                                         :project:
+
+-----
+
 
 -----
 
