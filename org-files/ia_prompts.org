@@ -96,6 +96,8 @@ Limpia espacios extra o saltos de línea innecesarios dentro del texto.
 Estructura Técnica:
 Genera un array de objetos con las llaves: "fecha" (en formato AAAA-MM-DD) y "menu" (el texto limpio).
 No incluyas etiquetas de citación, notas al pie, ni texto explicativo. Solo el código JSON puro.
+
+Pon un comentario al principio del json para que no me olvide de la "," necesaria para concatenar con los datos ya existentes.
 #+end_src
 
 *** Extraer menú de pdf para "Menú de Sarita"
