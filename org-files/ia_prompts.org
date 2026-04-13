@@ -7,6 +7,11 @@
 #+filetags: :prompt:pdf:json:
 #+OPTIONS: ispell:nil
 
+*** Readme.md - Generación correcta del bloque de código
+Al insertar bloques de código dentro de un bloque de código, casi siempre lo termina mal y se cierra el bloque prematuramente. Para evitarlo hay que usar este prompt:
+#+begin_src txt
+Genera el contenido completo para un archivo README.md, tendrás que hacerlo dentro de un bloque maestro de código Markdown utilizando cuádruples comillas invertidas (````). Asegúrate de incluir todas las secciones y de no truncar el código cuando encuentres bloques anidados como la estructura de carpetas o ejemplos de JSON."
+#+end_src
 *** COMMENT Extraer preguntas de un tema para primaria
 En la app [[https://miraquizs.vercel.app][Miraquizs]] los cuestionarios están en un json que creo en NotebookLM a partir de la fuente escaneada.
 #+begin_src txt
