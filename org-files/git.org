@@ -3,7 +3,7 @@
 :END:
 #+title: git
 #+STARTUP: overview
-#+date: <2023-08-30>
+#+date: <2026-04-22>
 #+filetags: apps
 
 Git es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Su propósito es llevar registro de los cambios en archivos de computadora incluyendo coordinar el trabajo que varias personas realizan sobre archivos compartidos en un repositorio de código.
@@ -12,6 +12,14 @@ Git es un software de control de versiones diseñado por Linus Torvalds, pensand
 git reset HEAD^ --hard
 git push origin -f
 *** Actualizar el repositorio local -> git fetch
+*** Trabajo con ramas
+ - Crear rama ~git checkout -b NOMBRE_RAMA~
+ - Renombrar rama ~git branch -m NUEVO_NOMBRE~
+ - Listar ramas ~git branch~
+ - Borrar rama ~git branch -d NOMBRE_RAMA~
+ - Cambiar de rama ~git checkout NOMBRE_RAMA~
+ - Fusionar con otra rama ~git merge NOMBRE_RAMA~
+
 ** Gitlab
 *** Servir directorio como html estático
 Este es el contenido del archivo ".gitlab-ci.yml" situado en la raiz del repositorio, se publicará la carpeta "public"
