@@ -26,8 +26,7 @@
 - Actualizar automáticamente la fecha de actualización -> ~#+hugo_auto_set_lastmod: t~
 
 *** Archivo setup.conf
-Para no tener que añadir todos los campos de exportación en dad docuento org, utilizamos un archivo de configuración "setup.conf" tal y como explica en este [[https://github.com/peromage/peromage.github.io/blob/master/blog/setup.conf][artículo]].  
-
+Para no tener que añadir todos los campos de exportación en dad docuento org, utilizamos un archivo de configuración "setup.conf" tal y como explica en este [[https://github.com/peromage/peromage.github.io/blob/master/blog/setup.conf][artículo]].
 *** Exportar
 **** Problema con la exportación de Links
 Hay que añadir el siguiente código - [[https://github.com/kaushalmodi/ox-hugo/issues/483][Enlace]]
