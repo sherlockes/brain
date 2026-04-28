@@ -12,7 +12,7 @@ Al insertar bloques de código dentro de un bloque de código, casi siempre lo t
 #+begin_src txt
 Genera el contenido completo para un archivo README.md, tendrás que hacerlo dentro de un bloque maestro de código Markdown utilizando cuádruples comillas invertidas (````). Asegúrate de incluir todas las secciones y de no truncar el código cuando encuentres bloques anidados como la estructura de carpetas o ejemplos de JSON."
 #+end_src
-*** COMMENT Extraer preguntas de un tema para primaria
+*** Extraer preguntas de un tema para primaria
 En la app [[https://miraquizs.vercel.app][Miraquizs]] los cuestionarios están en un json que creo en NotebookLM a partir de la fuente escaneada.
 #+begin_src txt
 Actúa como un experto en pedagogía para primaria. Tu tarea es crear un cuestionario de 50 preguntas basado exclusivamente en los documentos proporcionados de la unidad 8.
