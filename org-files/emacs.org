@@ -4,7 +4,7 @@
 #+title: emacs
 #+filetags: :emacs:
 #+STARTUP: overview
-#+date: <2023-09-04 lun 12:33>
+#+date: <2026-04-30>
 #+filetags: apps
 
 Emacs es un editor de texto reconocido por su amplio conjunto de funciones, lo cual lo ha convertido en una herramienta valorada por programadores y usuarios con orientación técnica. GNU Emacs forma parte del proyecto GNU y destaca como la versión más popular de este editor. El manual de GNU Emacs lo describe como «un editor de texto avanzado, extensible, personalizable y autodocumentado».
@@ -16,6 +16,17 @@ Emacs es un editor de texto reconocido por su amplio conjunto de funciones, lo c
 *** [[id:a7d5680b-e0d9-44ea-9788-40d2e7a139c6][elisp]]
 
 ** Pequeños temas
+
+*** Actualizar versión (Mediante PPA)
+Si la distribución no permite actualizar a la última versión de Emacs, prefieres usar apt y quieres que Emacs se sienta como una aplicación nativa del sistema, lo mejor es usar un PPA de confianza. El de Kevin Kelley es un clásico, aunque últimamente el de Ubuntu Handbook suele estar más al día con las versiones estables.
+
+#+begin_src bash
+  sudo apt remove --autoremove emacs emacs-common
+  sudo add-apt-repository ppa:ubuntuhandbook1/emacs
+  sudo apt update
+  sudo apt install emacs emacs-common
+#+end_src
+
 *** Archivos recientes
 Para mostrar en el arranque los últimos archivos editados uso esta combinación.
 #+begin_src elisp
@@ -198,5 +209,3 @@ Para mostrar en el arranque los últimos archivos editados uso esta combinación
     - Cambiar de ventana mediante M-o y el número que se deseb
 *** Visualización
   - Ajuste de línea(cambiar) -> toggle-truncate-lines
-
-    
