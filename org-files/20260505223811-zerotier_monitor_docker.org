@@ -1,0 +1,7 @@
+:PROPERTIES:
+:ID:       b8137539-784c-412c-911a-ea733ab7e340
+:END:
+#+title: zerotier-monitor docker
+#+created: [2026-05-05 mar 22:38]
+#+lastmod: 2026-05-05
+
