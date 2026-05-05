@@ -9,7 +9,7 @@
 ** Info
 Este contenedor es una solución de monitorización ligera y robusta diseñada para infraestructuras híbridas. Desarrollada en Python 3.11 con un servidor Flask, gestiona la observabilidad de dispositivos en tres capas: red local (fping), ZeroTier (vía API oficial) y redes remotas mediante un Jump Host SSH.
 
-Su arquitectura destaca por utilizar el archivo de configuración SSH estándar como una "base de datos" enriquecida; emplea comentarios estructurados para almacenar metadatos como direcciones MAC, descripciones y horarios de disponibilidad (schedules). El sistema incluye un hilo de ejecución en segundo plano para el chequeo de estados, un motor de notificaciones asíncrono para Telegram y un escáner de red basado en nmap para el descubrimiento de activos.
+Su arquitectura destaca por utilizar el archivo de configuración SSH estándar como una "base de datos" enriquecida; emplea comentarios estructurados para almacenar metadatos como direcciones MAC, descripciones y horarios de disponibilidad (schedules). El sistema incluye un hilo de ejecución en segundo plano para el chequeo de estados, un editor de nodos, un motor de notificaciones asíncrono para Telegram y un escáner de red basado en nmap para el descubrimiento de activos.
 
 El despliegue está totalmente contenedorizado con Docker, optimizando la seguridad al ejecutar el servicio bajo un usuario con UID 1000 y facilitando la persistencia mediante volúmenes para el estado y la configuración. Es una herramienta ideal para administradores que buscan centralizar la disponibilidad de sus nodos con una interfaz web CRUD intuitiva sin la sobrecarga de sistemas de monitorización complejos.
 ** Uso
