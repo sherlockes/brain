@@ -1,5 +1,5 @@
 # Org-roam DB (local, no portable)
-org-roam.db
+#org-roam.db
 org-roam.db-journal
 
 # Org ID cache
