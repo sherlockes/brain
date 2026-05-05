@@ -3,7 +3,7 @@
 :END:
 #+title: docker
 #+STARTUP: overview
-#+date: <2026-01-05>
+#+date: <2026-05-05>
 #+filetags: apps
 
 [[https://www.docker.com][Docker]] es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando así una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
@@ -90,11 +90,10 @@ apt install -y unzip
 curl https://rclone.org/install.sh | bash
 
 
-*** Mis contenedores
+*** Mis contenedores oficiales
 - [[id:b2b7453a-a285-4efd-bd8a-54f6a421513c][dcb]]
 - [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]] (4000)
-- hugo-dev
-- intrubot
+- [[id:2ab53054-7760-4d93-9fed-1c49a4c0b8c7][intrubot docker]]
 - [[id:58cdee51-009c-4daa-8b82-1a052c31b948][karakeep]] (3000)
 - minetest
 - n8n
@@ -102,5 +101,9 @@ curl https://rclone.org/install.sh | bash
 - nginx-proxy-manager
 - readeck
 - rsstt
-- sherlocast
-- zerotier-monitor
+
+*** Mis contenedores personalizados
+- hugo-dev
+- sherlocaster
+- sherlotracks
+- [[id:b8137539-784c-412c-911a-ea733ab7e340][zerotier-monitor]] (8081)
