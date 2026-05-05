@@ -1,0 +1,71 @@
+:PROPERTIES:
+:ID:       2ab53054-7760-4d93-9fed-1c49a4c0b8c7
+:END:
+#+title: intrubot docker
+#+STARTUP: overview
+#+created: [2026-05-05 mar 23:12]
+#+lastmod: 2026-05-05
+
+** Info
+IntruBot es un sistema de detección de intrusos (IDS) ligero y proactivo, diseñado por @dgongut para monitorizar la seguridad de redes domésticas o servidores personales. Su función principal es actuar como un centinela digital que te mantiene informado en tiempo real a través de Telegram.
+
+🛠️ Características Principales
+ - Alertas de Conexión: Notifica instantáneamente cuando un dispositivo nuevo o no autorizado se conecta a la red.
+
+ - Vigilancia de Acceso: Está enfocado en detectar quién y cuándo accede a tu infraestructura, ideal para entornos de homelab o servidores expuestos.  
+
+ - Arquitectura en Python: Al igual que el resto de la suite de este desarrollador, es una herramienta eficiente que consume muy pocos recursos, facilitando su ejecución en dispositivos como una Raspberry Pi.
+
+** Uso
+Monitorización de la red más allá de los host ya establecidos
+
+** Enlace
+https://github.com/dgongut/intrubot
+
+** Variables de entorno
+🛠️ Configuración de Alertas
+  - TELEGRAM_BOT_TOKEN: El token único de tu bot de Telegram. Es necesario para que el script pueda autenticarse y enviar mensajes a través de la API de Telegram.
+
+  - TELEGRAM_CHAT_ID: El identificador numérico del chat donde el bot enviará las notificaciones de intrusos detectados.
+
+🔍 Parámetros de Red
+  - NETWORK_RANGE: Define la subred que el bot debe vigilar. Se suele expresar en formato CIDR (ejemplo: 192.168.1.0/24). Es el rango donde buscará dispositivos desconocidos.
+
+  - INTERFACE: (Opcional) Especifica la interfaz de red física que debe usar el contenedor o el script (ejemplo: eth0 o wlan0) para realizar el escaneo.
+
+⏱️ Control y Rendimiento
+  - CHECK_INTERVAL: El tiempo de espera (generalmente en segundos) entre cada ciclo de escaneo. Determina la rapidez con la que detectarás a un "intruso" desde que se conecta.
+
+  - VERBOSE: (Booleano) Si se establece en true, el bot genera logs más detallados en la consola, útil para depurar problemas de detección.
+
+📋 Gestión de Dispositivos
+  - WHITELIST_MACS: Una lista de direcciones MAC autorizadas. Los dispositivos en esta lista no dispararán alarmas.
+
+** docker-compose.yml
+#+begin_src yaml
+  services:
+    intrubot:
+        environment:
+            - TELEGRAM_TOKEN=XXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXX
+            - TELEGRAM_ADMIN=XXXXXXXX
+            - TZ=Europe/Madrid
+            - IP_RANGE=192.168.10.1-192.168.10.255
+            - TELEGRAM_GROUP=-XXXXXXXXXXXXX
+            #- TELEGRAM_THREAD=1
+            #- HOURS_BETWEEN_SCANS=1
+            #- LANGUAGE=ES
+        volumes:
+            - ./data:/app/data # CAMBIAR LA PARTE IZQUIERDA
+        image: dgongut/intrubot:latest
+        container_name: intrubot
+        restart: always
+        network_mode: host
+        tty: true
+#+end_src
+
+** Gestión
+#+begin_src bash
+  docker compose up -d
+#+end_src
+
+** Notas
