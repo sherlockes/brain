@@ -92,9 +92,9 @@ curl https://rclone.org/install.sh | bash
 
 *** Mis contenedores oficiales
 - [[id:b2b7453a-a285-4efd-bd8a-54f6a421513c][dcb]]
-- [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]] (Puerto 4000)
+- [[id:f101a6aa-063a-4e6c-9f11-ef68717cb524][homepage]] (4000)
 - [[id:2ab53054-7760-4d93-9fed-1c49a4c0b8c7][intrubot]]
-- [[id:58cdee51-009c-4daa-8b82-1a052c31b948][karakeep]] (Puerto 3000)
+- [[id:58cdee51-009c-4daa-8b82-1a052c31b948][karakeep]] (3000)
 - minetest
 - n8n
 - nginx
@@ -110,4 +110,4 @@ curl https://rclone.org/install.sh | bash
 - hugo-dev
 - sherlocaster
 - sherlotracks
-- [[id:b8137539-784c-412c-911a-ea733ab7e340][zerotier-monitor]] (Puerto 8081)
+- [[id:b8137539-784c-412c-911a-ea733ab7e340][zerotier-monitor]] (8081)
