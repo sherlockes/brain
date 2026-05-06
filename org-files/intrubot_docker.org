@@ -1,10 +1,10 @@
 :PROPERTIES:
-:ID:       2ab53054-7760-4d93-9fed-1c49a4c0b8c7
+:ID:       5f22eeee-9f16-42b3-b53e-8606dd4141b9
 :END:
 #+title: intrubot docker
 #+STARTUP: overview
-#+created: [2026-05-05 mar 23:12]
-#+lastmod: 2026-05-05
+#+date: <2026-05-06>
+#+filetags: :apps:docker:
 
 ** Info
 IntruBot es un sistema de detección de intrusos (IDS) ligero y proactivo, diseñado por @dgongut para monitorizar la seguridad de redes domésticas o servidores personales. Su función principal es actuar como un centinela digital que te mantiene informado en tiempo real a través de Telegram.
