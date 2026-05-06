@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       ffb6b91b-d93c-4721-8a4c-85fc70d22f7f
+:END:
+#+title: zerotier-monitor docker
+#+STARTUP: overview
+#+date: <2026-05-06>
+#+filetags: :apps:docker:
+
+** Info
+Este contenedor es una solución de monitorización ligera y robusta diseñada para infraestructuras híbridas. Desarrollada en Python 3.11 con un servidor Flask, gestiona la observabilidad de dispositivos en tres capas: red local (fping), ZeroTier (vía API oficial) y redes remotas mediante un Jump Host SSH.
+
+Su arquitectura destaca por utilizar el archivo de configuración SSH estándar como una "base de datos" enriquecida; emplea comentarios estructurados para almacenar metadatos como direcciones MAC, descripciones y horarios de disponibilidad (schedules). El sistema incluye un hilo de ejecución en segundo plano para el chequeo de estados, un editor de nodos, un motor de notificaciones asíncrono para Telegram y un escáner de red basado en nmap para el descubrimiento de activos.
+
+El despliegue está totalmente contenedorizado con Docker, optimizando la seguridad al ejecutar el servicio bajo un usuario con UID 1000 y facilitando la persistencia mediante volúmenes para el estado y la configuración. Es una herramienta ideal para administradores que buscan centralizar la disponibilidad de sus nodos con una interfaz web CRUD intuitiva sin la sobrecarga de sistemas de monitorización complejos.
+** Uso
+Gracias al archivo ".ssh/config" puedo monitorizar una serie de equipos, si lo tengo a la vista rápidamente ver si tengo alguno desconectado y si no se me informa mediante una notificación de Telegram.
+** Enlace
+https://github.com/sherlockes/zerotier-monitor
+https://zerotier.zgz.sherblog.es
+** Variables de entorno (Archivo .env)
+Aquí tienes el desglose detallado de las variables de entorno para el zerotier-monitor. Como arquitecto, te diría que este archivo es el "sistema nervioso" del contenedor, ya que define desde la seguridad hasta la topología de red que vamos a supervisar.
+
+- 🌐 Configuración de ZeroTier
+  - ZT_TOKEN: Token de acceso personal generado en el portal de ZeroTier Central. Permite que el script consulte la API para obtener el estado real de los nodos (si están "online" para el controlador).
+  - ZT_NETWORK: El ID de 16 caracteres de tu red de ZeroTier. Es el objetivo principal del escaneo.
+
+- 🤖 Notificaciones (Telegram)
+  - TELEGRAM_BOT_TOKEN: El token secreto proporcionado por @BotFather. Es la llave para que el script pueda enviar mensajes a la API de Telegram.
+  - TELEGRAM_CHAT_ID: ID numérico del chat o grupo donde el bot enviará las alertas. Nota: Si es un grupo, suele empezar con un guion (ej. -123456789).
+
+- 🌉 Red Remota (Jump Host)
+  - JUMP_HOST_IP: Dirección IP de un equipo intermedio (ej. una Raspberry Pi en otra oficina). El monitor usará esta IP como puente para verificar si otros equipos de esa red remota están vivos.
+  - JUMP_HOST_USER: Usuario SSH para conectar al Jump Host. El contenedor asume que tienes las llaves SSH configuradas en el volumen de /home/sherlockes/.ssh.
+
+- 🔐 Seguridad Web
+  - WEB_USER: Nombre de usuario para acceder al dashboard de Flask (Basic Auth). Por defecto es admin.
+  - WEB_PASSWORD: Contraseña para el dashboard. Importante: Si se deja vacía, el sistema desactiva la autenticación, lo cual solo es recomendable en entornos locales de total confianza.
+
+- 📢 Control de Alertas (Lógica de Negocio)
+Estas variables aceptan valores booleanos (true/false) para filtrar el ruido de las notificaciones:
+
+  - NOTIFY_OFFLINE: Avisa cuando un host que debería estar activo (según su horario) se cae.
+  - NOTIFY_ONLINE: Avisa cuando un host vuelve a estar disponible.
+  - NOTIFY_OFF_SCHEDULE: Una alerta de seguridad. Avisa si un equipo se conecta en un horario en el que supuestamente debería estar apagado.
+  - NOTIFY_STARTUP: Envía un mensaje de "Estoy vivo" cuando el contenedor se reinicia o arranca.
+  - NOTIFY_API_ERROR: Avisa si hay problemas de conectividad con los servidores de ZeroTier.
+
+- ⏱️ Rendimiento
+  - CHECK_INTERVAL_SECONDS: Define cada cuánto tiempo el hilo de monitorización ejecuta la ronda de pings y consultas a la API. El valor por defecto es 300 (5 minutos). Ajustarlo a un valor muy bajo (ej. < 30) podría causar rate-limiting en la API de ZeroTier.
+
+** docker-compose.yml
+#+begin_src yaml
+  services:
+  zerotier-monitor:
+    build: .
+    container_name: zerotier-monitor
+    user: "1000:1000"
+    env_file: .env
+    environment:
+      - SSH_CONFIG_FILE=/home/sherlockes/.ssh/config
+      - HOME=/home/sherlockes
+      - TZ=Europe/Madrid
+    volumes:
+      - ./data:/app/data
+      - ~/.ssh:/home/sherlockes/.ssh
+      - ~/.ssh/config:/home/sherlockes/.ssh/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+#+end_src
+
+** Gestión
+#+begin_src bash
+  docker compose up -d --build
+#+end_src
+
+** Notas
+Cualquier modificación en el archivo "~/.ssh/config" se verá reflejado en la lista de nodos a comprobar.
