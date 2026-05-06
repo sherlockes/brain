@@ -110,4 +110,4 @@ curl https://rclone.org/install.sh | bash
 - hugo-dev
 - sherlocaster
 - sherlotracks
-- [[id:377b0f4a-907d-48df-a90c-a5bec2d6df38][zerotier-monitor]] (8081)
+- [[id:ffb6b91b-d93c-4721-8a4c-85fc70d22f7f][zerotier-monitor]] (8081)
