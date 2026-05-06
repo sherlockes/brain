@@ -2,9 +2,10 @@
 :ID:       03c84b6d-dee5-473e-822b-5702f535419e
 :END:
 #+title: ox-hugo
+#+filetags: :emacs:
 #+STARTUP: overview
 
-#+date: <2023-08-30>
+#+date: <2026-05-06>
 #+hugo_custom_front_matter: :thumbnail "images/ox-hugo.png"
 #+setupfile: ./setup.conf
 #+hugo_tags: ox-hugo
