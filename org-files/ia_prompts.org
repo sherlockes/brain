@@ -15,14 +15,15 @@ Genera el contenido completo para un archivo README.md, tendrás que hacerlo den
 *** Extraer preguntas de un tema para primaria
 En la app [[https://miraquizs.vercel.app][Miraquizs]] los cuestionarios están en un json que creo en NotebookLM a partir de la fuente escaneada.
 #+begin_src markdown
-Actúa como un experto en pedagogía para primaria. Tu tarea es crear un cuestionario de 50 preguntas basado exclusivamente en los documentos proporcionados de las fuentes activas.
-Instrucciones críticas:
-- Formato JSON estricto: Devuelve únicamente un bloque de código Markdown (iniciando con ```json y terminando con ```) que contenga un array de objetos con esta estructura exacta: {"id": número, "pregunta": "texto", "opciones": ["A", "B", "C", "D"], "respuestaCorrecta": índice del 0 al 3, "explicacion": "breve razón pedagógica"}.
-- Tabulación: El código JSON debe estar correctamente indentado (tabulado) para que sea perfectamente legible.
-- Cero citas y cero enlaces: No incluyas marcadores de citas numéricas ni enlaces a las fuentes al final de las oraciones. El contenido debe ser texto limpio para que el JSON sea válido.
-- Aleatoriedad Total: Es obligatorio que la posición de la respuestaCorrecta varíe de forma equilibrada entre los índices 0, 1, 2 y 3. No concentres las respuestas correctas en las primeras opciones.
-- Rigor Pedagógico: Las preguntas deben estar adaptadas a nivel de primaria. Cada explicación debe basarse en el contenido de las fuentes.
-- Sin texto adicional: No incluyas saludos, preámbulos, conclusiones, ni bibliografía fuera del bloque de código JSON. La respuesta debe contener solamente el bloque de código.
+  Actúa como un experto en pedagogía para primaria. Tu tarea es crear un cuestionario de 50 preguntas basado exclusivamente en los documentos proporcionados de las fuentes activas.
+  Instrucciones críticas:
+  - Formato JSON estricto: Devuelve únicamente un bloque de código Markdown (iniciando con ```json y terminando con ```) que contenga un array de objetos con esta estructura exacta: {"id": número, "pregunta": "texto", "opciones": ["A", "B", "C", "D"], "respuestaCorrecta": índice del 0 al 3, "explicacion": "breve razón pedagógica"}.
+  - Tabulación: El código JSON debe estar correctamente indentado (tabulado) para que sea perfectamente legible.
+  - Cero citas y cero enlaces: No incluyas marcadores de citas numéricas ni enlaces a las fuentes al final de las oraciones. El contenido debe ser texto limpio para que el JSON sea válido.
+  - Aleatoriedad Total: Es obligatorio que la posición de la respuestaCorrecta varíe de forma equilibrada entre los índices 0, 1, 2 y 3. No concentres las respuestas correctas en las primeras opciones.
+  - Rigor Pedagógico: Las preguntas deben estar adaptadas a nivel de primaria. Cada explicación debe basarse en el contenido de las fuentes.
+  - No hagas referencia en las preguntas a imágenes que están en las fuentes pero que no se van a ver en el cuestionario. Con sólo el texto de la pregunta el alumno tiene que estar capacitado para responder.
+  - Sin texto adicional: No incluyas saludos, preámbulos, conclusiones, ni bibliografía fuera del bloque de código JSON. La respuesta debe contener solamente el bloque de código.
 #+end_src
 *** Modificaciones en SherloCaster
 Para realizar modificaciones en la app primero hay que pasar el contexto, usaremos el siguiente promp y le añadiremos la salida del comando de abajo para dar info de los archivos.
