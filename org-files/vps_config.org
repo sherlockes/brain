@@ -70,50 +70,39 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 #+end_src
 
 
+* Zerotier
+- Instalar ~curl -s https://install.zerotier.com | sudo bash~
+- Añadir a la red ~sudo zerotier-cli join 83048a0632dad18a~
+
 * Hermes
 ** Creamos en docker-compose.yml en ~/docker/hermes/
 #+begin_src yml
-  services:
-  hermes-db:
-    image: postgres:16-alpine
-    container_name: hermes-db
-    restart: always
-    environment:
-      POSTGRES_USER: hermes_user
-      POSTGRES_PASSWORD: yKYtc78zONw2mU
-      POSTGRES_DB: hermes_matrix
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-    networks:
-      - hermes-net
-
-  hermes-app:
-    image: ghcr.io/mscoutermarsh/hermes:latest
-    container_name: hermes-app
-    restart: always
-    depends_on:
-      - hermes-db
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+    command: gateway run
     ports:
-      - "8080:8080" # 👈 Lo mapeamos temporalmente al puerto 8080 de tu VPS
+      # 🔒 Atados exclusivamente a tu IP de ZeroTier:
+      - "192.168.191.220:8642:8642" 
+      - "192.168.191.220:9119:9119" 
+    volumes:
+      - /home/sherlockes/.hermes:/opt/data
     environment:
-      DATABASE_URL: postgres://hermes_user:yKYtc78zONw2mU@hermes-db:5432/hermes_matrix
-      PORT: 8080
-      # Si vas a usar integraciones específicas (Matrix, Webhooks, etc.), 
-      # añadiremos las variables aquí más adelante.
+      - HERMES_DASHBOARD=1
+      - HERMES_DASHBOARD_INSECURE=1
     networks:
-      - hermes-net
       - proxy
 
 networks:
-  hermes-net:
-    driver: bridge
   proxy:
     external: true
 #+end_src
 
-* Zerotier
-- Instalar ~curl -s https://install.zerotier.com | sudo bash~
-- Añadir a la red ~sudo zerotier-cli join 83048a0632dad18a~
+#+begin_quote
+Vamos a dejar el modo inseguro, después lo protegeremos con una lista de usuarios de nginx-proxy-manager
+#+end_quote
 
 * Nginz-proxy-manager
 - Crear el directorio ~mkdir -p ~/docker/nginx-proxy-manager~
@@ -138,4 +127,6 @@ networks:
   proxy:
     external: true
   #+end_src
+- Arrancar ~docker compose up -d~
+- Abrir el navegador y acceder a http://ip:81
 
