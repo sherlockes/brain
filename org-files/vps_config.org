@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       c22a5560-308e-40a4-8d23-225f4211de19
+:END:
+#+title: vps config
+#+STARTUP: overview
+#+date: <2026-06-05>
+#+filetags: :linux:
+
