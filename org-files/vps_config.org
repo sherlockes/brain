@@ -6,3 +6,108 @@
 #+date: <2026-06-05>
 #+filetags: :linux:
 
+* Configuración inicial
+** Crear un nuevo usuario
+~adduser sherlockes~
+** Añadirlo al grupo sudo para que pueda administrar el sistema
+~usermod -aG sudo sherbo~
+** Copiar la llave ssh del pc local al vps (Desde la consola del pc local)
+~ssh-copy-id sherbo@IP_DE_TU_VPS~
+** Deshabilitar el login de "root"
+~sudo nano /etc/ssh/sshd_config~
+Editamos, guardamos la línea "PermitRootLogin no" y reiniciamos
+~sudo systemctl restart ssh~
+** Instalar Fail2Ban
+~sudo apt update && sudo apt install fail2ban -y~
+** Instalar Docker
+#+begin_src bash
+# 1. Instalar dependencias previas
+sudo apt update
+sudo apt install ca-certificates curl gnupg -y
+
+# 2. Añadir la llave GPG oficial de Docker
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# 3. Configurar el repositorio oficial
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/etc/apt/sources.list.distrib > /dev/null
+
+# El comando anterior a veces requiere apuntar directamente a sources.list en Ubuntu de Contabo:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 4. Instalar Docker y Docker Compose
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+#+end_src
+*** Añadir el usuario al grupo de docker
+~sudo usermod -aG docker $USER~
+*** Crear la red compartida
+~docker network create proxy~
+** Montar la carpeta de usuario
+#+begin_src bash
+  # 1. Crear la carpeta en el directorio home
+  sudo mkdir -p /home/sherlockes
+
+  # 2. Hacer que tu usuario sea el dueño absoluto de esa carpeta
+  sudo chown -R sherlockes:sherlockes /home/sherlockes
+
+  # 3. Asignar los privilegios correctos de lectura y escritura
+  sudo chmod 755 /home/sherlockes
+
+  # 4. Asegurar que el sistema sabe cual es tu "HOme"
+  sudo usermod -d /home/sherlockes sherlockes
+
+  # 5. Copiar los archivos base de la terminal
+  sudo cp -r /etc/skel/. /home/sherlockes/
+  sudo chown -R sherlockes:sherlockes /home/sherlockes/
+#+end_src
+
+* Hermes
+** Creamos en docker-compose.yml en ~/docker/hermes/
+#+begin_src yml
+  services:
+  hermes-db:
+    image: postgres:16-alpine
+    container_name: hermes-db
+    restart: always
+    environment:
+      POSTGRES_USER: hermes_user
+      POSTGRES_PASSWORD: yKYtc78zONw2mU
+      POSTGRES_DB: hermes_matrix
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - hermes-net
+
+  hermes-app:
+    image: ghcr.io/mscoutermarsh/hermes:latest
+    container_name: hermes-app
+    restart: always
+    depends_on:
+      - hermes-db
+    ports:
+      - "8080:8080" # 👈 Lo mapeamos temporalmente al puerto 8080 de tu VPS
+    environment:
+      DATABASE_URL: postgres://hermes_user:yKYtc78zONw2mU@hermes-db:5432/hermes_matrix
+      PORT: 8080
+      # Si vas a usar integraciones específicas (Matrix, Webhooks, etc.), 
+      # añadiremos las variables aquí más adelante.
+    networks:
+      - hermes-net
+      - proxy
+
+networks:
+  hermes-net:
+    driver: bridge
+  proxy:
+    external: true
+#+end_src
+
+
