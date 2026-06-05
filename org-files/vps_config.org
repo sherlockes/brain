@@ -69,6 +69,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
   sudo chown -R sherlockes:sherlockes /home/sherlockes/
 #+end_src
 
+
 * Hermes
 ** Creamos en docker-compose.yml en ~/docker/hermes/
 #+begin_src yml
@@ -110,4 +111,31 @@ networks:
     external: true
 #+end_src
 
+* Zerotier
+- Instalar ~curl -s https://install.zerotier.com | sudo bash~
+- Añadir a la red ~sudo zerotier-cli join 83048a0632dad18a~
+
+* Nginz-proxy-manager
+- Crear el directorio ~mkdir -p ~/docker/nginx-proxy-manager~
+- Crear docker-compose.yml ~nano docker-compose.yml~
+  #+begin_src yaml
+  services:
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - '80:80'   # Tráfico web normal público
+      - '443:443' # Tráfico web cifrado público (SSL)
+      - '192.168.191.220:81:81' # Administración a través de zerotier
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+  #+end_src
 
