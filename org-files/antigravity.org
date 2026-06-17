@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       014f5605-e7a4-4c56-8326-1fcef79a80be
+:END:
+#+title: antigravity
+#+STARTUP: overview
+#+date: <2026-06-17>
+#+filetags: :ia:
+
