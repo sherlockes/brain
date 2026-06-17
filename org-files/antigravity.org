@@ -6,3 +6,8 @@
 #+date: <2026-06-17>
 #+filetags: :ia:
 
+
+## Editar un proyecto
+
+Desde la consola, en la carpeta del proyecto:
+~agy --add-dir . --dangerously-skip-permissions~
