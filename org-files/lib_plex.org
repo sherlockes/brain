@@ -1,0 +1,144 @@
+:PROPERTIES:
+:ID:       fb88ea6e-d225-46a3-88ed-4cb10b689ad4
+:END:
+#+title: lib_plex
+#+STARTUP: overview
+#+date: <2026-06-24>
+#+filetags: :python:
+
+* Crear el entorno virtual con librerías
+#+begin_src bash
+  cd /var/services/homes/sherlockes/scripts/plex_scripts
+  python3 -m venv plex_env
+  source plex_env/bin/activate
+  pip install --upgrade pip
+  pip install plexapi requests
+  pip install paramiko scp
+  pip install "urllib3<2"
+  deactivate
+#+end_src
+
+
+* Archivo de exportación ~export_plex.py~
+
+#+begin_src python
+  #!/usr/bin/env python3
+  import os
+  import csv
+  from datetime import datetime
+  from plexapi.server import PlexServer
+  import paramiko
+  from scp import SCPClient
+
+  # =====================================================================
+  # CONFIGURACIÓN
+  # =====================================================================
+  # 1. Datos de tu Plex local en la Synology
+  PLEX_URL = 'http://localhost:32400'
+  PLEX_TOKEN = 'TU_PLEX_TOKEN_AQUI'
+
+  # 2. Datos de conexión SSH a tu VPS
+  VPS_HOST = 'IP_O_DOMINIO_DE_TU_VPS'
+  VPS_PORT = 22                             # Puerto SSH (22 por defecto)
+  VPS_USER = 'usuario_vps'
+  # Elige UNO de los dos métodos de autenticación siguientes:
+  VPS_PASSWORD = 'TU_CONTRASEÑA_SSH'        # Pon None si usas clave privada
+  VPS_KEY_PATH = None                       # Ej: '/var/services/homes/sherlockes/.ssh/id_rsa' si usas clave pública
+
+  # 3. Rutas de los archivos
+  LOCAL_CSV_PATH = '/tmp/plex_catalog.csv'
+  VPS_DEST_PATH = '/ruta/en/el/vps/donde/quieres/el/catalog.csv'
+  # =====================================================================
+
+  def create_ssh_client(server, port, user, password, key_path):
+      client = paramiko.SSHClient()
+      client.load_system_host_keys()
+      client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+      
+      if key_path:
+          client.connect(server, port, user, key_filename=key_path)
+      else:
+          client.connect(server, port, user, password=password)
+      return client
+
+  def main():
+      print(f"[{datetime.now()}] Iniciando extracción en formato CSV...")
+      
+      try:
+          plex = PlexServer(PLEX_URL, PLEX_TOKEN)
+          
+          # Generar el archivo CSV local en la Synology
+          with open(LOCAL_CSV_PATH, mode='w', newline='', encoding='utf-8') as f:
+              writer = csv.writer(f)
+              writer.writerow(['tipo', 'titulo_serie_pelicula', 'temporada', 'episodio', 'titulo_episodio', 'visto', 'extraido_en'])
+              
+              timestamp_actual = datetime.now().isoformat()
+              filas_contadas = 0
+
+              for section in plex.library.sections():
+                  if section.type == 'movie':
+                      for video in section.all():
+                          visto = 1 if video.isWatched else 0
+                          writer.writerow(['pelicula', video.title, '', '', '', visto, timestamp_actual])
+                          filas_contadas += 1
+                          
+                  elif section.type == 'show':
+                      for show in section.all():
+                          for episode in show.episodes():
+                              visto = 1 if episode.isWatched else 0
+                              writer.writerow([
+                                  'episodio', 
+                                  show.title, 
+                                  episode.parentIndex, 
+                                  episode.index, 
+                                  episode.title, 
+                                  visto, 
+                                  timestamp_actual
+                              ])
+                              filas_contadas += 1
+
+          print(f"CSV generado localmente con éxito ({filas_contadas} filas).")
+
+          # Conectar al VPS por SSH y enviar el archivo mediante SCP
+          print(f"Conectando a {VPS_HOST} vía SCP...")
+          ssh = create_ssh_client(VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_KEY_PATH)
+          
+          with SCPClient(ssh.get_transport()) as scp:
+              scp.put(LOCAL_CSV_PATH, VPS_DEST_PATH)
+              
+          ssh.close()
+          print(f"¡Catálogo copiado correctamente en el VPS en: {VPS_DEST_PATH}!")
+
+          # Limpieza del archivo temporal local
+          if os.path.exists(LOCAL_CSV_PATH):
+              os.remove(LOCAL_CSV_PATH)
+
+      except Exception as e:
+          print(f"Ocurrió un error: {e}")
+
+  if __name__ == "__main__":
+      main()
+#+end_src
+
+* Lanzar el archivo de prueba
+
+#+begin_src bash
+    cd ~/scripts/plex_scripts
+    ./plex_env/bin/python3 export_plex.py
+#+end_src
+
+* Automatizarlo en el arranque de la Synology
+
+Para que esto ocurra de forma totalmente automática cada vez que tus servidores arranquen, configúralo en el panel de DSM:
+
+- Entra en el Panel de Control de tu Synology.
+- Ve a Programador de tareas (Task Scheduler).
+- Haz clic en Crear > Tarea activada (Triggered Task) > Script definido por el usuario.
+- En General:
+    - Nombre: Enviar Catalogo Plex al VPS
+    - Evento: Inicio (Boot-up).
+- En Configuración de la tarea, pega este comando exacto en el cuadro de texto (usando las rutas reales de tu volumen que acabamos de ver en tu log):
+
+#+begin_src Bash
+/volume1/homes/sherlockes/scripts/plex_scripts/plex_env/bin/python3 /volume1/homes/sherlockes/scripts/plex_scripts/export_plex.py >> /volume1/homes/sherlockes/scripts/plex_scripts/log.txt 2>&1
+#+end_src
