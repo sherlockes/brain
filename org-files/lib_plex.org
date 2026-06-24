@@ -18,7 +18,6 @@
   deactivate
 #+end_src
 
-
 * Archivo de exportación ~export_plex.py~
 
 #+begin_src python
