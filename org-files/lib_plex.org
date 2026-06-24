@@ -120,6 +120,10 @@
       main()
 #+end_src
 
+#+begin_quote
+Reemplaza TU_PLEX_TOKEN_AQUI: Si no sabes cómo obtenerlo, abre Plex en tu navegador web, ve a cualquier película, haz clic en los tres puntos ... -> Ver información -> Ver XML. Al final de la URL que se abre verás X-Plex-Token=.... Ese es tu token.
+#+end_quote
+
 * Lanzar el archivo de prueba
 
 #+begin_src bash
