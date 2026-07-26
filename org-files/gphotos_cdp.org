@@ -1,0 +1,136 @@
+:PROPERTIES:
+:ID:       0e23d53d-62e9-4151-895e-272732edaf0c
+:END:
+#+title: gphotos-cdp
+#+STARTUP: overview
+#+date: <2026-07-26>
+#+filetags: :gphotos:docker:
+
+#+TITLE: Backup Incremental de Google Photos con Docker y gphotos-cdp
+#+AUTHOR: sherlockes
+#+DATE: [2026-07-26 Sun]
+#+FILETAGS: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
+
+* Introducción y Contexto
+
+El objetivo principal es mantener una copia de seguridad automatizada e incremental de las fotografías alojadas en Google Photos dentro de una infraestructura propia (VPS/servidor personal).
+
+Las herramientas tradicionales basadas en la API oficial de Google Photos (como ~gphotos-sync~ o integraciones vía ~rclone~) presentan restricciones severas impuestas por la propia plataforma:
+- Eliminación de metadatos EXIF sensibles (como la ubicación GPS) por motivos de privacidad.
+- Imposibilidad de obtener el archivo nativo en calidad original sin compresión.
+- Cuotas de uso reducidas y falta de soporte continuo para extracción masiva de originales.
+
+Por otro lado, la opción oficial ~Google Takeout~ requiere intervención manual, genera archivos comprimidos gigantescos y no soporta sincronización incremental programada.
+
+* La Solución: ~gphotos-cdp~
+
+~gphotos-cdp~ aprovecha el protocolo *Chrome DevTools Protocol* (CDP) utilizando ~chromedp~ en Go. En lugar de consumir la API REST, emula la navegación web estándar en una instancia de Chromium (headless) usando una sesión previamente autenticada.
+
+** Ventajas clave:
+- Descarga de archivos originales e intactos (mantiene calidad y EXIF completos).
+- Funcionamiento incremental (identifica el punto de corte para descargar solo lo nuevo).
+- Independiente de las cuotas de la API oficial de Google.
+
+* Guía de Despliegue Paso a Paso
+
+** Requisitos Previos
+- Docker y Docker Compose en el servidor/VPS.
+- Navegador basado en Chromium en el PC local (Brave, Chrome, Edge).
+- Acceso SSH / ~rsync~ entre el PC local y el VPS.
+
+** Paso 1: Generación de la Sesión de Usuario (PC Local)
+
+Dado que el VPS opera en modo *headless* (sin entorno gráfico ni interfaz visual), no se puede realizar el inicio de sesión con doble factor directamente en el servidor. La sesión se genera en local e incluye las cookies necesarias.
+
+Desde la terminal del PC local (utilizando Brave Browser), lanzamos el navegador apuntando a una carpeta de perfil dedicada:
+
+#+BEGIN_SRC bash
+brave-browser \
+  --user-data-dir=$HOME/profile_gphotos \
+  --no-first-run \
+  --password-store=basic \
+  --use-mock-keychain \
+  https://photos.google.com/
+#+END_SRC
+
+#+BEGIN_QUOTE
+*Nota:* El parámetro ~--password-store=basic~ es crítico para evitar que el sistema operativo (KWallet, Gnome Keyring, Keychain) cifre las cookies del perfil con claves nativas que el contenedor Docker en Linux no pueda descifrar posteriormente.
+#+END_QUOTE
+
+1. Iniciar sesión en la cuenta de Google deseada dentro de la ventana de Brave abierta.
+2. Confirmar que la fototeca carga correctamente.
+3. Cerrar el navegador por completo para asentar las bases de datos de cookies en disco.
+
+** Paso 2: Transferencia del Perfil al VPS
+
+Transferimos la carpeta del perfil generado (~profile_gphotos~) a la ruta del proyecto en el servidor remoto usando ~rsync~:
+
+#+BEGIN_SRC bash
+rsync -avzP ~/profile_gphotos/ usuario@ip_de_tu_vps:~/docker/gphotos-cdp/profile_gphotos/
+#+END_SRC
+
+** Paso 3: Estructura de Directorios y Permisos en el VPS
+
+En la terminal del VPS, preparamos la estructura de carpetas:
+
+#+BEGIN_SRC bash
+mkdir -p ~/docker/gphotos-cdp/fotos
+#+END_SRC
+
+#+BEGIN_QUOTE
+*Recomendación de Permisos:* Crear la carpeta ~fotos~ explícitamente con tu usuario antes de arrancar Docker evita que el motor cree el directorio como ~root~, previniendo errores de permiso (~Permission denied~) al acceder a los archivos descargados desde la línea de comandos.
+#+END_QUOTE
+
+Estructura final del proyecto:
+#+BEGIN_EXAMPLE
+~/docker/gphotos-cdp/
+├── docker-compose.yml
+├── profile_gphotos/    # Perfil con la sesión de Brave
+└── fotos/              # Directorio de descarga
+#+END_EXAMPLE
+
+** Paso 4: Configuración de Docker Compose
+
+Creamos el archivo ~docker-compose.yml~ con la imagen mantenida por la comunidad (~davidecavestro/gphotos-cdp~):
+
+#+BEGIN_SRC yaml
+version: "3"
+
+services:
+  gphotos-cdp:
+    image: davidecavestro/gphotos-cdp:latest
+    container_name: gphotos-cdp
+    working_dir: /download
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./profile_gphotos:/tmp/gphotos-cdp   # Sesión de Chromium
+      - ./fotos:/dest                        # Destino de descargas
+    environment:
+      - DEST_DIR=/dest
+      - TZ=Europe/Madrid
+    restart: "no"
+#+END_SRC
+
+** Paso 5: Ejecución e Inspección
+
+Arrancamos el contenedor y monitorizamos la ejecución:
+
+#+BEGIN_SRC bash
+docker compose up -d
+docker logs -f gphotos-cdp
+#+END_SRC
+
+* Troubleshooting y Resoluciones Prácticas
+
+** Mensajes ~ERROR: unhandled page event *page.EventFrameSubtreeWillBeDetached~
+Estos mensajes son advertencias internas de ~chromedp~ al detectar cambios dinámicos en el DOM de Google Photos (p. ej., renderizado de reproductores de vídeo o galerías asíncronas). *No interfieren en la descarga de los archivos.*
+
+** Error ~Permission denied~ al acceder a la carpeta ~fotos~
+Si Docker creó la carpeta o asignó archivos al usuario ~root~, se puede reasignar la propiedad al usuario actual de forma transparente incluso mientras las descargas están activas:
+
+#+BEGIN_SRC bash
+sudo chown -R $USER:$USER fotos
+#+END_SRC
+
+** Caducidad de la Sesión
+Si el log indica ~Authentication not possible in -headless mode~, las cookies han expirado. Basta con reejecutar el comando de Brave localmente, iniciar sesión de nuevo y volver a sincronizar la carpeta ~profile_gphotos~ con ~rsync~ al VPS.
