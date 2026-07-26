@@ -3,12 +3,17 @@
 :END:
 #+title: gphotos-cdp
 #+STARTUP: overview
-#+date: <2026-07-26>
+#+date: <2026-07-27>
 #+filetags: :gphotos:docker:
 
 #+TITLE: Backup Incremental de Google Photos con Docker y gphotos-cdp
 #+AUTHOR: sherlockes
 #+DATE: [2026-07-26 Sun]
+#+FILETAGS: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
+
+#+TITLE: Backup Incremental de Google Photos con Docker y gphotos-cdp
+#+AUTHOR: sherlockes
+#+DATE: [2026-07-27 Mon]
 #+FILETAGS: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
 
 * Introducción y Contexto
@@ -69,29 +74,37 @@ Transferimos la carpeta del perfil generado (~profile_gphotos~) a la ruta del pr
 rsync -avzP ~/profile_gphotos/ usuario@ip_de_tu_vps:~/docker/gphotos-cdp/profile_gphotos/
 #+END_SRC
 
-** Paso 3: Estructura de Directorios y Permisos en el VPS
+** Paso 3: Estructura de Directorios y Gestión de Permisos (SGID)
 
-En la terminal del VPS, preparamos la estructura de carpetas:
+En la terminal del VPS, creamos la carpeta destino y configuramos el **bit SGID** (~chmod g+s~). Esto garantiza que todos los archivos descargados posteriormente por el contenedor hereden la propiedad del grupo de tu usuario no privilegiado, evitando futuros bloqueos de ~Permission denied~ sin necesidad de ejecutar un ~chown~ continuo.
 
 #+BEGIN_SRC bash
+# 1. Crear el directorio de descargas
 mkdir -p ~/docker/gphotos-cdp/fotos
-#+END_SRC
 
-#+BEGIN_QUOTE
-*Recomendación de Permisos:* Crear la carpeta ~fotos~ explícitamente con tu usuario antes de arrancar Docker evita que el motor cree el directorio como ~root~, previniendo errores de permiso (~Permission denied~) al acceder a los archivos descargados desde la línea de comandos.
-#+END_QUOTE
+# 2. Asegurar la propiedad para tu usuario habitual
+sudo chown -R $USER:$USER ~/docker/gphotos-cdp/fotos
+
+# 3. Asignar permisos de lectura/escritura/ejecución para dueño y grupo
+sudo chmod -R 775 ~/docker/gphotos-cdp/fotos
+
+# 4. Activar bit SGID para herencia automática de grupo en nuevos archivos
+sudo chmod g+s ~/docker/gphotos-cdp/fotos
+#+END_SRC
 
 Estructura final del proyecto:
 #+BEGIN_EXAMPLE
 ~/docker/gphotos-cdp/
 ├── docker-compose.yml
 ├── profile_gphotos/    # Perfil con la sesión de Brave
-└── fotos/              # Directorio de descarga
+└── fotos/              # Directorio de descarga con bit SGID activado
 #+END_EXAMPLE
 
 ** Paso 4: Configuración de Docker Compose
 
-Creamos el archivo ~docker-compose.yml~ con la imagen mantenida por la comunidad (~davidecavestro/gphotos-cdp~):
+Creamos el archivo ~docker-compose.yml~ con la imagen mantenida por la comunidad (~davidecavestro/gphotos-cdp~). 
+
+*Importante:* No debemos forzar una directiva ~user: "1000:1000"~ en este contenedor, ya que el motor Chromium interno requiere permisos root para inicializar sus mecanismos de aislamiento (*Zygote Sandbox*).
 
 #+BEGIN_SRC yaml
 version: "3"
@@ -125,12 +138,12 @@ docker logs -f gphotos-cdp
 ** Mensajes ~ERROR: unhandled page event *page.EventFrameSubtreeWillBeDetached~
 Estos mensajes son advertencias internas de ~chromedp~ al detectar cambios dinámicos en el DOM de Google Photos (p. ej., renderizado de reproductores de vídeo o galerías asíncronas). *No interfieren en la descarga de los archivos.*
 
-** Error ~Permission denied~ al acceder a la carpeta ~fotos~
-Si Docker creó la carpeta o asignó archivos al usuario ~root~, se puede reasignar la propiedad al usuario actual de forma transparente incluso mientras las descargas están activas:
+** Error de Chromium Sandbox: ~FATAL:zygote_host_impl_linux.cc(128) No usable sandbox!~
+Este fallo ocurre si intentas forzar al contenedor a ejecutarse bajo un UID no privilegiado (p. ej. `user: "1000:1000"` en Compose). El motor Chromium dentro del contenedor no puede inicializar el aislamiento de procesos *Zygote* debido a restricciones de AppArmor / unprivileged user namespaces en distribuciones modernas Linux.
+- *Solución:* Eliminar la directiva ~user:~ en ~docker-compose.yml~ para dejar que el contenedor gestione Chromium normalmente y delegar el control de acceso de los archivos descargados al bit **SGID** del directorio (~chmod g+s fotos~).
 
-#+BEGIN_SRC bash
-sudo chown -R $USER:$USER fotos
-#+END_SRC
+** Reanudación del Proceso e Interrupciones
+Si el contenedor se detiene o reinicia durante el proceso, ~gphotos-cdp~ lee su punto de guardado (*savepoint*) local. Al reanudarse, escaneará la biblioteca y omitirá de forma transparente los archivos que ya hayan sido descargados en pasadas anteriores.
 
 ** Caducidad de la Sesión
 Si el log indica ~Authentication not possible in -headless mode~, las cookies han expirado. Basta con reejecutar el comando de Brave localmente, iniciar sesión de nuevo y volver a sincronizar la carpeta ~profile_gphotos~ con ~rsync~ al VPS.
