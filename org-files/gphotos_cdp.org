@@ -4,17 +4,8 @@
 #+title: gphotos-cdp
 #+STARTUP: overview
 #+date: <2026-07-27>
-#+filetags: :gphotos:docker:
+#+filetags: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
 
-#+TITLE: Backup Incremental de Google Photos con Docker y gphotos-cdp
-#+AUTHOR: sherlockes
-#+DATE: [2026-07-26 Sun]
-#+FILETAGS: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
-
-#+TITLE: Backup Incremental de Google Photos con Docker y gphotos-cdp
-#+AUTHOR: sherlockes
-#+DATE: [2026-07-27 Mon]
-#+FILETAGS: :selfhosted:docker:backup:googlephotos:gphotos-cdp:linux:
 
 * Introducción y Contexto
 
@@ -147,3 +138,66 @@ Si el contenedor se detiene o reinicia durante el proceso, ~gphotos-cdp~ lee su 
 
 ** Caducidad de la Sesión
 Si el log indica ~Authentication not possible in -headless mode~, las cookies han expirado. Basta con reejecutar el comando de Brave localmente, iniciar sesión de nuevo y volver a sincronizar la carpeta ~profile_gphotos~ con ~rsync~ al VPS.
+
+* Reiniciar escaneo desde cero en gphotos-cdp
+** Problema
+El contenedor ~gphotos-cdp~ finaliza inmediatamente con =exit status 0= o tras descargar una sola foto. 
+Esto ocurre porque guarda un archivo de control de progreso oculto (=.lastDone=) dentro de la carpeta del perfil de Chromium (=profile_gphotos=). Al detectar este archivo, da por asumido que la fototeca ya está completamente sincronizada.
+
+** Solución Paso a Paso
+
+*** 1. Detener el contenedor
+Desde el directorio del servicio en el VPS (~~/docker/gphotos-cdp~):
+
+#+BEGIN_SRC bash
+docker compose down
+#+END_SRC
+
+*** 2. Eliminar los archivos de estado persistentes (incluidos ocultos)
+Borra los punteros de control y marcas de agua guardados en la carpeta del perfil de Chromium sin perder las cookies de sesión activa:
+
+#+BEGIN_SRC bash
+sudo rm -f profile_gphotos/lastDone* profile_gphotos/.lastDone* profile_gphotos/savepoint* profile_gphotos/.savepoint*
+#+END_SRC
+
+*** 3. Verificar que la carpeta del perfil quedó limpia de marcas
+Asegúrate de que no devuelve ninguna línea:
+
+#+BEGIN_SRC bash
+ls -la profile_gphotos | grep -i lastdone
+#+END_SRC
+
+*** 4. Reorganizar la estructura de carpetas (Opcional)
+Si las fotos descargadas anteriormente quedaron mezcladas en la raíz de ~fotos/~ y prefieres moverlas a sus subcarpetas correspondientes por año y mes:
+
+#+BEGIN_SRC bash
+sudo apt install -y libimage-exiftool-perl
+exiftool '-Directory<CreateDate' -d "fotos/%Y/%Y-%m" fotos/
+#+END_SRC
+
+*** 5. Reorganizar permisos de la carpeta destino
+Garantiza que el usuario local mantiene permisos =rwx= permanentes sobre el directorio:
+
+#+BEGIN_SRC bash
+sudo chown -R $USER:$USER fotos
+sudo chmod -R 777 fotos
+#+END_SRC
+
+*** 6. Relanzar el contenedor en segundo plano
+Lanza la sincronización limpia:
+
+#+BEGIN_SRC bash
+docker compose up -d
+#+END_SRC
+
+** Verificación
+Comprueba que el log ya no contiene la línea =Using lastDone= y en su lugar indica que realiza el scroll completo:
+
+#+BEGIN_SRC bash
+docker logs --tail 20 -f gphotos-cdp
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+Looking for the starting point
+Scrolling down to the end of the page
+#+END_EXAMPLE
