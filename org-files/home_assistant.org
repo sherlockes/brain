@@ -50,7 +50,7 @@ Cuando el sensor de la puerta de la galería pierde la conexión hay que realiza
  En caso de que el dispositivo no esté disponible un tiempo después de haber sido agregado, no es necesario eliminar la instancia, simplemente al buscar nuevos aparecerá ya con el nombre que se la  había asignado anteriormente.
  #+end_quote
 **** Zigbee2Mqtt
-***** Intalar
+***** Instalar
 - Instalar el addon [[https://isytec.net/como-instalar-mosquitto-broker-mqtt-en-home-assistant/][Mosquito]]
 - Instalar el addon [[https://www.zigbee2mqtt.io/guide/configuration/][Zigbee2Mqtt]]
 - Añadir la integración Mqtt
@@ -65,3 +65,4 @@ frontend:
 serial:
   port: /dev/ttyUSB1
 #+end_src
+**** [[id:9788c8e3-93f5-40ca-93ec-c9e74a4edf03][zha]]
