@@ -7,4 +7,5 @@
 #+filetags: :project:
 
 Los proyectos en los que estoy trabajando (Y documentando)
-* [[id:28ff4efd-6d27-4ce3-b2be-5298e26784a7][quizs_evo]] (Aplicación avanzada de cuestionarios)
+- [[id:28ff4efd-6d27-4ce3-b2be-5298e26784a7][quizs_evo]] (Aplicación avanzada de cuestionarios)
+- [[id:c22a5560-308e-40a4-8d23-225f4211de19][vps config]] (Configuración del vps en Contabo)
