@@ -6,3 +6,75 @@
 #+date: <2026-09-23>
 #+filetags: :links:
 
+* Home Assistant & Domótica                         :homeassistant:
+- [[https://github.com/Rohithkadaveru/ha-pass][HA-Pass - Password manager integration for HA]]
+- [[https://esphome.io/components/zigbee/][ESPHome - Zigbee Component]]
+- [[https://github.com/dummylabs/thewatchman#example-of-a-watchman-report][The Watchman - Monitor de entidades de HA]]
+- [[https://www.home-assistant.io/integrations/switch_as_x/][Home Assistant - Switch as X]]
+- [[https://github.com/andrew-codechimp/HA-Battery-Notes][HA-Battery-Notes]]
+- [[https://github.com/davidepalleschi/zepp2hass][Zepp2hass]]
+- [[https://github.com/BSkando/GoogleFindMy-HA][GoogleFindMy - HA]]
+- [[https://darkxst.github.io/silabs-firmware-builder/][Silabs Firmware Builder - Compilador de firmware Zigbee]]
+- [[https://aguacatec.es/controlar-ha-desde-tu-reloj-amazfit/][Controlar HA desde tu reloj Amazfit]]
+- [[https://aguacatec.es/integrar-home-assistant-en-tasker/][Integrar Home Assistant en Tasker]]
+- [[https://aguacatec.es/cambiar-tu-coordinador-zigbee/][Aguacatec - Cambiar tu coordinador Zigbee]]
+- [[https://aguacatec.es/migrar-ha-de-raspberry-a-mini-pc/][Migrar HA de Raspberry a Mini PC]]
+- [[https://community.home-assistant.io/t/low-battery-notifications-actions/653754][HA Community - Notificaciones de batería baja]]
+- [[https://community.home-assistant.io/t/pihole-5-and-6-enable-disable-groups-block-internet/268927][PiHole 5 (and 6) enable/disable groups]]
+
+* Docker & Autoalojamiento                                 :docker:
+- [[https://dockflare.app/][Dockflare - Docker Cloudflare tunnels manager]]
+- [[https://github.com/dgongut/transmission-renamer][Transmission Renamer]]
+- [[https://github.com/VERT-sh/VERT][GitHub - VERT-sh/VERT: The next-generation file converter. Open source, fully local* and free forever.]]
+- [[https://github.com/wg-easy/wg-easy][GitHub - wg-easy/wg-easy: The easiest way to run WireGuard VPN + Web-based Admin UI.]]
+- [[https://github.com/anoniemerd/PruneMate][PruneMate - Limpieza automática de Docker]]
+- [[https://github.com/usememos/memos][Memos - Servicio de notas open-source]]
+- [[https://www.beszel.dev/guide/what-is-beszel][Beszel - Monitor de servidor ligero]]
+- [[https://github.com/DialmasterOrg/Youtarr][Youtarr]]
+- [[https://github.com/dgongut/dropbot?tab=readme-ov-file][Dropbot]]
+- [[https://github.com/crocofied/PortNote][PortNote]]
+- [[https://github.com/aceberg/WatchYourLAN][WatchYourLAN - Monitor de red local]]
+- [[https://github.com/fccview/cronmaster?tab=readme-ov-file][Cronmaster]]
+- [[https://github.com/ofkm/arcane][Arcane]]
+- [[https://dawarich.app][Dawarich — Your Journey, Your Control | Dawarich]]
+- [[https://github.com/dgongut/docker-controller-bot][docker-controller-bot (dgongut)]]
+
+* Emacs                                                     :emacs:
+- [[https://github.com/emacs-dashboard/emacs-dashboard][Emacs Dashboard]]
+- [[https://gnutas.juanmanuelmacias.com/aislar_subtree-revisitado.html][Cuaderno de GNUtas - Org subtree revisitado]]
+- [[https://xenodium.com/emacs-as-your-video-trimming-tool][Xenodium - Emacs como herramienta de corte de video]]
+- [[https://www.masteringemacs.org/article/introduction-magit-emacs-mode-git][Mastering Emacs - Introducción a Magit]]
+
+* Linux, Git & Servidores                                   :linux:
+- [[https://ugeek.github.io/posts/2026-07-24-tunel-ssh-para-acceder-a-puertos-remotos-como-si-estuvieran-en-tu-servidor-local.html][uGeek - Túnel SSH para acceder a puertos remotos]]
+- [[https://atareao.es/podcast/configura-hermes-agent-de-verdad-lo-que-nadie-te-cuenta/][Atareao - Configura hermes-agent de verdad]]
+- [[https://massgrave.dev/][Microsoft Activation Scripts (MAS)]]
+- [[https://www.gitreverse.com/][GitReverse - Visualizador y generador Git]]
+- [[https://linuxcommandlibrary.com/][Linux Command Library]]
+- [[https://h4ckseed.wordpress.com/2025/09/17/buenas-practicas-para-prevenir-ataques-brute-force-login-ssh-en-linux/][Buenas Practicas para Prevenir Ataques Brute-Force Login SSH en Linux]]
+- [[https://voidnull.es/git/][Curso Git: de cero a maestra]]
+
+* Libros & Lectura                                         :libros:
+- [[https://telegra.ph/Biblioteca-Secreta-01-31][Biblioteca Secreta (01-31)]]
+- [[https://es.annas-archive.li/][Anna's Archive (.li)]]
+- [[https://annas-archive.org/][Anna's Archive (.org)]]
+- [[https://z-lib.gd/][Z-Library (z-lib.gd)]]
+- [[https://telegra.ph/Biblioteca-Secreta-12-30][Biblioteca Secreta]]
+- [[https://audiobookbay.lu/audio-books/tag/spanish/][Spanish Audiobook]]
+- [[https://librivox.org/][LibriVox - Audiolibros de dominio público]]
+
+* Herramientas & Recursos Web                            :recursos:
+- [[https://github.com/Madh93/karakeepbot][KarakeepBot - Telegram bot]]
+- [[https://github.com/alam00000/bentopdf][BentoPDF]]
+- [[https://www.stirling.com/][Stirling]]
+- [[https://www.pdf2go.com/es][Editor de PDF online gratis]]
+- [[https://quick-share.app/][Quick Share - Fast & Secure File Transfer]]
+- [[https://edge-aware-ai-cut.lovable.app/][Remove Backgrounds Instantly]]
+- [[https://github.com/TrianguloY/URLCheck?tab=readme-ov-file][TrianguloY - URLCheck]]
+- [[https://elblogdelazaro.org/crea-un-buscador-para-tu-sitio-web-hugo/][El Blog de Lázaro - Buscador para sitio web Hugo]]
+- [[https://docs.stirlingpdf.com/][Stirling-PDF]]
+
+* Juegos & Comunidad                                       :varios:
+- [[https://dou.ua/forums/topic/40822/][DOU - Topic 40822]]
+- [[https://forum.luanti.org/viewtopic.php?t=8121][Creative mode - Luanti Forums]]
+- [[https://forum.luanti.org/viewtopic.php?t=14399][Luanti Forums - Topic 14399]]
