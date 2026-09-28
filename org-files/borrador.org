@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       7f05b204-ffa9-40c7-aff7-03bab150fad1
+:END:
+#+title: borrador
+#+STARTUP: overview
+#+date: <2026-09-28>
+#+filetags: 
+
+Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
