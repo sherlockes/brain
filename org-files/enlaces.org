@@ -10,6 +10,7 @@
 - [[https://https://github.com/fast4x/RiPlay][RiPlay Music Player]]
 
 * Home Assistant & Domótica                         :homeassistant:
+- [[https://https://github.com/ma-ochoa/rf_devices][RF-devices]]
 - [[https://github.com/Rohithkadaveru/ha-pass][HA-Pass - Password manager integration for HA]]
 - [[https://esphome.io/components/zigbee/][ESPHome - Zigbee Component]]
 - [[https://github.com/dummylabs/thewatchman#example-of-a-watchman-report][The Watchman - Monitor de entidades de HA]]
