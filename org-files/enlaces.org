@@ -68,6 +68,7 @@
 - [[https://librivox.org/][LibriVox - Audiolibros de dominio público]]
 
 * Herramientas & Recursos Web                            :recursos:
+- [[https://reader.me/es/][Reader (PDF Utils)]]
 - [[https://github.com/Madh93/karakeepbot][KarakeepBot - Telegram bot]]
 - [[https://github.com/alam00000/bentopdf][BentoPDF]]
 - [[https://www.stirling.com/][Stirling]]
