@@ -15,5 +15,3 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 Probando, probando...
 
 [[https://github.com/manelmolinaig/zefiro_backups]]
-
-[[https://github.com/manelmolinaig/zefiro_backups]]
