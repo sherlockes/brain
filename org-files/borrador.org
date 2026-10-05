@@ -18,6 +18,6 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 
 [[https://github.com/alpyxn/aeterna]]
 
-[[https://mosaicqr.com/?url=https%3A%2F%2Fsherblog.es]]
+[[https://mosaicqr.com]]
 
 [[https://github.com/DialmasterOrg/Youtarr]]
