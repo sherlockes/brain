@@ -13,5 +13,3 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 [[https://github.com/LibreTranslate/LibreTranslate][Libre Translate]]
 
 Probando, probando...
-
-[[https://example.com][Test Enlace]]
