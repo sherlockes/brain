@@ -8,8 +8,6 @@
 
 Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 
-[[https://homebox.software/en/][HomeBox]]
-
 [[https://github.com/LibreTranslate/LibreTranslate][Libre Translate]]
 
 [[https://github.com/manelmolinaig/zefiro_backups]]
