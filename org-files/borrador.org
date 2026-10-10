@@ -15,3 +15,5 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 [[https://github.com/alpyxn/aeterna]]
 
 [[https://mosaicqr.com]]
+
+[[https://www.youtube.com/watch?v=750cCXFIfmg&t=560s][Migrar a Z2m]]
