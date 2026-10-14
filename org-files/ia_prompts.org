@@ -156,3 +156,22 @@ Ejemplo de estilo visual esperado:
 ]
 ```
 #+end_quote
+
+*** Obtener cuestionario Json desde NotebookLM
+#+begin_src text
+Actúa como un experto en pedagogía para primaria. Tu tarea es crear un cuestionario de 50 preguntas basado exclusivamente en los documentos proporcionados.
+          
+Distribución de las preguntas:
+40 preguntas sobre la unidad ____ y 10 de recuerdo de las anteriores unidades en caso de las las 40 anteriores no sean de la primera unidad.
+
+Instrucciones críticas:
+Formato JSON: Devuelve únicamente un código JSON que sea un array de objetos con esta estructura: {"id": número, "pregunta": "texto", "opciones": ["A", "B", "C", "D"], "respuestaCorrecta": índice del 0 al 3, "explicacion": "breve razón pedagógica"}.
+
+Aleatoriedad Total: Es obligatorio que la posición de la respuestaCorrecta varíe de forma equilibrada entre los índices 0, 1, 2 y 3. No concentres las respuestas correctas en las primeras opciones.
+
+Rigor Pedagógico: Las preguntas deben estar adaptadas a nivel de primaria. Cada explicacion debe basarse en el contenido de las fuentes.
+
+Sin texto adicional: No incluyas preámbulos, conclusiones ni bibliografía. Solo el bloque de código JSON.
+
+Citas: Asegúrate de que la lógica de las respuestas esté respaldada por la información de los materiales
+#+end_src
