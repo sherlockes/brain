@@ -29,3 +29,5 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 [[https://github.com/0neTX/Bitwarden_Export]]
 
 [[https://github.com/uniextra/MovistarWebDAVProxy]]
+
+[[https://hermes-agent.nousresearch.com/marketplace/antigravity-oauth]]
