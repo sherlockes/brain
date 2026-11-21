@@ -31,3 +31,5 @@ Esta es una nota borrador donde dejar las notas en las que estoy trabajando.
 [[https://github.com/uniextra/MovistarWebDAVProxy]]
 
 [[https://hermes-agent.nousresearch.com/marketplace/antigravity-oauth]]
+
+[[https://solidcraft.io/][SolidCraft: free, open-source parametric 3D CAD]]
